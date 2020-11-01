@@ -90,18 +90,18 @@ namespace BoardOrder.Preferences.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Coper Weight on Inner Layers.
         /// </summary>
-        public static string COOPER_WEIGHT_ON_INNER_LAYERS_LABEL {
+        public static string Copper_WEIGHT_ON_INNER_LAYERS_LABEL {
             get {
-                return ResourceManager.GetString("COOPER_WEIGHT_ON_INNER_LAYERS_LABEL", resourceCulture);
+                return ResourceManager.GetString("Copper_WEIGHT_ON_INNER_LAYERS_LABEL", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Coper Weight on Outer Layers.
         /// </summary>
-        public static string COOPER_WEIGHT_ON_OUTER_LAYERS_LABEL {
+        public static string Copper_WEIGHT_ON_OUTER_LAYERS_LABEL {
             get {
-                return ResourceManager.GetString("COOPER_WEIGHT_ON_OUTER_LAYERS_LABEL", resourceCulture);
+                return ResourceManager.GetString("Copper_WEIGHT_ON_OUTER_LAYERS_LABEL", resourceCulture);
             }
         }
         

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B5123F1D-2ED5-4537-8F16-CB1AB0250F8C}</ProjectGuid>
+    <ProjectGuid>{9E31A9C0-430C-4CDA-B6B3-80E72D25ABAB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BoardOrder.Domain</RootNamespace>
-    <AssemblyName>BoardOrder.Domain</AssemblyName>
+    <RootNamespace>BoardOrder.DataAccess</RootNamespace>
+    <AssemblyName>BoardOrder.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,9 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardOrderItem.cs" />
-    <Compile Include="ColorBoardOrderItem.cs" />
+    <Compile Include="PredefinedPreferencesSettingsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BoardOrder.Domain\BoardOrder.Domain.csproj">
+      <Project>{b5123f1d-2ed5-4537-8f16-cb1ab0250f8c}</Project>
+      <Name>BoardOrder.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

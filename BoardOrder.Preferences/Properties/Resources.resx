@@ -126,10 +126,10 @@
   <data name="CONTROLLED_IMPEDANCE_LABEL" xml:space="preserve">
     <value>Controlled Impedance</value>
   </data>
-  <data name="COOPER_WEIGHT_ON_INNER_LAYERS_LABEL" xml:space="preserve">
+  <data name="Copper_WEIGHT_ON_INNER_LAYERS_LABEL" xml:space="preserve">
     <value>Coper Weight on Inner Layers</value>
   </data>
-  <data name="COOPER_WEIGHT_ON_OUTER_LAYERS_LABEL" xml:space="preserve">
+  <data name="Copper_WEIGHT_ON_OUTER_LAYERS_LABEL" xml:space="preserve">
     <value>Coper Weight on Outer Layers</value>
   </data>
   <data name="FLUX_TYPE_LABEL" xml:space="preserve">

@@ -96,10 +96,10 @@
         <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}"/>
         <TextBox Grid.Row="14" Grid.Column="2"/>
 
-        <Label Grid.Row="15" Grid.Column="1" Content="{x:Static resources:Resources.COOPER_WEIGHT_ON_INNER_LAYERS_LABEL}"/>
+        <Label Grid.Row="15" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_INNER_LAYERS_LABEL}"/>
         <TextBox Grid.Row="15" Grid.Column="2"/>
 
-        <Label Grid.Row="16" Grid.Column="1" Content="{x:Static resources:Resources.COOPER_WEIGHT_ON_OUTER_LAYERS_LABEL}"/>
+        <Label Grid.Row="16" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_OUTER_LAYERS_LABEL}"/>
         <TextBox Grid.Row="16" Grid.Column="2"/>
 
         <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}"/>
