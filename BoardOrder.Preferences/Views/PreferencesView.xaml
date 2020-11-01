@@ -19,6 +19,21 @@
             <ColumnDefinition Width="250*"/>
             <ColumnDefinition Width="250*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="{x:Static resources:Resources.PROJECT_NAME_LABEL}" />
+        <StackPanel>
+            <Label Content="{x:Static resources:Resources.PROJECT_BASICS_HEADER}" FontWeight="Bold"/>
+            <Label Content="{x:Static resources:Resources.PREFERENCES_DESCRIPTION}" />
+        </StackPanel>
+        
+        
+        <StackPanel Grid.Row="1">
+            <Label Content="{x:Static resources:Resources.IMPORTANT_BOARDS_PREFERENCES_HEADER}" FontWeight="Bold"/>
+            <Label Content="{x:Static resources:Resources.PREFERENCES_DESCRIPTION}" />
+        </StackPanel>
+        
+        
+        <StackPanel Grid.Row="2">
+            <Label Content="{x:Static resources:Resources.SPECIAL_BOARD_PREFERENCES_HEADER}" FontWeight="Bold"/>
+            <Label Content="{x:Static resources:Resources.PREFERENCES_DESCRIPTION}" />
+        </StackPanel>
     </Grid>
 </UserControl>

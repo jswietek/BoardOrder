@@ -115,6 +115,15 @@ namespace BoardOrder.Preferences.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Important Board Preferences.
+        /// </summary>
+        public static string IMPORTANT_BOARDS_PREFERENCES_HEADER {
+            get {
+                return ResourceManager.GetString("IMPORTANT_BOARDS_PREFERENCES_HEADER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IPC Class.
         /// </summary>
         public static string IPC_CLASS_LABEL {
@@ -160,6 +169,24 @@ namespace BoardOrder.Preferences.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preferences on this page supersede design file notes.
+        /// </summary>
+        public static string PREFERENCES_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("PREFERENCES_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Basics.
+        /// </summary>
+        public static string PROJECT_BASICS_HEADER {
+            get {
+                return ResourceManager.GetString("PROJECT_BASICS_HEADER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Name.
         /// </summary>
         public static string PROJECT_NAME_LABEL {
@@ -183,6 +210,15 @@ namespace BoardOrder.Preferences.Properties {
         public static string SOLDER_MASK_COLOR_LABEL {
             get {
                 return ResourceManager.GetString("SOLDER_MASK_COLOR_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special Board Preferences.
+        /// </summary>
+        public static string SPECIAL_BOARD_PREFERENCES_HEADER {
+            get {
+                return ResourceManager.GetString("SPECIAL_BOARD_PREFERENCES_HEADER", resourceCulture);
             }
         }
         

@@ -135,6 +135,9 @@
   <data name="FLUX_TYPE_LABEL" xml:space="preserve">
     <value>Flux Type</value>
   </data>
+  <data name="IMPORTANT_BOARDS_PREFERENCES_HEADER" xml:space="preserve">
+    <value>Important Board Preferences</value>
+  </data>
   <data name="IPC_CLASS_LABEL" xml:space="preserve">
     <value>IPC Class</value>
   </data>
@@ -150,6 +153,12 @@
   <data name="NOTES_LABEL" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="PREFERENCES_DESCRIPTION" xml:space="preserve">
+    <value>Preferences on this page supersede design file notes</value>
+  </data>
+  <data name="PROJECT_BASICS_HEADER" xml:space="preserve">
+    <value>Project Basics</value>
+  </data>
   <data name="PROJECT_NAME_LABEL" xml:space="preserve">
     <value>Project Name</value>
   </data>
@@ -158,6 +167,9 @@
   </data>
   <data name="SOLDER_MASK_COLOR_LABEL" xml:space="preserve">
     <value>Solder Mask Color</value>
+  </data>
+  <data name="SPECIAL_BOARD_PREFERENCES_HEADER" xml:space="preserve">
+    <value>Special Board Preferences</value>
   </data>
   <data name="STACKUP_LABEL" xml:space="preserve">
     <value>Stackup</value>
