@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BoardOrder.Common;
 
 namespace BoardOrder.Preferences.ViewModels {
-	class PreferencesViewModel {
-		public IEnumerable<string> Labels {
-			get {
-				return new List<string>() { "raz", "Dwa" };
-			}
-		}
+	public class PreferencesViewModel : ViewModelBase {
+		public string ProjectName { get; set; }
+		public string Zipcode { get; set; }
+		public string BoardsQuantity { get; set; }
 	}
 }
