@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BoardOrder.Preferences {
+namespace BoardOrder.Preferences.Views {
 	/// <summary>
 	/// Interaction logic for PreferencesView.xaml
 	/// </summary>

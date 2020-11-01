@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BoardOrder"
+        xmlns:preferences="clr-namespace:BoardOrder.Preferences.Views;assembly=BoardOrder.Preferences"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <preferences:PreferencesView></preferences:PreferencesView>
     </Grid>
 </Window>

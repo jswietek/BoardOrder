@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardOrder", "BoardOrder\Bo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Steps", "Steps", "{2BE62AB4-5EEB-471B-928D-23D6C5BA1DC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardOrder.Preferences", "BoardOrder.Preferences\BoardOrder.Preferences.csproj", "{2BAB7BC0-4AF2-45A3-9186-CF35C84BEC2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardOrder.Preferences", "BoardOrder.Preferences\BoardOrder.Preferences.csproj", "{B299A150-FD62-4F86-854F-8E3C4C8B0128}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,16 @@ Global
 		{62EDEB62-AE32-48B0-95D7-CBA68A3B06D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62EDEB62-AE32-48B0-95D7-CBA68A3B06D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62EDEB62-AE32-48B0-95D7-CBA68A3B06D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BAB7BC0-4AF2-45A3-9186-CF35C84BEC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BAB7BC0-4AF2-45A3-9186-CF35C84BEC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BAB7BC0-4AF2-45A3-9186-CF35C84BEC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BAB7BC0-4AF2-45A3-9186-CF35C84BEC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B299A150-FD62-4F86-854F-8E3C4C8B0128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B299A150-FD62-4F86-854F-8E3C4C8B0128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B299A150-FD62-4F86-854F-8E3C4C8B0128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B299A150-FD62-4F86-854F-8E3C4C8B0128}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2BAB7BC0-4AF2-45A3-9186-CF35C84BEC2F} = {2BE62AB4-5EEB-471B-928D-23D6C5BA1DC3}
+		{B299A150-FD62-4F86-854F-8E3C4C8B0128} = {2BE62AB4-5EEB-471B-928D-23D6C5BA1DC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {040DABDF-E7F4-4194-A142-9E2F445787BE}

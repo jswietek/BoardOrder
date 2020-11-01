@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BoardOrder.Preferences\BoardOrder.Preferences.csproj">
+      <Project>{b299a150-fd62-4f86-854f-8e3c4c8b0128}</Project>
+      <Name>BoardOrder.Preferences</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
