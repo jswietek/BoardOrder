@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace BoardOrder.DataAccess {
-	public class PredefinedPreferencesSettingsRepository : IPredefinedPreferencesSettingsRepository {
+	public class PredefinedPreferencesSettingsRepository : IPreferencesSettingsRepository {
 		public IEnumerable<BoardOrderItem> GetMaterials() {
 			return new List<BoardOrderItem>() {
 				new BoardOrderItem("Arlon", 8, 0),

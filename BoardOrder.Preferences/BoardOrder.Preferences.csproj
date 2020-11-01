@@ -67,6 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\PreferencesOptionsViewModel.cs" />
     <Compile Include="ViewModels\PreferencesViewModel.cs" />
     <Compile Include="Views\PreferencesView.xaml.cs">
       <DependentUpon>PreferencesView.xaml</DependentUpon>
@@ -93,6 +94,14 @@
     <ProjectReference Include="..\BoardOrder.Common\BoardOrder.Common.csproj">
       <Project>{f0446c59-6347-4b7b-9be3-3171e6a0b636}</Project>
       <Name>BoardOrder.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BoardOrder.DataAccess\BoardOrder.DataAccess.csproj">
+      <Project>{9e31a9c0-430c-4cda-b6b3-80e72d25abab}</Project>
+      <Name>BoardOrder.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BoardOrder.Domain\BoardOrder.Domain.csproj">
+      <Project>{B5123F1D-2ED5-4537-8F16-CB1AB0250F8C}</Project>
+      <Name>BoardOrder.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

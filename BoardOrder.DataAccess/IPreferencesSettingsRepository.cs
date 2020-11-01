@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace BoardOrder.DataAccess {
-	public interface IPredefinedPreferencesSettingsRepository {
+	public interface IPreferencesSettingsRepository {
 		IEnumerable<BoardOrderItem> GetInnerLayerCopperWeights();
 		IEnumerable<BoardOrderItem> GetMaterials();
 		IEnumerable<BoardOrderItem> GetOuterLayerCopperWeights();

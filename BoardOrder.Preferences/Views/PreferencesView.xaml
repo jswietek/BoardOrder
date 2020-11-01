@@ -68,13 +68,16 @@
         <TextBox Grid.Row="4" Grid.Column="2"/>
 
         <Label Grid.Row="5" Grid.Column="1" Content="{x:Static resources:Resources.MATERIAL_LABEL}"/>
-        <ComboBox Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="2"/>
+        <ComboBox Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.Materials}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedMaterial, Mode=TwoWay}" SelectedIndex="0"/>
 
         <Label Grid.Row="6" Grid.Column="1" Content="{x:Static resources:Resources.SURFACE_FINISH_LABEL}"/>
-        <ComboBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <ComboBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.SurfaceFinishes}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedSurfaceFinish, Mode=TwoWay}" SelectedIndex="0"/>
 
         <Label Grid.Row="7" Grid.Column="1" Content="{x:Static resources:Resources.SOLDER_MASK_COLOR_LABEL}"/>
-        <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"  ItemsSource="{Binding OptionsViewModel.SolderMaskColors}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedMaskColor, Mode=TwoWay}" SelectedIndex="0"/>
 
         <StackPanel Grid.Row="9">
             <Label Content="{x:Static resources:Resources.SPECIAL_BOARD_PREFERENCES_HEADER}" FontWeight="Bold"/>
@@ -94,13 +97,16 @@
         <TextBox Grid.Row="13" Grid.Column="2"/>
 
         <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}"/>
-        <TextBox Grid.Row="14" Grid.Column="2"/>
+        <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.SilkscreenColors}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedSilkscreenColor, Mode=TwoWay}" SelectedIndex="0"/>
 
         <Label Grid.Row="15" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_INNER_LAYERS_LABEL}"/>
-        <TextBox Grid.Row="15" Grid.Column="2"/>
+        <ComboBox Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.InnerLayersCopperWeights}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedInnerLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
 
         <Label Grid.Row="16" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_OUTER_LAYERS_LABEL}"/>
-        <TextBox Grid.Row="16" Grid.Column="2"/>
+        <ComboBox Grid.Row="16" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.OuterLayersCopperWeights}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedOuterLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
 
         <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}"/>
         <TextBox Grid.Row="17" Grid.Column="2"/>
