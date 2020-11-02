@@ -54,7 +54,10 @@ namespace BoardOrder.Common.Controls {
 
 		private static void ItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
 			if (d is MultiButton multiButton) {
-				multiButton.MainGrid.Children.Clear();
+				var childCopy = multiButton.MainGrid.Children.OfType<RadioButton>();
+				foreach(var button in childCopy) {
+					multiButton.MainGrid.Children.Remove(button);
+				}
 				multiButton.MainGrid.ColumnDefinitions.Clear();
 
 				CreateControls(multiButton, e.NewValue as IEnumerable<object>);

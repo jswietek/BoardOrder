@@ -54,6 +54,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ClippingBorder.cs" />
     <Compile Include="Controls\MultiButton.xaml.cs">
       <DependentUpon>MultiButton.xaml</DependentUpon>
     </Compile>
@@ -89,8 +90,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="GeneralStyles.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

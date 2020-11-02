@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BoardOrder"
         xmlns:preferences="clr-namespace:BoardOrder.Preferences.Views;assembly=BoardOrder.Preferences"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="768" Width="1024">
     <Grid>
         <preferences:PreferencesView></preferences:PreferencesView>
     </Grid>

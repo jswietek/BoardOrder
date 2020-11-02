@@ -6,9 +6,8 @@
              xmlns:local="clr-namespace:BoardOrder.Common.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border>
+    <local:ClippingBorder CornerRadius="5">
         <Grid x:Name="MainGrid">
-            
         </Grid>
-    </Border>
+    </local:ClippingBorder>
 </UserControl>
