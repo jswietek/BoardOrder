@@ -6,11 +6,19 @@
              xmlns:local="clr-namespace:BoardOrder.Preferences.Views"
              xmlns:resources="clr-namespace:BoardOrder.Preferences.Properties"
              xmlns:vm="clr-namespace:BoardOrder.Preferences.ViewModels"
+             xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:PreferencesViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/GeneralStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -84,19 +92,19 @@
         </StackPanel>
 
         <Label Grid.Row="10" Grid.Column="1" Content="{x:Static resources:Resources.LEAD_FREE_LABEL}"/>
-        <ListBox Grid.Row="10" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.LeadFreeOptions}"
+        <controls:MultiButton Grid.Row="10" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.LeadFreeOptions}"
                               SelectedItem="{Binding SelectedLeadFreeOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="11" Grid.Column="1" Content="{x:Static resources:Resources.IPC_CLASS_LABEL}"/>
-        <ListBox Grid.Row="11" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.IpcClasses}"
+        <controls:MultiButton Grid.Row="11" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.IpcClasses}"
                               SelectedItem="{Binding SelectedIPCClass, Mode=TwoWay}"/>
 
         <Label Grid.Row="12" Grid.Column="1" Content="{x:Static resources:Resources.ITAR_LABEL}"/>
-        <ListBox Grid.Row="12" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ItarComplianceOptions}"
+        <controls:MultiButton Grid.Row="12" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ItarComplianceOptions}"
                               SelectedItem="{Binding SelectedITARComplianceOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="13" Grid.Column="1" Content="{x:Static resources:Resources.FLUX_TYPE_LABEL}"/>
-        <ListBox Grid.Row="13" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.FluxTypes}"
+        <controls:MultiButton Grid.Row="13" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.FluxTypes}"
                               SelectedItem="{Binding SelectedFluxType, Mode=TwoWay}"/>
 
         <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}"/>
@@ -112,15 +120,15 @@
                   DisplayMemberPath="Name" SelectedItem="{Binding SelectedOuterLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
 
         <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}"/>
-        <ListBox Grid.Row="17" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ControlledImpedanceOptions}"
-                              SelectedItem="{Binding SelectedControlledImpedanceOption, Mode=TwoWay}" SelectionMode="Single" />
+        <controls:MultiButton Grid.Row="17" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ControlledImpedanceOptions}"
+                              SelectedItem="{Binding SelectedControlledImpedanceOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="18" Grid.Column="1" Content="{x:Static resources:Resources.TENTING_FOR_VIAS_LABEL}"/>
-        <ListBox Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.TentingForViasOptions}"
+        <controls:MultiButton Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.TentingForViasOptions}"
                               SelectedItem="{Binding SelectedTentingForViasOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="19" Grid.Column="1" Content="{x:Static resources:Resources.STACKUP_LABEL}"/>
-        <ListBox Grid.Row="19" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.StackupOptions}"
+        <controls:MultiButton Grid.Row="19" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.StackupOptions}"
                               SelectedItem="{Binding SelectedStackup, Mode=TwoWay}"/>
 
         <Label Grid.Row="20" Grid.Column="1" Content="{x:Static resources:Resources.NOTES_LABEL}"/>
