@@ -14,5 +14,9 @@
 		public double CostModifier { get; }
 
 		public double WorkdaysModifier { get; }
+
+		public override string ToString() {
+			return this.Name;
+		}
 	}
 }

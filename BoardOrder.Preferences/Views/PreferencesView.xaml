@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BoardOrder.Preferences.Views"
              xmlns:resources="clr-namespace:BoardOrder.Preferences.Properties"
-             xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
              xmlns:vm="clr-namespace:BoardOrder.Preferences.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -51,13 +50,13 @@
         </StackPanel>
 
         <Label Grid.Column="1" Content="{x:Static resources:Resources.PROJECT_NAME_LABEL}"/>
-        <TextBox Grid.Column="2" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="1" Grid.Column="1" Content="{x:Static resources:Resources.ZIPCODE_LABEL}"/>
-        <TextBox Grid.Row="1" Grid.Column="2" />
+        <TextBox Grid.Row="1" Grid.Column="2"  Text="{Binding Zipcode, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="2" Grid.Column="1" Content="{x:Static resources:Resources.BOARDS_QUANTITY_LABEL}"/>
-        <TextBox Grid.Row="2" Grid.Column="2" />
+        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding BoardsQuantity, UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Grid.Row="4" Grid.RowSpan="4">
             <Label Content="{x:Static resources:Resources.IMPORTANT_BOARDS_PREFERENCES_HEADER}" FontWeight="Bold"/>
@@ -65,7 +64,7 @@
         </StackPanel>
 
         <Label Grid.Row="4" Grid.Column="1" Content="{x:Static resources:Resources.BOARD_THICKNESS_LABEL}"/>
-        <TextBox Grid.Row="4" Grid.Column="2"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding BoardThickness, StringFormat={}{0} mm, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="5" Grid.Column="1" Content="{x:Static resources:Resources.MATERIAL_LABEL}"/>
         <ComboBox Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.Materials}" 
@@ -85,16 +84,20 @@
         </StackPanel>
 
         <Label Grid.Row="10" Grid.Column="1" Content="{x:Static resources:Resources.LEAD_FREE_LABEL}"/>
-        <TextBox Grid.Row="10" Grid.Column="2"/>
+        <ListBox Grid.Row="10" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.LeadFreeOptions}"
+                              SelectedItem="{Binding SelectedLeadFreeOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="11" Grid.Column="1" Content="{x:Static resources:Resources.IPC_CLASS_LABEL}"/>
-        <TextBox Grid.Row="11" Grid.Column="2"/>
+        <ListBox Grid.Row="11" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.IpcClasses}"
+                              SelectedItem="{Binding SelectedIPCClass, Mode=TwoWay}"/>
 
         <Label Grid.Row="12" Grid.Column="1" Content="{x:Static resources:Resources.ITAR_LABEL}"/>
-        <TextBox Grid.Row="12" Grid.Column="2"/>
+        <ListBox Grid.Row="12" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ItarComplianceOptions}"
+                              SelectedItem="{Binding SelectedITARComplianceOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="13" Grid.Column="1" Content="{x:Static resources:Resources.FLUX_TYPE_LABEL}"/>
-        <TextBox Grid.Row="13" Grid.Column="2"/>
+        <ListBox Grid.Row="13" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.FluxTypes}"
+                              SelectedItem="{Binding SelectedFluxType, Mode=TwoWay}"/>
 
         <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}"/>
         <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.SilkscreenColors}" 
@@ -109,13 +112,16 @@
                   DisplayMemberPath="Name" SelectedItem="{Binding SelectedOuterLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
 
         <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}"/>
-        <TextBox Grid.Row="17" Grid.Column="2"/>
+        <ListBox Grid.Row="17" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ControlledImpedanceOptions}"
+                              SelectedItem="{Binding SelectedControlledImpedanceOption, Mode=TwoWay}" SelectionMode="Single" />
 
         <Label Grid.Row="18" Grid.Column="1" Content="{x:Static resources:Resources.TENTING_FOR_VIAS_LABEL}"/>
-        <TextBox Grid.Row="18" Grid.Column="2"/>
+        <ListBox Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.TentingForViasOptions}"
+                              SelectedItem="{Binding SelectedTentingForViasOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="19" Grid.Column="1" Content="{x:Static resources:Resources.STACKUP_LABEL}"/>
-        <controls:MultiButton Grid.Row="19" Grid.Column="2" ItemsSource="{Binding Labels}"/>
+        <ListBox Grid.Row="19" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.StackupOptions}"
+                              SelectedItem="{Binding SelectedStackup, Mode=TwoWay}"/>
 
         <Label Grid.Row="20" Grid.Column="1" Content="{x:Static resources:Resources.NOTES_LABEL}"/>
         <TextBox Grid.Row="20" Grid.Column="2" Grid.RowSpan="2"/>

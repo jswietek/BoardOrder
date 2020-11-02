@@ -18,6 +18,20 @@ namespace BoardOrder.Preferences.ViewModels {
 
 		private IEnumerable<BoardOrderItem> outerLayersCopperWeights;
 
+		private IEnumerable<BoardOrderItem> leadFreeOptions;
+
+		private IEnumerable<BoardOrderItem> ipcClasses;
+
+		private IEnumerable<BoardOrderItem> itarComplianceOptions;
+
+		private IEnumerable<BoardOrderItem> fluxTypes;
+
+		private IEnumerable<BoardOrderItem> controlledImpedanceOptions;
+
+		private IEnumerable<BoardOrderItem> tentingForViasOptions;
+
+		private IEnumerable<BoardOrderItem> stackupOptions;
+
 		public PreferencesOptionsViewModel(IPreferencesSettingsRepository preferencesSettingsRepository) {
 			this.preferencesSettingsRepository = preferencesSettingsRepository;
 		}
@@ -52,7 +66,6 @@ namespace BoardOrder.Preferences.ViewModels {
 			}
 		}
 
-
 		public IEnumerable<ColorBoardOrderItem> SilkscreenColors {
 			get {
 				if (this.silkscreenColors == null) {
@@ -62,7 +75,6 @@ namespace BoardOrder.Preferences.ViewModels {
 				return this.silkscreenColors;
 			}
 		}
-
 
 		public IEnumerable<BoardOrderItem> InnerLayersCopperWeights {
 			get {
@@ -74,7 +86,6 @@ namespace BoardOrder.Preferences.ViewModels {
 			}
 		}
 
-
 		public IEnumerable<BoardOrderItem> OuterLayersCopperWeights {
 			get {
 				if (this.outerLayersCopperWeights == null) {
@@ -82,6 +93,76 @@ namespace BoardOrder.Preferences.ViewModels {
 				}
 
 				return this.outerLayersCopperWeights;
+			}
+		}
+
+		public IEnumerable<BoardOrderItem> LeadFreeOptions {
+			get {
+				if (this.leadFreeOptions == null) {
+					this.leadFreeOptions = this.preferencesSettingsRepository.GetLeadFreeOptions();
+				}
+
+				return this.leadFreeOptions;
+			}
+		}
+
+		public IEnumerable<BoardOrderItem> IpcClasses {
+			get {
+				if (this.ipcClasses == null) {
+					this.ipcClasses = this.preferencesSettingsRepository.GetIpcClasses();
+				}
+
+				return this.ipcClasses;
+			}
+		}
+
+		public IEnumerable<BoardOrderItem> ItarComplianceOptions {
+			get {
+				if (this.itarComplianceOptions == null) {
+					this.itarComplianceOptions = this.preferencesSettingsRepository.GetItarComplianceOptions();
+				}
+
+				return this.itarComplianceOptions;
+			}
+		}
+
+		public IEnumerable<BoardOrderItem> FluxTypes {
+			get {
+				if (this.fluxTypes == null) {
+					this.fluxTypes = this.preferencesSettingsRepository.GetFluxTypes();
+				}
+
+				return this.fluxTypes;
+			}
+		}
+
+		public IEnumerable<BoardOrderItem> ControlledImpedanceOptions {
+			get {
+				if (this.controlledImpedanceOptions == null) {
+					this.controlledImpedanceOptions = this.preferencesSettingsRepository.GetControlledImpedanceOptions();
+				}
+
+				return this.controlledImpedanceOptions;
+			}
+		}
+
+		public IEnumerable<BoardOrderItem> TentingForViasOptions {
+			get {
+				if (this.tentingForViasOptions == null) {
+					this.tentingForViasOptions = this.preferencesSettingsRepository.GetTentingForViasOptions();
+				}
+
+				return this.tentingForViasOptions;
+			}
+		}
+
+		public IEnumerable<BoardOrderItem> StackupOptions {
+			get {
+				if (this.stackupOptions == null) {
+					this.stackupOptions = this.preferencesSettingsRepository.GetStackupOptions();
+				}
+
+				return this.stackupOptions;
 			}
 		}
 	}

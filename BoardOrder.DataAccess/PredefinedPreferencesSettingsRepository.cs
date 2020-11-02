@@ -55,5 +55,56 @@ namespace BoardOrder.DataAccess {
 				new BoardOrderItem("2.0oz", 1.5, 0)
 			};
 		}
+
+		public IEnumerable<BoardOrderItem> GetLeadFreeOptions() {
+			return new List<BoardOrderItem>() {
+				new BoardOrderItem("No", 0, 0),
+				new BoardOrderItem("Yes", 1.3, 0)
+			};
+		}
+
+		public IEnumerable<BoardOrderItem> GetIpcClasses() {
+			return new List<BoardOrderItem>() {
+				new BoardOrderItem("Class 2", 0, 0),
+				new BoardOrderItem("Class 3", 2.5, 0)
+			};
+		}
+
+		public IEnumerable<BoardOrderItem> GetItarComplianceOptions() {
+			return new List<BoardOrderItem>() {
+				new BoardOrderItem("No", 0, 0),
+				new BoardOrderItem("Yes", 1, 0)
+			};
+		}
+
+		public IEnumerable<BoardOrderItem> GetFluxTypes() {
+			return new List<BoardOrderItem>() {
+				new BoardOrderItem("Clean", 1.5, 0),
+				new BoardOrderItem("No Clean", 0, 0)
+			};
+		}
+
+		public IEnumerable<BoardOrderItem> GetControlledImpedanceOptions() {
+			return new List<BoardOrderItem>() {
+				new BoardOrderItem("None", 0, 0),
+				new BoardOrderItem("See Notes", 0, 0)
+			};
+		}
+
+		public IEnumerable<BoardOrderItem> GetTentingForViasOptions() {
+			return new List<BoardOrderItem>() {
+				new BoardOrderItem("None", 0, 0),
+				new BoardOrderItem("Top Side", 1.4, 0),
+				new BoardOrderItem("Bottom Side", 1.4, 0),
+				new BoardOrderItem("Both Sides", 2.6, 0)
+			};
+		}
+
+		public IEnumerable<BoardOrderItem> GetStackupOptions() {
+			return new List<BoardOrderItem>() {
+				new BoardOrderItem("None", 0, 0),
+				new BoardOrderItem("See Notes", 0, 0)
+			};
+		}
 	}
 }
