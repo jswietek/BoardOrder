@@ -39,7 +39,7 @@ namespace BoardOrder.Common.Controls {
 		protected virtual void OnApplyChildClip() {
 			UIElement child = this.Child;
 			if (child != null) {
-				this.clipRect.RadiusX = this.clipRect.RadiusY = Math.Max(0.0, this.CornerRadius.TopLeft - (this.BorderThickness.Left * 0.5));
+				this.clipRect.RadiusX = this.clipRect.RadiusY = this.CornerRadius.TopLeft;
 				this.clipRect.Rect = new Rect(Child.RenderSize);
 				child.Clip = clipRect;
 			}

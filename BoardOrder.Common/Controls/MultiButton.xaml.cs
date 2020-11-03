@@ -78,6 +78,7 @@ namespace BoardOrder.Common.Controls {
 				temp.SetValue(Grid.ColumnProperty, columnIndex);
 				temp.GroupName = parent.GetHashCode().ToString();
 				temp.Checked += parent.ButtonChecked;
+				temp.SnapsToDevicePixels = true;
 				parent.MainGrid.Children.Add(temp);
 				columnIndex++;
 			}

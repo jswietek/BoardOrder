@@ -2,69 +2,64 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:BoardOrder.Common.Controls">
 
-    <SolidColorBrush Color="#3b3b3b" x:Key="GeneralBackground"/>
-    <SolidColorBrush Color="LightGray" x:Key="GeneralForeground"/>
+    <Color x:Key="GeneralBackground">#3b3b3b</Color>
+    <Color x:Key="GeneralForeground">LightGray</Color>
+    <Color x:Key="ActiveColor">#2f4f5f</Color>
+    <Color x:Key="ActivePressedColor">#1f3f4f</Color>
+    <Color x:Key="HoverColor">#9f4f00</Color>
+    <Color x:Key="PressedColor">#8f3f00</Color>
+    <Color x:Key="GeneralBorderColor">#1b1b1b</Color>
 
-    <SolidColorBrush Color="#5c5c5c" x:Key="ButtonBackground"/>
-    <SolidColorBrush Color="#1f3f5f" x:Key="ActiveButtonBackground"/>
-    <SolidColorBrush Color="#1c3c5c" x:Key="HoverButtonBackground"/>
+    <Color x:Key="InputBackgroundColor">#2b2b2b</Color>
+    <Color x:Key="ButtonBackground">#5c5c5c</Color>
 
-    <SolidColorBrush Color="#2b2b2b" x:Key="ButtonBorderColor"/>
+    <SolidColorBrush Color="{StaticResource GeneralBackground}" x:Key="GeneralBackgroundBrush"/>
+    <SolidColorBrush Color="{StaticResource GeneralForeground}" x:Key="GeneralForegroundBrush"/>
+    <SolidColorBrush Color="{StaticResource ActiveColor}" x:Key="ActiveColorBrush"/>
+    <SolidColorBrush Color="{StaticResource ActivePressedColor}" x:Key="ActivePressedColorBrush"/>
+    <SolidColorBrush Color="{StaticResource HoverColor}" x:Key="HoverColorBrush"/>
+    <SolidColorBrush Color="{StaticResource PressedColor}" x:Key="PressedColorBrush"/>
+    <SolidColorBrush Color="{StaticResource GeneralBorderColor}" x:Key="GeneralBorderColorBrush"/>
+
+    <SolidColorBrush Color="{StaticResource InputBackgroundColor}" x:Key="InputBackgroundColorBrush"/>
+    <SolidColorBrush Color="{StaticResource ButtonBackground}" x:Key="ButtonBackgroundBrush"/>
 
     <Style TargetType="{x:Type UserControl}" x:Key="PreferencesViewStyle">
-        <Setter Property="Background" Value="{StaticResource GeneralBackground}"/>
-        <Setter Property="Foreground" Value="{StaticResource GeneralForeground}"/>
+        <Setter Property="Background" Value="{StaticResource GeneralBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
     </Style>
 
 
     <Style TargetType="Label">
-        <Setter Property="Foreground" Value="{StaticResource GeneralForeground}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
         <Setter Property="Margin" Value="0,0,6,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style TargetType="TextBox">
-        <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
-        <Setter Property="Foreground" Value="{StaticResource GeneralForeground}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderColor}"/>
+        <Setter Property="Background" Value="{StaticResource InputBackgroundColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="3,0"/>
-    </Style>
-    
-    <Style TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
-        <Setter Property="Foreground" Value="{StaticResource GeneralForeground}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderColor}"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource HoverButtonBackground}"/>
-            </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource ActiveButtonBackground}"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
-        <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
-        <Setter Property="Foreground" Value="{StaticResource GeneralForeground}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderColor}"/>
-        <Setter Property="ClipToBounds" Value="True"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Margin" Value="0,4"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <controls:ClippingBorder x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            CornerRadius="4"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    </controls:ClippingBorder>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="Red"/>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource HoverColorBrush}"/>
                         </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" Value="{StaticResource ActiveButtonBackground}"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource HoverButtonBackground}"/>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ActiveColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -72,14 +67,224 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource HoverColorBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource ActiveColorBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ToggleButton" x:Key="ComboBoxToggleButton">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
+        <Setter Property="ClipToBounds" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Path x:Name="Arrow" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" Fill="{TemplateBinding Foreground}"
+                                  Margin="5,0"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ActiveColorBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource HoverColorBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource PressedColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <controls:ClippingBorder Background="{TemplateBinding Background}" 
+                                             BorderBrush="{TemplateBinding BorderBrush}" 
+                                             BorderThickness="{TemplateBinding BorderThickness}" 
+                                             CornerRadius="4">
+                        <Grid SnapsToDevicePixels="True">
+                            <ToggleButton x:Name="ToggleButton"
+                                          Style="{StaticResource ComboBoxToggleButton}"
+                                            Focusable="false"
+                                            ClickMode="Press"
+                                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
+                                                RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <ContentPresenter x:Name="ContentSite"
+                                IsHitTestVisible="False"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                Margin="6,6,26,6"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Left">
+                            </ContentPresenter>
+                            <Popup x:Name="Popup"
+                                 Placement="Bottom"
+                                 IsOpen="{TemplateBinding IsDropDownOpen}"
+                                 AllowsTransparency="True"
+                                 Focusable="False"
+                                 PopupAnimation="Slide">
+                                <controls:ClippingBorder x:Name="DropDownBorder" 
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            Background="{TemplateBinding Background}"
+                                            CornerRadius="3">
+                                    <Grid x:Name="DropDown"
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding ActualWidth}"
+                                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <ScrollViewer SnapsToDevicePixels="True">
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Grid>
+                                </controls:ClippingBorder>
+                            </Popup>
+                        </Grid>
+                    </controls:ClippingBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Padding="4"
+                            x:Name="Border">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualState x:Name="Unselected" />
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ActiveColor}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="SelectedUnfocused">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource ActiveColor}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource HoverColor}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
+        <Setter Property="BorderThickness" Value="1,0,0,0"/>
+        <Setter Property="ClipToBounds" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter Margin="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource PressedColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource HoverColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="True"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource ActivePressedColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource ActiveColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="controls:MultiButton">
-        <!--<Setter Property="Margin" Value="3,0,3,0"/>-->
         <Style.Resources>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="13"/>
-                <Setter Property="BorderThickness" Value="2"/>
-                <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderColor}"/>
+            <Style TargetType="controls:ClippingBorder">
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
             </Style>
         </Style.Resources>
+        <Setter Property="Margin" Value="0,4"/>
     </Style>
 </ResourceDictionary>

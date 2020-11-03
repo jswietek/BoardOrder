@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BoardOrder.Preferences.Views"
              xmlns:resources="clr-namespace:BoardOrder.Preferences.Properties"
              xmlns:vm="clr-namespace:BoardOrder.Preferences.ViewModels"
              xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
@@ -78,52 +77,52 @@
         <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"  ItemsSource="{Binding OptionsViewModel.SolderMaskColors}" 
                   DisplayMemberPath="Name" SelectedItem="{Binding SelectedMaskColor, Mode=TwoWay}" SelectedIndex="0"/>
 
-        <StackPanel Grid.Row="9">
+        <StackPanel Grid.Row="9" Grid.RowSpan="11">
             <Label Content="{x:Static resources:Resources.SPECIAL_BOARD_PREFERENCES_HEADER}" FontWeight="Bold"/>
             <Label Content="{x:Static resources:Resources.PREFERENCES_DESCRIPTION}" />
         </StackPanel>
 
-        <Label Grid.Row="10" Grid.Column="1" Content="{x:Static resources:Resources.LEAD_FREE_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="10" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.LeadFreeOptions}"
+        <Label Grid.Row="9" Grid.Column="1" Content="{x:Static resources:Resources.LEAD_FREE_LABEL}" HorizontalContentAlignment="Right"/>
+        <controls:MultiButton Grid.Row="9" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.LeadFreeOptions}"
                               SelectedItem="{Binding SelectedLeadFreeOption, Mode=TwoWay}"/>
 
-        <Label Grid.Row="11" Grid.Column="1" Content="{x:Static resources:Resources.IPC_CLASS_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="11" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.IpcClasses}"
+        <Label Grid.Row="10" Grid.Column="1" Content="{x:Static resources:Resources.IPC_CLASS_LABEL}" HorizontalContentAlignment="Right"/>
+        <controls:MultiButton Grid.Row="10" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.IpcClasses}"
                               SelectedItem="{Binding SelectedIPCClass, Mode=TwoWay}"/>
 
-        <Label Grid.Row="12" Grid.Column="1" Content="{x:Static resources:Resources.ITAR_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="12" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ItarComplianceOptions}"
+        <Label Grid.Row="11" Grid.Column="1" Content="{x:Static resources:Resources.ITAR_LABEL}" HorizontalContentAlignment="Right"/>
+        <controls:MultiButton Grid.Row="11" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ItarComplianceOptions}"
                               SelectedItem="{Binding SelectedITARComplianceOption, Mode=TwoWay}"/>
 
-        <Label Grid.Row="13" Grid.Column="1" Content="{x:Static resources:Resources.FLUX_TYPE_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="13" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.FluxTypes}"
+        <Label Grid.Row="12" Grid.Column="1" Content="{x:Static resources:Resources.FLUX_TYPE_LABEL}" HorizontalContentAlignment="Right"/>
+        <controls:MultiButton Grid.Row="12" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.FluxTypes}"
                               SelectedItem="{Binding SelectedFluxType, Mode=TwoWay}"/>
 
-        <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.SilkscreenColors}" 
+        <Label Grid.Row="13" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}" HorizontalContentAlignment="Right"/>
+        <ComboBox Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.SilkscreenColors}" 
                   DisplayMemberPath="Name" SelectedItem="{Binding SelectedSilkscreenColor, Mode=TwoWay}" SelectedIndex="0"/>
 
-        <Label Grid.Row="15" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_INNER_LAYERS_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.InnerLayersCopperWeights}" 
+        <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_INNER_LAYERS_LABEL}" HorizontalContentAlignment="Right"/>
+        <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.InnerLayersCopperWeights}" 
                   DisplayMemberPath="Name" SelectedItem="{Binding SelectedInnerLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
 
-        <Label Grid.Row="16" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_OUTER_LAYERS_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="16" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.OuterLayersCopperWeights}" 
+        <Label Grid.Row="15" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_OUTER_LAYERS_LABEL}" HorizontalContentAlignment="Right"/>
+        <ComboBox Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.OuterLayersCopperWeights}" 
                   DisplayMemberPath="Name" SelectedItem="{Binding SelectedOuterLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
 
-        <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="17" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ControlledImpedanceOptions}"
+        <Label Grid.Row="16" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}" HorizontalContentAlignment="Right"/>
+        <controls:MultiButton Grid.Row="16" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.ControlledImpedanceOptions}"
                               SelectedItem="{Binding SelectedControlledImpedanceOption, Mode=TwoWay}"/>
 
-        <Label Grid.Row="18" Grid.Column="1" Content="{x:Static resources:Resources.TENTING_FOR_VIAS_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.TentingForViasOptions}"
+        <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.TENTING_FOR_VIAS_LABEL}" HorizontalContentAlignment="Right"/>
+        <controls:MultiButton Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsViewModel.TentingForViasOptions}"
                               SelectedItem="{Binding SelectedTentingForViasOption, Mode=TwoWay}"/>
 
-        <Label Grid.Row="19" Grid.Column="1" Content="{x:Static resources:Resources.STACKUP_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="19" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.StackupOptions}"
+        <Label Grid.Row="18" Grid.Column="1" Content="{x:Static resources:Resources.STACKUP_LABEL}" HorizontalContentAlignment="Right"/>
+        <controls:MultiButton Grid.Row="18" Grid.Column="2" ItemsSource="{Binding OptionsViewModel.StackupOptions}"
                               SelectedItem="{Binding SelectedStackup, Mode=TwoWay}"/>
 
-        <Label Grid.Row="20" Grid.Column="1" Content="{x:Static resources:Resources.NOTES_LABEL}" HorizontalContentAlignment="Right"/>
-        <TextBox Grid.Row="20" Grid.Column="2" Grid.RowSpan="2"/>
+        <Label Grid.Row="19" Grid.Column="1" Content="{x:Static resources:Resources.NOTES_LABEL}" HorizontalContentAlignment="Right"/>
+        <TextBox Grid.Row="19" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalContentAlignment="Top"/>
     </Grid>
 </UserControl>
