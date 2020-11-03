@@ -41,7 +41,7 @@
         <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Padding" Value="3"/>
         <Setter Property="Margin" Value="0,4"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -142,7 +142,7 @@
                                 Content="{TemplateBinding SelectionBoxItem}"
                                 ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                Margin="6,6,26,6"
+                                Margin="4,4,24,4"
                                 VerticalAlignment="Stretch"
                                 HorizontalAlignment="Left">
                             </ContentPresenter>
@@ -183,7 +183,7 @@
                     <Border Background="{TemplateBinding Background}" 
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
-                            Padding="4"
+                            Padding="3"
                             x:Name="Border">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SelectionStates">
@@ -231,7 +231,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter Margin="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
