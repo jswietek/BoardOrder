@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace BoardOrder.Domain {
+namespace BoardOrder.Domain.Models {
 	public class ColorBoardOrderItem : BoardOrderItem {
 		public ColorBoardOrderItem(Color color, string name, double costModifier, float workdaysModifier)
 			: base(name, costModifier, workdaysModifier) {

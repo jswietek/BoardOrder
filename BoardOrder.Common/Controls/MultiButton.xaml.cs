@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -35,6 +33,15 @@ namespace BoardOrder.Common.Controls {
 		public static readonly DependencyProperty SelectedItemProperty =
 			DependencyProperty.Register("SelectedItem", typeof(object), typeof(MultiButton), new PropertyMetadata(null, SelectedItemChanged));
 
+		public int SelectedIndex {
+			get { return (int)GetValue(SelectedIndexProperty); }
+			set { SetValue(SelectedIndexProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for SelectedItem.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty SelectedIndexProperty =
+			DependencyProperty.Register("SelectedIndex", typeof(int), typeof(MultiButton), new PropertyMetadata(0, SelectedIndexChanged));
+
 		private static void SelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
 			if (d is MultiButton multiButton) {
 				if (multiButton.ignoreValueChanged) {
@@ -52,19 +59,31 @@ namespace BoardOrder.Common.Controls {
 			}
 		}
 
-		private static void ItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+		private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
 			if (d is MultiButton multiButton) {
-				var childCopy = multiButton.MainGrid.Children.OfType<RadioButton>();
-				foreach(var button in childCopy) {
-					multiButton.MainGrid.Children.Remove(button);
-				}
-				multiButton.MainGrid.ColumnDefinitions.Clear();
-
-				CreateControls(multiButton, e.NewValue as IEnumerable<object>);
+				var selectedItem = multiButton.ItemsSource.ElementAt((int)e.NewValue);
+				multiButton.SelectedItem = selectedItem;
 			}
 		}
 
-		private static void CreateControls(MultiButton parent, IEnumerable<object> items) {
+		private static void ItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+			if (d is MultiButton multiButton) {
+				var childCopy = multiButton.MainGrid.Children.OfType<RadioButton>();
+				foreach (var button in childCopy) {
+					multiButton.MainGrid.Children.Remove(button);
+					button.Checked -= multiButton.ButtonChecked;
+				}
+				multiButton.MainGrid.ColumnDefinitions.Clear();
+				if (e.NewValue is IEnumerable<object> source) {
+					multiButton.CreateControls(source);
+					var itemAtIndex = source.ElementAtOrDefault(multiButton.SelectedIndex);
+					multiButton.SelectedItem = itemAtIndex;
+				}
+
+			}
+		}
+
+		private void CreateControls(IEnumerable<object> items) {
 			if (items == null) {
 				return;
 			}
@@ -72,14 +91,14 @@ namespace BoardOrder.Common.Controls {
 			var columnIndex = 0;
 
 			foreach (var item in items) {
-				parent.MainGrid.ColumnDefinitions.Add(new ColumnDefinition());
+				this.MainGrid.ColumnDefinitions.Add(new ColumnDefinition());
 				var temp = new RadioButton();
 				temp.Content = item;
 				temp.SetValue(Grid.ColumnProperty, columnIndex);
-				temp.GroupName = parent.GetHashCode().ToString();
-				temp.Checked += parent.ButtonChecked;
+				temp.GroupName = this.GetHashCode().ToString();
+				temp.Checked += this.ButtonChecked;
 				temp.SnapsToDevicePixels = true;
-				parent.MainGrid.Children.Add(temp);
+				this.MainGrid.Children.Add(temp);
 				columnIndex++;
 			}
 		}

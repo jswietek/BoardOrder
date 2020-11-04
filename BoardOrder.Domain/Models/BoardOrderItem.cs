@@ -1,4 +1,4 @@
-﻿namespace BoardOrder.Domain {
+﻿namespace BoardOrder.Domain.Models {
 	public class BoardOrderItem {
 		public BoardOrderItem(string name)
 			: this(name, 0, 0) { }

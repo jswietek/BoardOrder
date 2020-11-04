@@ -1,9 +1,6 @@
 ﻿using BoardOrder.Common;
-using BoardOrder.DataAccess;
-using BoardOrder.Domain;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Windows.Media.Animation;
+using BoardOrder.Domain.Models;
+using BoardOrder.Domain.Services;
 
 namespace BoardOrder.Preferences.ViewModels {
 	public class PreferencesViewModel : ViewModelBase {
@@ -26,13 +23,9 @@ namespace BoardOrder.Preferences.ViewModels {
 		private BoardOrderItem selectedTentingForViasOption;
 		private BoardOrderItem selectedStackup;
 
-		public PreferencesViewModel(/*IPreferencesSettingsRepository preferencesSettingsRepository*/) {
-			this.OptionsViewModel = new PreferencesOptionsViewModel(new PredefinedPreferencesSettingsRepository());
-
+		public PreferencesViewModel(IOptionsProvider optionsProvider) {
 			this.InitializeMembers();
 		}
-
-		public PreferencesOptionsViewModel OptionsViewModel { get; private set; }
 
 		public string ProjectName {
 			get {
@@ -207,19 +200,6 @@ namespace BoardOrder.Preferences.ViewModels {
 			this.Zipcode = string.Empty;
 			this.BoardsQuantity = 0;
 			this.BoardThickness = 1.0;
-			this.SelectedMaterial = this.OptionsViewModel.Materials.FirstOrDefault();
-			this.SelectedSurfaceFinish = this.OptionsViewModel.SurfaceFinishes.FirstOrDefault();
-			this.SelectedMaskColor = this.OptionsViewModel.SolderMaskColors.FirstOrDefault();
-			this.SelectedLeadFreeOption = this.OptionsViewModel.LeadFreeOptions.FirstOrDefault();
-			this.SelectedIPCClass = this.OptionsViewModel.IpcClasses.FirstOrDefault();
-			this.SelectedITARComplianceOption = this.OptionsViewModel.ItarComplianceOptions.FirstOrDefault();
-			this.SelectedFluxType = this.OptionsViewModel.FluxTypes.FirstOrDefault();
-			this.SelectedSilkscreenColor = this.OptionsViewModel.SilkscreenColors.FirstOrDefault();
-			this.SelectedInnerLayersCopperWeight = this.OptionsViewModel.InnerLayersCopperWeights.FirstOrDefault();
-			this.SelectedOuterLayersCopperWeight = this.OptionsViewModel.OuterLayersCopperWeights.FirstOrDefault();
-			this.SelectedControlledImpedanceOption = this.OptionsViewModel.ControlledImpedanceOptions.FirstOrDefault();
-			this.SelectedTentingForViasOption = this.OptionsViewModel.TentingForViasOptions.FirstOrDefault();
-			this.SelectedStackup = this.OptionsViewModel.StackupOptions.FirstOrDefault();
 		}
 	}
 }

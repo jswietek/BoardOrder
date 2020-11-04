@@ -4,10 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BoardOrder"
-        xmlns:preferences="clr-namespace:BoardOrder.Preferences.Views;assembly=BoardOrder.Preferences"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:conv="clr-namespace:BoardOrder.Common.Converters;assembly=BoardOrder.Common"
+        xmlns:views="clr-namespace:BoardOrder.Views"
         mc:Ignorable="d"
+        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
         Title="MainWindow" Height="768" Width="1024">
+    <Window.Resources>
+        <conv:BooleanNegationToVisibilityCollapsedConverter x:Key="BooleanNegationToVisibilityCollapsedConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-        <preferences:PreferencesView></preferences:PreferencesView>
+        <views:PreferencesView/>
+        <views:LoadingOverlay Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </Window>
