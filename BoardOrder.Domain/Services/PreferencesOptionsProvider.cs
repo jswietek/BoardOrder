@@ -5,11 +5,10 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace BoardOrder.Domain.Services {
-	public class PreferencesOptionsProvider : ObservableObject, IOptionsProvider {
+	public class PreferencesOptionsProvider : ObservableObject, IOptionsProvider, IPreferencesOptions {
 		private readonly IPreferencesSettingsRepository preferencesSettingsRepository;
 
 		private readonly IMessenger messenger;

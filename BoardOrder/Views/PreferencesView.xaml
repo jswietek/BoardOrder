@@ -46,13 +46,13 @@
         </StackPanel>
 
         <Label Grid.Column="1" Content="{x:Static resources:Resources.PROJECT_NAME_LABEL}" HorizontalContentAlignment="Right"/>
-        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Order.ProjectName, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="1" Grid.Column="1" Content="{x:Static resources:Resources.ZIPCODE_LABEL}" HorizontalContentAlignment="Right"/>
-        <TextBox Grid.Row="1" Grid.Column="2"  Text="{Binding Zipcode, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="1" Grid.Column="2"  Text="{Binding Order.Zipcode, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="2" Grid.Column="1" Content="{x:Static resources:Resources.BOARDS_QUANTITY_LABEL}" HorizontalContentAlignment="Right"/>
-        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding BoardsQuantity, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Grid.Row="4" Grid.RowSpan="4">
             <Label Content="{x:Static resources:Resources.IMPORTANT_BOARDS_PREFERENCES_HEADER}" FontWeight="Bold"/>
@@ -60,19 +60,19 @@
         </StackPanel>
 
         <Label Grid.Row="4" Grid.Column="1" Content="{x:Static resources:Resources.BOARD_THICKNESS_LABEL}" HorizontalContentAlignment="Right"/>
-        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding BoardThickness, StringFormat={}{0} mm, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Order.BoardThickness, StringFormat={}{0} mm, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="5" Grid.Column="1" Content="{x:Static resources:Resources.MATERIAL_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="2" ItemsSource="{Binding OptionsProvider.Materials}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedMaterial, Mode=TwoWay}" SelectedIndex="0"/>
+        <ComboBox Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.Materials}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedMaterial, Mode=TwoWay}" />
 
         <Label Grid.Row="6" Grid.Column="1" Content="{x:Static resources:Resources.SURFACE_FINISH_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsProvider.SurfaceFinishes}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedSurfaceFinish, Mode=TwoWay}" SelectedIndex="0"/>
+        <ComboBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.SurfaceFinishes}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedSurfaceFinish, Mode=TwoWay}" />
 
         <Label Grid.Row="7" Grid.Column="1" Content="{x:Static resources:Resources.SOLDER_MASK_COLOR_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"  ItemsSource="{Binding OptionsProvider.SolderMaskColors}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedMaskColor, Mode=TwoWay}" SelectedIndex="0"/>
+        <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"  ItemsSource="{Binding PreferencesOptions.SolderMaskColors}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedMaskColor, Mode=TwoWay}" />
 
         <StackPanel Grid.Row="9" Grid.RowSpan="11">
             <Label Content="{x:Static resources:Resources.SPECIAL_BOARD_PREFERENCES_HEADER}" FontWeight="Bold"/>
@@ -80,44 +80,44 @@
         </StackPanel>
 
         <Label Grid.Row="9" Grid.Column="1" Content="{x:Static resources:Resources.LEAD_FREE_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="9" Grid.Column="2" ItemsSource="{Binding OptionsProvider.LeadFreeOptions}"
-                              SelectedItem="{Binding SelectedLeadFreeOption, Mode=TwoWay}" />
+        <controls:MultiButton Grid.Row="9" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.LeadFreeOptions}"
+                              SelectedItem="{Binding Order.SelectedLeadFreeOption, Mode=TwoWay}" />
 
         <Label Grid.Row="10" Grid.Column="1" Content="{x:Static resources:Resources.IPC_CLASS_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="10" Grid.Column="2" ItemsSource="{Binding OptionsProvider.IpcClasses}"
-                              SelectedItem="{Binding SelectedIPCClass, Mode=TwoWay}"/>
+        <controls:MultiButton Grid.Row="10" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.IpcClasses}"
+                              SelectedItem="{Binding Order.SelectedIPCClass, Mode=TwoWay}"/>
 
         <Label Grid.Row="11" Grid.Column="1" Content="{x:Static resources:Resources.ITAR_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="11" Grid.Column="2" ItemsSource="{Binding OptionsProvider.ItarComplianceOptions}"
-                              SelectedItem="{Binding SelectedITARComplianceOption, Mode=TwoWay}"/>
+        <controls:MultiButton Grid.Row="11" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.ItarComplianceOptions}"
+                              SelectedItem="{Binding Order.SelectedITARComplianceOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="12" Grid.Column="1" Content="{x:Static resources:Resources.FLUX_TYPE_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="12" Grid.Column="2" ItemsSource="{Binding OptionsProvider.FluxTypes}"
-                              SelectedItem="{Binding SelectedFluxType, Mode=TwoWay}"/>
+        <controls:MultiButton Grid.Row="12" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.FluxTypes}"
+                              SelectedItem="{Binding Order.SelectedFluxType, Mode=TwoWay}"/>
 
         <Label Grid.Row="13" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsProvider.SilkscreenColors}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedSilkscreenColor, Mode=TwoWay}" SelectedIndex="0"/>
+        <ComboBox Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.SilkscreenColors}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedSilkscreenColor, Mode=TwoWay}" />
 
         <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_INNER_LAYERS_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsProvider.InnerLayersCopperWeights}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedInnerLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
+        <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.InnerLayersCopperWeights}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedInnerLayersCopperWeight, Mode=TwoWay}" />
 
         <Label Grid.Row="15" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_OUTER_LAYERS_LABEL}" HorizontalContentAlignment="Right"/>
-        <ComboBox Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsProvider.OuterLayersCopperWeights}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding SelectedOuterLayersCopperWeight, Mode=TwoWay}" SelectedIndex="0"/>
+        <ComboBox Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.OuterLayersCopperWeights}" 
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedOuterLayersCopperWeight, Mode=TwoWay}" />
 
         <Label Grid.Row="16" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="16" Grid.Column="2" ItemsSource="{Binding OptionsProvider.ControlledImpedanceOptions}"
-                              SelectedItem="{Binding SelectedControlledImpedanceOption, Mode=TwoWay}"/>
+        <controls:MultiButton Grid.Row="16" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.ControlledImpedanceOptions}"
+                              SelectedItem="{Binding Order.SelectedControlledImpedanceOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.TENTING_FOR_VIAS_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding OptionsProvider.TentingForViasOptions}"
-                              SelectedItem="{Binding SelectedTentingForViasOption, Mode=TwoWay}"/>
+        <controls:MultiButton Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.TentingForViasOptions}"
+                              SelectedItem="{Binding Order.SelectedTentingForViasOption, Mode=TwoWay}"/>
 
         <Label Grid.Row="18" Grid.Column="1" Content="{x:Static resources:Resources.STACKUP_LABEL}" HorizontalContentAlignment="Right"/>
-        <controls:MultiButton Grid.Row="18" Grid.Column="2" ItemsSource="{Binding OptionsProvider.StackupOptions}"
-                              SelectedItem="{Binding SelectedStackup, Mode=TwoWay}"/>
+        <controls:MultiButton Grid.Row="18" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.StackupOptions}"
+                              SelectedItem="{Binding Order.SelectedStackup, Mode=TwoWay}"/>
 
         <Label Grid.Row="19" Grid.Column="1" Content="{x:Static resources:Resources.NOTES_LABEL}" HorizontalContentAlignment="Right"/>
         <TextBox Grid.Row="19" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalContentAlignment="Top"/>

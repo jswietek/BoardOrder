@@ -57,12 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CostType.cs" />
     <Compile Include="DataAccess\IPreferencesSettingsRepository.cs" />
+    <Compile Include="Models\BoardOrderDetails.cs" />
     <Compile Include="Models\BoardOrderItem.cs" />
     <Compile Include="Models\ColorBoardOrderItem.cs" />
     <Compile Include="DataAccess\PredefinedPreferencesSettingsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BoardOrdersManager.cs" />
+    <Compile Include="Services\IBoardOrdersManager.cs" />
     <Compile Include="Services\IOptionsProvider.cs" />
+    <Compile Include="Services\IPreferencesOptions.cs" />
     <Compile Include="Services\PreferencesOptionsProvider.cs" />
   </ItemGroup>
   <ItemGroup>

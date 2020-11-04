@@ -79,7 +79,6 @@ namespace BoardOrder.Common.Controls {
 					var itemAtIndex = source.ElementAtOrDefault(multiButton.SelectedIndex);
 					multiButton.SelectedItem = itemAtIndex;
 				}
-
 			}
 		}
 

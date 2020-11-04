@@ -17,8 +17,11 @@ namespace BoardOrder.ViewModel {
 			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
 			SimpleIoc.Default.Register<IPreferencesSettingsRepository, PredefinedPreferencesSettingsRepository>();
-			SimpleIoc.Default.Register<IOptionsProvider, PreferencesOptionsProvider>();
-			SimpleIoc.Default.Register<IMessenger>(() => Messenger.Default);
+			SimpleIoc.Default.Register<IBoardOrdersManager, BoardOrdersManager>();
+			SimpleIoc.Default.Register<PreferencesOptionsProvider>();
+			SimpleIoc.Default.Register<IOptionsProvider>(() => ServiceLocator.Current.GetInstance<PreferencesOptionsProvider>());
+			SimpleIoc.Default.Register<IPreferencesOptions>(() => ServiceLocator.Current.GetInstance<PreferencesOptionsProvider>());
+			SimpleIoc.Default.Register(() => Messenger.Default);
 			SimpleIoc.Default.Register<PreferencesViewModel>();
 			SimpleIoc.Default.Register<LoaderViewModel>();
 			SimpleIoc.Default.Register<MainViewModel>();
