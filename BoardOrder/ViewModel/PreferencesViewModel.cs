@@ -2,7 +2,6 @@
 using BoardOrder.Domain.Models;
 using BoardOrder.Domain.Services;
 using GalaSoft.MvvmLight;
-using System;
 
 namespace BoardOrder.ViewModel {
 	public class PreferencesViewModel : ViewModelBase {

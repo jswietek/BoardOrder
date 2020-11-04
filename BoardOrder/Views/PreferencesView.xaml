@@ -54,6 +54,8 @@
         <Label Grid.Row="2" Grid.Column="1" Content="{x:Static resources:Resources.BOARDS_QUANTITY_LABEL}" HorizontalContentAlignment="Right"/>
         <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <Separator Grid.Row="3" Grid.ColumnSpan="6"/>
+        
         <StackPanel Grid.Row="4" Grid.RowSpan="4">
             <Label Content="{x:Static resources:Resources.IMPORTANT_BOARDS_PREFERENCES_HEADER}" FontWeight="Bold"/>
             <Label Content="{x:Static resources:Resources.PREFERENCES_DESCRIPTION}" />
@@ -74,6 +76,8 @@
         <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"  ItemsSource="{Binding PreferencesOptions.SolderMaskColors}" 
                   DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedMaskColor, Mode=TwoWay}" />
 
+        <Separator Grid.Row="8" Grid.ColumnSpan="6"/>
+        
         <StackPanel Grid.Row="9" Grid.RowSpan="11">
             <Label Content="{x:Static resources:Resources.SPECIAL_BOARD_PREFERENCES_HEADER}" FontWeight="Bold"/>
             <Label Content="{x:Static resources:Resources.PREFERENCES_DESCRIPTION}" />
