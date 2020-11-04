@@ -20,7 +20,21 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <views:PreferencesView/>
-        <views:LoadingOverlay Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Expander Header="Preferences">
+            <views:PreferencesView/>
+        </Expander>
+        <Expander Grid.Row="1" Header="Quote">
+            <views:PreferencesView/>
+        </Expander>
+        <Expander Grid.Row="2" Header="Orders">
+            <views:PreferencesView/>
+        </Expander>
+        <views:LoadingOverlay Grid.RowSpan="4" Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </Window>
