@@ -74,7 +74,8 @@
 
         <Label Grid.Row="7" Grid.Column="1" Content="{x:Static resources:Resources.SOLDER_MASK_COLOR_LABEL}" HorizontalContentAlignment="Right"/>
         <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"  ItemsSource="{Binding PreferencesOptions.SolderMaskColors}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedMaskColor, Mode=TwoWay}" />
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedMaskColor, Mode=TwoWay}" 
+                  Style="{StaticResource ColorCombobox}" ItemContainerStyle="{StaticResource ColorComboboxItem}"/>
 
         <Separator Grid.Row="8" Grid.ColumnSpan="6"/>
         
@@ -101,7 +102,8 @@
 
         <Label Grid.Row="13" Grid.Column="1" Content="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}" HorizontalContentAlignment="Right"/>
         <ComboBox Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.SilkscreenColors}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedSilkscreenColor, Mode=TwoWay}" />
+                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedSilkscreenColor, Mode=TwoWay}" 
+                  Style="{StaticResource ColorCombobox}" ItemContainerStyle="{StaticResource ColorComboboxItem}" />
 
         <Label Grid.Row="14" Grid.Column="1" Content="{x:Static resources:Resources.Copper_WEIGHT_ON_INNER_LAYERS_LABEL}" HorizontalContentAlignment="Right"/>
         <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.InnerLayersCopperWeights}" 
@@ -124,6 +126,7 @@
                               SelectedItem="{Binding Order.SelectedStackup, Mode=TwoWay}"/>
 
         <Label Grid.Row="19" Grid.Column="1" Content="{x:Static resources:Resources.NOTES_LABEL}" HorizontalContentAlignment="Right"/>
-        <TextBox Grid.Row="19" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalContentAlignment="Top"/>
+        <TextBox Grid.Row="19" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" VerticalContentAlignment="Top" 
+                 Margin="0,0,10,10" Height="150" TextWrapping="WrapWithOverflow"/>
     </Grid>
 </UserControl>

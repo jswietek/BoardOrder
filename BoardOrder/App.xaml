@@ -10,7 +10,9 @@
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/GeneralStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/Styles/GeneralStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/Styles/ExpanderStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/Styles/ComboboxStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
