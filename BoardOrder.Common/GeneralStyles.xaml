@@ -225,11 +225,10 @@
         <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
-        <Setter Property="BorderThickness" Value="1,0,0,0"/>
         <Setter Property="ClipToBounds" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
+                <ControlTemplate TargetType="RadioButton">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -252,7 +251,6 @@
                                 <Setter Property="Background" Value="{StaticResource HoverColorBrush}"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
-
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsPressed" Value="True"/>
@@ -286,5 +284,6 @@
             </Style>
         </Style.Resources>
         <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="ButtonBorderThickness" Value="1"/>
     </Style>
 </ResourceDictionary>

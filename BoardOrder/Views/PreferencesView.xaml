@@ -113,7 +113,7 @@
 
         <Label Grid.Row="16" Grid.Column="1" Content="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}" HorizontalContentAlignment="Right"/>
         <controls:MultiButton Grid.Row="16" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.ControlledImpedanceOptions}"
-                              SelectedItem="{Binding Order.SelectedControlledImpedanceOption, Mode=TwoWay}"/>
+                              SelectedItem="{Binding Order.SelectedControlledImpedanceOption, Mode=TwoWay}" ButtonBorderThickness="1"/>
 
         <Label Grid.Row="17" Grid.Column="1" Content="{x:Static resources:Resources.TENTING_FOR_VIAS_LABEL}" HorizontalContentAlignment="Right"/>
         <controls:MultiButton Grid.Row="17" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.TentingForViasOptions}"

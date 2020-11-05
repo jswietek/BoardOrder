@@ -7,12 +7,14 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:conv="clr-namespace:BoardOrder.Common.Converters;assembly=BoardOrder.Common"
         xmlns:views="clr-namespace:BoardOrder.Views"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         mc:Ignorable="d"
         DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="768" Width="1024">
+        Title="MainWindow" Height="960" Width="1280">
     <Window.Resources>
-        <conv:BooleanNegationToVisibilityCollapsedConverter x:Key="BooleanNegationToVisibilityCollapsedConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <conv:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter" />
+        <conv:BooleanToGridLengthMultiConverter x:Key="BooleanToGridLengthMultiConverter"/>
     </Window.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -21,18 +23,26 @@
     </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="{Binding IsExpanded, ElementName=Top, Converter={StaticResource BooleanToGridLengthConverter}}"/>
+            <RowDefinition Height="{Binding IsExpanded, ElementName=Middle, Converter={StaticResource BooleanToGridLengthConverter}}"/>
+            <RowDefinition Height="{Binding IsExpanded, ElementName=Bottom, Converter={StaticResource BooleanToGridLengthConverter}}"/>
+            <RowDefinition>
+                <RowDefinition.Height>
+                    <MultiBinding Converter="{StaticResource BooleanToGridLengthMultiConverter}">
+                        <Binding Path="IsExpanded" ElementName="Top" />
+                        <Binding Path="IsExpanded" ElementName="Middle" />
+                        <Binding Path="IsExpanded" ElementName="Bottom" />
+                    </MultiBinding>
+                </RowDefinition.Height>
+            </RowDefinition>
         </Grid.RowDefinitions>
-        <Expander Header="Preferences">
+        <Expander Header="Preferences" x:Name="Top">
             <views:PreferencesView/>
         </Expander>
-        <Expander Grid.Row="1" Header="Quote">
+        <Expander Grid.Row="1" Header="Quote" x:Name="Middle">
             <views:PreferencesView/>
         </Expander>
-        <Expander Grid.Row="2" Header="Orders">
+        <Expander Grid.Row="2" Header="Orders" x:Name="Bottom">
             <views:PreferencesView/>
         </Expander>
         <views:LoadingOverlay Grid.RowSpan="4" Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
