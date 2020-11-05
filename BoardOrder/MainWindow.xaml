@@ -4,8 +4,9 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:conv="clr-namespace:BoardOrder.Common.Converters;assembly=BoardOrder.Common"
         xmlns:views="clr-namespace:BoardOrder.Views"
+        xmlns:props="clr-namespace:BoardOrder.Properties"
         DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="960" Width="1280" Background="{StaticResource ControlBackgroundBrush}">
+        Title="MainWindow" Height="768" Width="1024" Background="{StaticResource ControlBackgroundBrush}">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <conv:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter" />
@@ -18,7 +19,23 @@
     </i:Interaction.Triggers>
 
     <Grid>
-        <Border Margin="10" BorderBrush="{StaticResource ActiveLightColorBrush}" BorderThickness="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" MaxWidth="500">
+                <TextBlock Text="{x:Static props:Resources.PRODUCT_NAME}" FontWeight="Bold"/>
+                <TextBlock Text="{x:Static props:Resources.PRODUCT_DESCRIPTION}" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1" Margin="10" BorderBrush="{StaticResource ActiveLightColorBrush}" BorderThickness="2">
             <Grid Background="{StaticResource GeneralBackgroundBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="{Binding IsExpanded, ElementName=Top, Converter={StaticResource BooleanToGridLengthConverter}}"/>
@@ -52,6 +69,6 @@
 
             </Grid>
         </Border>
-        <views:LoadingOverlay Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <views:LoadingOverlay Grid.RowSpan="3" Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </Window>

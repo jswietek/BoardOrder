@@ -79,6 +79,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Swietek Automation.
+        /// </summary>
+        public static string COMPANY_NAME {
+            get {
+                return ResourceManager.GetString("COMPANY NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controlled Impedance.
         /// </summary>
         public static string CONTROLLED_IMPEDANCE_LABEL {
@@ -174,6 +183,24 @@ namespace BoardOrder.Properties {
         public static string PREFERENCES_DESCRIPTION {
             get {
                 return ResourceManager.GetString("PREFERENCES_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Describe your desing and receive real-time design feedback for manufacturing and component sourcing. If you update your design, we will provide an updated quote..
+        /// </summary>
+        public static string PRODUCT_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("PRODUCT DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swietek Automation - Board Order.
+        /// </summary>
+        public static string PRODUCT_NAME {
+            get {
+                return ResourceManager.GetString("PRODUCT NAME", resourceCulture);
             }
         }
         

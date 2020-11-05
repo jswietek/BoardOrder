@@ -123,6 +123,9 @@
   <data name="BOARD_THICKNESS_LABEL" xml:space="preserve">
     <value>Board Thickness</value>
   </data>
+  <data name="COMPANY NAME" xml:space="preserve">
+    <value>Swietek Automation</value>
+  </data>
   <data name="CONTROLLED_IMPEDANCE_LABEL" xml:space="preserve">
     <value>Controlled Impedance</value>
   </data>
@@ -155,6 +158,12 @@
   </data>
   <data name="PREFERENCES_DESCRIPTION" xml:space="preserve">
     <value>Preferences on this page supersede design file notes</value>
+  </data>
+  <data name="PRODUCT DESCRIPTION" xml:space="preserve">
+    <value>Describe your desing and receive real-time design feedback for manufacturing and component sourcing. If you update your design, we will provide an updated quote.</value>
+  </data>
+  <data name="PRODUCT NAME" xml:space="preserve">
+    <value>Swietek Automation - Board Order</value>
   </data>
   <data name="PROJECT_BASICS_HEADER" xml:space="preserve">
     <value>Project Basics</value>

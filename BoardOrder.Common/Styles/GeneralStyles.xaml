@@ -10,6 +10,7 @@
     <Color x:Key="HoverColor">#9f4f00</Color>
     <Color x:Key="PressedColor">#8f3f00</Color>
     <Color x:Key="GeneralBorderColor">#1b1b1b</Color>
+    <Color x:Key="ValidationErrorColor">Red</Color>
 
     <Color x:Key="InputBackgroundColor">#2b2b2b</Color>
     <Color x:Key="ControlBackground">#5c5c5c</Color>
@@ -22,6 +23,7 @@
     <SolidColorBrush Color="{StaticResource HoverColor}" x:Key="HoverColorBrush"/>
     <SolidColorBrush Color="{StaticResource PressedColor}" x:Key="PressedColorBrush"/>
     <SolidColorBrush Color="{StaticResource GeneralBorderColor}" x:Key="GeneralBorderColorBrush"/>
+    <SolidColorBrush Color="{StaticResource ValidationErrorColor}" x:Key="ValidationErrorColorBrush"/>
 
     <SolidColorBrush Color="{StaticResource InputBackgroundColor}" x:Key="InputBackgroundColorBrush"/>
     <SolidColorBrush Color="{StaticResource ControlBackground}" x:Key="ControlBackgroundBrush"/>
@@ -31,8 +33,24 @@
         <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
     </Style>
 
+    <ControlTemplate x:Key="ValidationTemplate">
+        <DockPanel>
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Right" Margin="3,0,0,0" Foreground="{StaticResource ValidationErrorColorBrush}" Text="!" VerticalAlignment="Center"/>
+                <controls:ClippingBorder BorderBrush="{StaticResource ValidationErrorColorBrush}" BorderThickness="1" CornerRadius="4"> 
+                    <AdornedElementPlaceholder/>
+                </controls:ClippingBorder>
+            </DockPanel>
+        </DockPanel>
+    </ControlTemplate>
 
     <Style TargetType="Label">
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="Margin" Value="0,0,6,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
         <Setter Property="Margin" Value="0,0,6,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -45,6 +63,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="3"/>
         <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationTemplate}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -62,6 +81,9 @@
                         </Trigger>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ActiveColorBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)/ErrorContent}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -137,8 +159,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
 
     <Style TargetType="controls:MultiButton">
         <Style.Resources>
