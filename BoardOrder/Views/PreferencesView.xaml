@@ -5,9 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:resources="clr-namespace:BoardOrder.Properties"
              xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
-             xmlns:validation="clr-namespace:BoardOrder.Common.Validation;assembly=BoardOrder.Common"
+             xmlns:conv="clr-namespace:BoardOrder.Common.Converters;assembly=BoardOrder.Common"
              mc:Ignorable="d" Style="{StaticResource PreferencesViewStyle}"
              DataContext="{Binding PreferencesViewModel, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <conv:DoubleToSuffixedStringConverter x:Key="DoubleToSuffixedStringConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -47,21 +50,14 @@
         </StackPanel>
 
         <TextBlock Grid.Column="1" Text="{x:Static resources:Resources.PROJECT_NAME_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Order.ProjectName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Order.ProjectName, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Static resources:Resources.ZIPCODE_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Row="1" Grid.Column="2" >
-            <TextBox.Text>
-                <Binding Path="Order.Zipcode">
-                    <Binding.ValidationRules>
-                        <validation:ZipcodeValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Order.Zipcode, UpdateSourceTrigger=PropertyChanged}"/>
+
 
         <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Static resources:Resources.BOARDS_QUANTITY_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
 
         <Separator Grid.Row="3" Grid.ColumnSpan="6"/>
 
@@ -71,7 +67,8 @@
         </StackPanel>
 
         <TextBlock Grid.Row="4" Grid.Column="1" Text="{x:Static resources:Resources.BOARD_THICKNESS_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Order.BoardThickness, StringFormat={}{0} mm, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding Order.BoardThickness, NotifyOnValidationError=True, ValidatesOnDataErrors=True, Mode=TwoWay,
+            Converter={StaticResource DoubleToSuffixedStringConverter}, ConverterParameter='mm' }"/>
 
         <TextBlock Grid.Row="5" Grid.Column="1" Text="{x:Static resources:Resources.MATERIAL_LABEL}" TextAlignment="Right"/>
         <ComboBox Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.Materials}" 

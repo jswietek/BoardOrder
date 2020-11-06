@@ -64,7 +64,7 @@
                         </RowDefinition.Height>
                     </RowDefinition>
                 </Grid.RowDefinitions>
-                <Expander Header="Preferences" x:Name="PreferencesExpander">
+                <Expander Header="Preferences" x:Name="PreferencesExpander" IsExpanded="true">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
                         <views:PreferencesView/>
                     </ScrollViewer>
@@ -82,6 +82,8 @@
 
             </Grid>
         </Border>
+        <Button Grid.Row="2" Content="Discard to default" HorizontalAlignment="Left" Margin="10,0,10,10" Command="{Binding ResetOrderCommand}"/>
+        <Button Grid.Row="2" Content="Save and continue" HorizontalAlignment="Right" Margin="10,0,10,10" Command="{Binding SaveOrderCommand}"/>
         <views:LoadingOverlay Grid.RowSpan="3" Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </Window>

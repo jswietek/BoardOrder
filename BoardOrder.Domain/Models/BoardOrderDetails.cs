@@ -1,7 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
+using System.ComponentModel;
+using System.Runtime.Remoting.Messaging;
+using System.Text.RegularExpressions;
+
+
 
 namespace BoardOrder.Domain.Models {
-	public class BoardOrderDetails : ObservableObject {
+	public class BoardOrderDetails : ObservableObject, IDataErrorInfo {
+		const string ZipCodeRegex = @"^[0-9]{5}(?:-[0-9]{4})?$";
+
 		private string projectName;
 		private string zipcode;
 		private int boardQuantity;
@@ -104,5 +111,24 @@ namespace BoardOrder.Domain.Models {
 			get => this.selectedStackup;
 			set => this.Set(ref selectedStackup, value);
 		}
+
+		public string this[string columnName] {
+			get {
+				switch (columnName) {
+					case nameof(ProjectName):
+						return string.IsNullOrEmpty(ProjectName) ? "Project name cannot be empty." : null;
+					case nameof(Zipcode):
+						return string.IsNullOrEmpty(Zipcode) || !Regex.IsMatch(Zipcode, ZipCodeRegex) ? "Invalid zip code. Please use 5- or 5+4- digit zipcode format" : null;
+					case nameof(BoardsQuantity):
+						return this.BoardsQuantity == 0 ? "Boards quantity must be greater than zero." : null;
+					case nameof(BoardThickness):
+						return BoardThickness < 0.5 || BoardThickness > 3 ? "Board thickness cannot be less than 0.5 and greater than 3 mm" : null;
+					default:
+						return null;
+				}
+			}
+		}
+
+		public string Error => null;
 	}
 }

@@ -31,5 +31,9 @@ namespace BoardOrder.Domain.Services {
 			};
 			return order;
 		}
+
+		public void SaveOrder(BoardOrderDetails orderDetails) {
+
+		}
 	}
 }

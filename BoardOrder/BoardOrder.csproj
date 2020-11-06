@@ -73,6 +73,7 @@
     <Compile Include="Messages\LoadingFinishedMessage.cs" />
     <Compile Include="Messages\LoadingInitializedMessage.cs" />
     <Compile Include="Messages\OrderDetailsSavedMessage.cs" />
+    <Compile Include="Messages\OrderDetailsSaveRequested.cs" />
     <Compile Include="ViewModel\LoaderViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PreferencesViewModel.cs" />

@@ -76,6 +76,7 @@
     <Compile Include="Converters\BooleanNegationToVisibilityCollapsedConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthMultiConverter.cs" />
+    <Compile Include="Converters\DoubleToSuffixedStringConverter.cs" />
     <Compile Include="Converters\StringToColorConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -90,7 +91,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Validation\ZipcodeValidationRule.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
