@@ -156,6 +156,9 @@
   <data name="NOTES_LABEL" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="PLACE_ORDER_LABEL" xml:space="preserve">
+    <value>Place and order</value>
+  </data>
   <data name="PREFERENCES_DESCRIPTION" xml:space="preserve">
     <value>Preferences on this page supersede design file notes</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="PROJECT_NAME_LABEL" xml:space="preserve">
     <value>Project Name</value>
+  </data>
+  <data name="RESET_BUTTON_TOOLTIP" xml:space="preserve">
+    <value>Reset your order</value>
   </data>
   <data name="SILKSCREEN_COLOR_LABEL" xml:space="preserve">
     <value>Silkscreen Color</value>

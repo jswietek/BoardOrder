@@ -4,6 +4,7 @@
 
     <Color x:Key="GeneralBackground">#3b3b3b</Color>
     <Color x:Key="GeneralForeground">LightGray</Color>
+    <Color x:Key="GeneralDisabledForeground">#818181</Color>
     <Color x:Key="ActiveColor">#2f4f5f</Color>
     <Color x:Key="ActiveLightColor">#3f5faf</Color>
     <Color x:Key="ActivePressedColor">#1f3f4f</Color>
@@ -16,6 +17,7 @@
     <Color x:Key="ControlBackground">#5c5c5c</Color>
 
     <SolidColorBrush Color="{StaticResource GeneralBackground}" x:Key="GeneralBackgroundBrush"/>
+    <SolidColorBrush Color="{StaticResource GeneralDisabledForeground}" x:Key="GeneralDisabledForegroundBrush"/>
     <SolidColorBrush Color="{StaticResource GeneralForeground}" x:Key="GeneralForegroundBrush"/>
     <SolidColorBrush Color="{StaticResource ActiveColor}" x:Key="ActiveColorBrush"/>
     <SolidColorBrush Color="{StaticResource ActiveLightColor}" x:Key="ActiveLightColorBrush"/>
@@ -95,15 +97,42 @@
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource HoverColorBrush}"/>
-            </Trigger>
-            <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource ActiveColorBrush}"/>
-            </Trigger>
-        </Style.Triggers>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <controls:ClippingBorder CornerRadius="4" 
+                                             Background="{TemplateBinding Background}" 
+                                             BorderBrush="{TemplateBinding BorderBrush}" 
+                                             BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </controls:ClippingBorder>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource PressedColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource HoverColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource GeneralDisabledForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
@@ -154,6 +183,9 @@
                                 <Setter Property="Background" Value="{StaticResource ActiveColorBrush}"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -163,7 +195,7 @@
     <Style TargetType="controls:MultiButton">
         <Style.Resources>
             <Style TargetType="controls:ClippingBorder">
-                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="CornerRadius" Value="4"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
             </Style>

@@ -34,6 +34,19 @@
                 <TextBlock Text="{x:Static props:Resources.PRODUCT_NAME}" FontWeight="Bold"/>
                 <TextBlock Text="{x:Static props:Resources.PRODUCT_DESCRIPTION}" TextWrapping="Wrap"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="2">
+                <Button Height="30" Margin="0,9">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/icons8-shopping-cart-50.png" />
+                            <TextBlock Text="{x:Static props:Resources.PLACE_ORDER_LABEL}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Height="30" ToolTip="{x:Static props:Resources.RESET_BUTTON_TOOLTIP}">
+                    <Image Source="/Images/icons8-reset-50.png" />
+                </Button>
+            </StackPanel>
         </Grid>
         <Border Grid.Row="1" Margin="10" BorderBrush="{StaticResource ActiveLightColorBrush}" BorderThickness="2">
             <Grid Background="{StaticResource GeneralBackgroundBrush}">

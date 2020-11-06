@@ -178,6 +178,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Place and order.
+        /// </summary>
+        public static string PLACE_ORDER_LABEL {
+            get {
+                return ResourceManager.GetString("PLACE_ORDER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preferences on this page supersede design file notes.
         /// </summary>
         public static string PREFERENCES_DESCRIPTION {
@@ -219,6 +228,15 @@ namespace BoardOrder.Properties {
         public static string PROJECT_NAME_LABEL {
             get {
                 return ResourceManager.GetString("PROJECT_NAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset your order.
+        /// </summary>
+        public static string RESET_BUTTON_TOOLTIP {
+            get {
+                return ResourceManager.GetString("RESET_BUTTON_TOOLTIP", resourceCulture);
             }
         }
         

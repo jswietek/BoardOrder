@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardOrder", "BoardOrder\BoardOrder.csproj", "{62EDEB62-AE32-48B0-95D7-CBA68A3B06D9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Steps", "Steps", "{2BE62AB4-5EEB-471B-928D-23D6C5BA1DC3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardOrder.Common", "BoardOrder.Common\BoardOrder.Common.csproj", "{F0446C59-6347-4B7B-9BE3-3171E6A0B636}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardOrder.Domain", "BoardOrder.Domain\BoardOrder.Domain.csproj", "{B5123F1D-2ED5-4537-8F16-CB1AB0250F8C}"
