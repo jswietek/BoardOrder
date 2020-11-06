@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
+using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 
@@ -112,6 +114,8 @@ namespace BoardOrder.Domain.Models {
 			set => this.Set(ref selectedStackup, value);
 		}
 
+		public string Error => string.Join(Environment.NewLine, typeof(BoardOrderDetails).GetProperties().Select(prop => this[prop.Name]).Where(err => !string.IsNullOrEmpty(err)));
+
 		public string this[string columnName] {
 			get {
 				switch (columnName) {
@@ -129,6 +133,9 @@ namespace BoardOrder.Domain.Models {
 			}
 		}
 
-		public string Error => null;
+		private void Set<T>(ref T field, T newValue) {
+			base.Set(ref field, newValue);
+			RaisePropertyChanged(nameof(Error));
+		}
 	}
 }

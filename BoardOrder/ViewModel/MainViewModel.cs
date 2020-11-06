@@ -3,7 +3,9 @@ using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BoardOrder.ViewModel {
@@ -12,33 +14,23 @@ namespace BoardOrder.ViewModel {
 	/// </summary>
 	public class MainViewModel : ViewModelBase {
 		private readonly IOptionsProvider optionsProvider;
+		private readonly IBoardOrderManager boardOrderManager;
 
 		private bool isQuoteAvailable;
-		private ICommand resetOrderCommand;
-		private ICommand saveOrderCommand;
 
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
-		public MainViewModel(IOptionsProvider optionsProvider) {
+		public MainViewModel(IOptionsProvider optionsProvider, IBoardOrderManager boardOrderManager) {
 			this.optionsProvider = optionsProvider;
 			this.optionsProvider.Fetching += HandleOptionsProviderFetching;
+
+			this.boardOrderManager = boardOrderManager;
+			this.boardOrderManager.OrderModified += HandleOrderModified;
 
 			this.ResetOrderCommand = new RelayCommand(this.RequestOrderReset);
 			this.SaveOrderCommand = new RelayCommand(this.SaveOrder, this.CanSaveOrder);
 			this.LoadedCommand = new RelayCommand(this.FetchData);
-		}
-
-		private bool CanSaveOrder() {
-			return this.IsQuoteAvailable;
-		}
-
-		private void SaveOrder() {
-			this.MessengerInstance.Send(new OrderDetailsSaveRequested());
-		}
-
-		private void RequestOrderReset() {
-			this.IsQuoteAvailable = false;
 		}
 
 		public ICommand LoadedCommand { get; set; }
@@ -64,6 +56,23 @@ namespace BoardOrder.ViewModel {
 
 		private void HandleOptionsProviderFetching(string message) {
 			this.MessengerInstance.Send(new LoadingInitializedMessage(message));
+		}
+
+		private void HandleOrderModified(object sender, PropertyChangedEventArgs e) {
+			(SaveOrderCommand as RelayCommand)?.RaiseCanExecuteChanged();
+		}
+
+		private bool CanSaveOrder() {
+			return this.boardOrderManager.IsOrderValid;
+		}
+
+		private void SaveOrder() {
+			this.MessengerInstance.Send(new OrderDetailsSaveRequested());
+		}
+
+		private void RequestOrderReset() {
+			this.boardOrderManager.ResetOrder();
+			this.IsQuoteAvailable = false;
 		}
 	}
 }

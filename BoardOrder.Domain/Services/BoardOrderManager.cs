@@ -1,15 +1,22 @@
 ﻿using BoardOrder.Domain.Models;
+using System;
+using System.ComponentModel;
 using System.Linq;
 
 namespace BoardOrder.Domain.Services {
-	public class BoardOrdersManager : IBoardOrdersManager {
+	public class BoardOrderManager : IBoardOrderManager {
 		private readonly IPreferencesOptions preferenceOptions;
+		private BoardOrderDetails currentOrder;
 
-		public BoardOrdersManager(IPreferencesOptions options) {
+		public BoardOrderManager(IPreferencesOptions options) {
 			this.preferenceOptions = options;
 		}
 
-		public BoardOrderDetails GetEmptyOrder() {
+		public event PropertyChangedEventHandler OrderModified;
+
+		public bool IsOrderValid => string.IsNullOrEmpty(this.currentOrder?.Error);
+
+		public BoardOrderDetails ResetOrder() {
 			var order = new BoardOrderDetails() {
 				ProjectName = string.Empty,
 				Zipcode = string.Empty,
@@ -29,11 +36,27 @@ namespace BoardOrder.Domain.Services {
 				SelectedTentingForViasOption = this.preferenceOptions.TentingForViasOptions.FirstOrDefault(),
 				SelectedStackup = this.preferenceOptions.StackupOptions.FirstOrDefault(),
 			};
+			this.SetCurrentOrder(order);
 			return order;
 		}
 
+
+
 		public void SaveOrder(BoardOrderDetails orderDetails) {
 
+		}
+
+		private void SetCurrentOrder(BoardOrderDetails orderDetails) {
+			if (this.currentOrder != null) {
+				this.currentOrder.PropertyChanged -= HandleCurrentOrderPropertyChanged;
+			}
+			this.currentOrder = orderDetails;
+			this.currentOrder.PropertyChanged += HandleCurrentOrderPropertyChanged;
+			this.OrderModified?.Invoke(this, new PropertyChangedEventArgs(nameof(BoardOrderDetails.Error)));
+		}
+
+		private void HandleCurrentOrderPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+			this.OrderModified?.Invoke(this, e);
 		}
 	}
 }

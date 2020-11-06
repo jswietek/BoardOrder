@@ -19,7 +19,7 @@ namespace BoardOrder.ViewModel {
 			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
 			SimpleIoc.Default.Register<IPreferencesSettingsRepository, PredefinedPreferencesSettingsRepository>();
-			SimpleIoc.Default.Register<IBoardOrdersManager, BoardOrdersManager>();
+			SimpleIoc.Default.Register<IBoardOrderManager, BoardOrderManager>();
 			SimpleIoc.Default.Register<IQuoteService, QuoteService>();
 			SimpleIoc.Default.Register<PreferencesOptionsProvider>();
 			SimpleIoc.Default.Register<PreferencesViewModel>();

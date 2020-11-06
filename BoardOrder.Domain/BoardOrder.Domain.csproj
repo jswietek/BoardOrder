@@ -76,8 +76,8 @@
     <Compile Include="Models\SurfaceFinish.cs" />
     <Compile Include="Models\TentingForViasOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BoardOrdersManager.cs" />
-    <Compile Include="Services\IBoardOrdersManager.cs" />
+    <Compile Include="Services\BoardOrderManager.cs" />
+    <Compile Include="Services\IBoardOrderManager.cs" />
     <Compile Include="Services\IOptionsProvider.cs" />
     <Compile Include="Services\IPreferencesOptions.cs" />
     <Compile Include="Services\IQuoteService.cs" />

@@ -6,11 +6,11 @@ using System;
 
 namespace BoardOrder.ViewModel {
 	public class PreferencesViewModel : ViewModelBase {
-		private readonly IBoardOrdersManager boardOrdersManager;
+		private readonly IBoardOrderManager boardOrdersManager;
 
 		private BoardOrderDetails boardOrderDetails;
 
-		public PreferencesViewModel(IPreferencesOptions preferencesOptions, IBoardOrdersManager boardOrdersManager) {
+		public PreferencesViewModel(IPreferencesOptions preferencesOptions, IBoardOrderManager boardOrdersManager) {
 			this.PreferencesOptions = preferencesOptions;
 			this.boardOrdersManager = boardOrdersManager;
 
@@ -23,7 +23,7 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private void HandleLoadingFinished(LoadingFinishedMessage _) {
-			this.Order = this.boardOrdersManager.GetEmptyOrder();
+			this.Order = this.boardOrdersManager.ResetOrder();
 		}
 
 		public IPreferencesOptions PreferencesOptions { get; }
