@@ -1,6 +1,6 @@
-﻿using BoardOrder.Common.Messages;
-using BoardOrder.Domain.Models;
+﻿using BoardOrder.Domain.Models;
 using BoardOrder.Domain.Services;
+using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
 
 namespace BoardOrder.ViewModel {
@@ -18,7 +18,6 @@ namespace BoardOrder.ViewModel {
 
 		private void OnLoadingFinished(LoadingFinishedMessage _) {
 			this.Order = this.boardOrdersManager.GetEmptyOrder();
-			var temp = new BoardOrderQuote(this.Order);
 		}
 
 		public IPreferencesOptions PreferencesOptions { get; }

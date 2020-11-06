@@ -61,7 +61,6 @@
     <Compile Include="DataAccess\IPreferencesSettingsRepository.cs" />
     <Compile Include="Models\BoardOrderDetails.cs" />
     <Compile Include="Models\BoardOrderItem.cs" />
-    <Compile Include="Models\BoardOrderQuote.cs" />
     <Compile Include="DataAccess\PredefinedPreferencesSettingsRepository.cs" />
     <Compile Include="Models\ControlledImpedance.cs" />
     <Compile Include="Models\FluxType.cs" />
@@ -81,7 +80,9 @@
     <Compile Include="Services\IBoardOrdersManager.cs" />
     <Compile Include="Services\IOptionsProvider.cs" />
     <Compile Include="Services\IPreferencesOptions.cs" />
+    <Compile Include="Services\IQuoteService.cs" />
     <Compile Include="Services\PreferencesOptionsProvider.cs" />
+    <Compile Include="Services\QuoteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

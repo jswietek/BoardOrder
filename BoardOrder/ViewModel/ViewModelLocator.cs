@@ -4,6 +4,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
+using System.Runtime.CompilerServices;
 
 namespace BoardOrder.ViewModel {
 	/// <summary>
@@ -19,9 +20,11 @@ namespace BoardOrder.ViewModel {
 
 			SimpleIoc.Default.Register<IPreferencesSettingsRepository, PredefinedPreferencesSettingsRepository>();
 			SimpleIoc.Default.Register<IBoardOrdersManager, BoardOrdersManager>();
+			SimpleIoc.Default.Register<IQuoteService, QuoteService>();
 			SimpleIoc.Default.Register<PreferencesOptionsProvider>();
 			SimpleIoc.Default.Register<PreferencesViewModel>();
 			SimpleIoc.Default.Register<LoaderViewModel>();
+			SimpleIoc.Default.Register<QuoteViewModel>();
 			SimpleIoc.Default.Register<MainViewModel>();
 
 			//this registrations break design time
@@ -50,7 +53,17 @@ namespace BoardOrder.ViewModel {
 			}
 		}
 
+		public QuoteViewModel QuoteViewModel {
+			get {
+				return ServiceLocator.Current.GetInstance<QuoteViewModel>();
+			}
+		}
+
 		public static void Cleanup() {
+			ServiceLocator.Current.GetInstance<MainViewModel>().Cleanup();
+			ServiceLocator.Current.GetInstance<PreferencesViewModel>().Cleanup();
+			ServiceLocator.Current.GetInstance<LoaderViewModel>().Cleanup();
+			ServiceLocator.Current.GetInstance<QuoteViewModel>().Cleanup();
 		}
 	}
 }

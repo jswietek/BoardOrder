@@ -1,4 +1,4 @@
-﻿using BoardOrder.Common.Messages;
+﻿using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
 
 namespace BoardOrder.ViewModel {
@@ -7,8 +7,8 @@ namespace BoardOrder.ViewModel {
 		private string loaderMessage;
 
 		public LoaderViewModel() {
-			this.MessengerInstance.Register<LoadingInitializedMessage>(this, OnLoadingInitialized);
-			this.MessengerInstance.Register<LoadingFinishedMessage>(this, OnLoadingFinished);
+			this.MessengerInstance.Register<LoadingInitializedMessage>(this, this.OnLoadingInitialized);
+			this.MessengerInstance.Register<LoadingFinishedMessage>(this, this.OnLoadingFinished);
 		}
 
 		public bool IsFetchingData {
@@ -19,6 +19,11 @@ namespace BoardOrder.ViewModel {
 		public string LoaderMessage {
 			get => this.loaderMessage;
 			set => this.Set(ref this.loaderMessage, value);
+		}
+
+		public override void Cleanup() {
+			this.MessengerInstance.Unregister<LoadingInitializedMessage>(this, this.OnLoadingInitialized);
+			this.MessengerInstance.Unregister<LoadingFinishedMessage>(this, this.OnLoadingFinished);
 		}
 
 		private void OnLoadingInitialized(LoadingInitializedMessage loadingInitializedMessage) {

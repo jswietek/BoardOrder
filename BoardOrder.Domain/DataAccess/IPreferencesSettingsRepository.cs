@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace BoardOrder.Domain.DataAccess {
 	public interface IPreferencesSettingsRepository {
-		Task<IEnumerable<BoardOrderItem>> GetControlledImpedanceOptionsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetFluxTypesAsync();
-		Task<IEnumerable<BoardOrderItem>> GetInnerLayerCopperWeightsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetIpcClassesAsync();
-		Task<IEnumerable<BoardOrderItem>> GetItarComplianceOptionsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetLeadFreeOptionsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetMaterialsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetOuterLayerCopperWeightsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetSilkscreenColorsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetSolderMaskColorsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetStackupOptionsAsync();
-		Task<IEnumerable<BoardOrderItem>> GetSurfaceFinishesAsync();
-		Task<IEnumerable<BoardOrderItem>> GetTentingForViasOptionsAsync();
+		Task<IEnumerable<ControlledImpedance>> GetControlledImpedanceOptionsAsync();
+		Task<IEnumerable<FluxType>> GetFluxTypesAsync();
+		Task<IEnumerable<InnerLayerCopperWeight>> GetInnerLayerCopperWeightsAsync();
+		Task<IEnumerable<IpcClass>> GetIpcClassesAsync();
+		Task<IEnumerable<ItarComplianceOption>> GetItarComplianceOptionsAsync();
+		Task<IEnumerable<LeadFreeOption>> GetLeadFreeOptionsAsync();
+		Task<IEnumerable<Material>> GetMaterialsAsync();
+		Task<IEnumerable<OuterLayerCopperWeight>> GetOuterLayerCopperWeightsAsync();
+		Task<IEnumerable<SilkscreenColor>> GetSilkscreenColorsAsync();
+		Task<IEnumerable<SolderMaskColor>> GetSolderMaskColorsAsync();
+		Task<IEnumerable<StackupOption>> GetStackupOptionsAsync();
+		Task<IEnumerable<SurfaceFinish>> GetSurfaceFinishesAsync();
+		Task<IEnumerable<TentingForViasOption>> GetTentingForViasOptionsAsync();
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace BoardOrder.Common.Messages {
+﻿namespace BoardOrder.Messages {
 	public class LoadingFinishedMessage {
 	}
 }

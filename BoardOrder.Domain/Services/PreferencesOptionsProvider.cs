@@ -1,5 +1,4 @@
-﻿using BoardOrder.Common.Messages;
-using BoardOrder.Domain.DataAccess;
+﻿using BoardOrder.Domain.DataAccess;
 using BoardOrder.Domain.Models;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
@@ -11,39 +10,37 @@ namespace BoardOrder.Domain.Services {
 	public class PreferencesOptionsProvider : ObservableObject, IOptionsProvider, IPreferencesOptions {
 		private readonly IPreferencesSettingsRepository preferencesSettingsRepository;
 
-		private readonly IMessenger messenger;
+		private IEnumerable<Material> materials;
 
-		private IEnumerable<BoardOrderItem> materials;
+		private IEnumerable<SurfaceFinish> surfaceFinishes;
 
-		private IEnumerable<BoardOrderItem> surfaceFinishes;
+		private IEnumerable<SolderMaskColor> solderMaskColors;
 
-		private IEnumerable<BoardOrderItem> solderMaskColors;
+		private IEnumerable<SilkscreenColor> silkscreenColors;
 
-		private IEnumerable<BoardOrderItem> silkscreenColors;
+		private IEnumerable<InnerLayerCopperWeight> innerLayersCopperWeights;
 
-		private IEnumerable<BoardOrderItem> innerLayersCopperWeights;
+		private IEnumerable<OuterLayerCopperWeight> outerLayersCopperWeights;
 
-		private IEnumerable<BoardOrderItem> outerLayersCopperWeights;
+		private IEnumerable<LeadFreeOption> leadFreeOptions;
 
-		private IEnumerable<BoardOrderItem> leadFreeOptions;
+		private IEnumerable<IpcClass> ipcClasses;
 
-		private IEnumerable<BoardOrderItem> ipcClasses;
+		private IEnumerable<ItarComplianceOption> itarComplianceOptions;
 
-		private IEnumerable<BoardOrderItem> itarComplianceOptions;
+		private IEnumerable<FluxType> fluxTypes;
 
-		private IEnumerable<BoardOrderItem> fluxTypes;
+		private IEnumerable<ControlledImpedance> controlledImpedanceOptions;
 
-		private IEnumerable<BoardOrderItem> controlledImpedanceOptions;
+		private IEnumerable<TentingForViasOption> tentingForViasOptions;
 
-		private IEnumerable<BoardOrderItem> tentingForViasOptions;
+		private IEnumerable<StackupOption> stackupOptions;
 
-		private IEnumerable<BoardOrderItem> stackupOptions;
+		public event Action<string> Fetching;
 
 		public PreferencesOptionsProvider(
-			IPreferencesSettingsRepository preferencesSettingsRepository,
-			IMessenger messenger) {
+			IPreferencesSettingsRepository preferencesSettingsRepository) {
 			this.preferencesSettingsRepository = preferencesSettingsRepository;
-			this.messenger = messenger;
 		}
 
 		public async Task FetchOptions() {
@@ -60,77 +57,76 @@ namespace BoardOrder.Domain.Services {
 			await this.FetchOptionAsync("Controlled Impedance Options", async () => this.ControlledImpedanceOptions = await this.preferencesSettingsRepository.GetControlledImpedanceOptionsAsync());
 			await this.FetchOptionAsync("Tenting For Vias Options", async () => this.TentingForViasOptions = await this.preferencesSettingsRepository.GetTentingForViasOptionsAsync());
 			await this.FetchOptionAsync("Stackup Options", async () => this.StackupOptions = await this.preferencesSettingsRepository.GetStackupOptionsAsync());
-			this.messenger.Send(new LoadingFinishedMessage());
 		}
 
-		public IEnumerable<BoardOrderItem> Materials {
+		public IEnumerable<Material> Materials {
 			get => this.materials;
 			set => this.Set(ref this.materials, value);
 		}
 
-		public IEnumerable<BoardOrderItem> SurfaceFinishes {
+		public IEnumerable<SurfaceFinish> SurfaceFinishes {
 			get => this.surfaceFinishes;
 			set => this.Set(ref this.surfaceFinishes, value);
 		}
 
-		public IEnumerable<BoardOrderItem> SolderMaskColors {
+		public IEnumerable<SolderMaskColor> SolderMaskColors {
 			get => this.solderMaskColors;
 			set => this.Set(ref this.solderMaskColors, value);
 		}
 
-		public IEnumerable<BoardOrderItem> SilkscreenColors {
+		public IEnumerable<SilkscreenColor> SilkscreenColors {
 			get => this.silkscreenColors;
 			set => this.Set(ref this.silkscreenColors, value);
 		}
 
-		public IEnumerable<BoardOrderItem> InnerLayersCopperWeights {
+		public IEnumerable<InnerLayerCopperWeight> InnerLayersCopperWeights {
 			get => this.innerLayersCopperWeights;
 			set => this.Set(ref this.innerLayersCopperWeights, value);
 		}
 
-		public IEnumerable<BoardOrderItem> OuterLayersCopperWeights {
+		public IEnumerable<OuterLayerCopperWeight> OuterLayersCopperWeights {
 			get => this.outerLayersCopperWeights;
 			set => this.Set(ref this.outerLayersCopperWeights, value);
 		}
 
-		public IEnumerable<BoardOrderItem> LeadFreeOptions {
+		public IEnumerable<LeadFreeOption> LeadFreeOptions {
 			get => this.leadFreeOptions;
 			set => this.Set(ref this.leadFreeOptions, value);
 		}
 
-		public IEnumerable<BoardOrderItem> IpcClasses {
+		public IEnumerable<IpcClass> IpcClasses {
 			get => this.ipcClasses;
 			set => this.Set(ref this.ipcClasses, value);
 		}
 
-		public IEnumerable<BoardOrderItem> ItarComplianceOptions {
+		public IEnumerable<ItarComplianceOption> ItarComplianceOptions {
 			get => this.itarComplianceOptions;
 			set => this.Set(ref this.itarComplianceOptions, value);
 		}
 
-		public IEnumerable<BoardOrderItem> FluxTypes {
+		public IEnumerable<FluxType> FluxTypes {
 			get => this.fluxTypes;
 			set => this.Set(ref this.fluxTypes, value);
 		}
 
-		public IEnumerable<BoardOrderItem> ControlledImpedanceOptions {
+		public IEnumerable<ControlledImpedance> ControlledImpedanceOptions {
 			get => this.controlledImpedanceOptions;
 			set => this.Set(ref this.controlledImpedanceOptions, value);
 		}
 
-		public IEnumerable<BoardOrderItem> TentingForViasOptions {
+		public IEnumerable<TentingForViasOption> TentingForViasOptions {
 			get => this.tentingForViasOptions;
 			set => this.Set(ref this.tentingForViasOptions, value);
 		}
 
-		public IEnumerable<BoardOrderItem> StackupOptions {
+		public IEnumerable<StackupOption> StackupOptions {
 			get => this.stackupOptions;
 			set => this.Set(ref this.stackupOptions, value);
 		}
 
 		private async Task FetchOptionAsync(string optionName, Func<Task> fetchingFunc) {
 			const string fetchingMessageFormat = "Loading {0}...";
-			this.messenger.Send(new LoadingInitializedMessage(string.Format(fetchingMessageFormat, optionName)));
+			this.Fetching?.Invoke(string.Format(fetchingMessageFormat, optionName));
 			await fetchingFunc();
 		}
 	}

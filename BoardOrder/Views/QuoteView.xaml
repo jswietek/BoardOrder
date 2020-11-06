@@ -11,14 +11,14 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <DataGrid AutoGenerateColumns="False">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Quote}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Parameter" Binding="{Binding ParameterName}"/>
+                <DataGridTextColumn Header="Parameter" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
                 <DataGridTextColumn Header="Time Impact" Binding="{Binding WorkdaysModifier}"/>
                 <DataGridTextColumn Header="Cost Impact" Binding="{Binding CostModifier}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
-    
+
 </UserControl>

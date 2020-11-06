@@ -70,9 +70,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messages\LoadingFinishedMessage.cs" />
+    <Compile Include="Messages\LoadingInitializedMessage.cs" />
+    <Compile Include="Messages\OrderDetailsSavedMessage.cs" />
     <Compile Include="ViewModel\LoaderViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PreferencesViewModel.cs" />
+    <Compile Include="ViewModel\QuoteViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\LoadingOverlay.xaml.cs">
       <DependentUpon>LoadingOverlay.xaml</DependentUpon>
