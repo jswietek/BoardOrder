@@ -75,15 +75,15 @@
 
         <TextBlock Grid.Row="5" Grid.Column="1" Text="{x:Static resources:Resources.MATERIAL_LABEL}" TextAlignment="Right"/>
         <ComboBox Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.Materials}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedMaterial, Mode=TwoWay}" />
+                  DisplayMemberPath="Value" SelectedItem="{Binding Order.SelectedMaterial, Mode=TwoWay}" />
 
         <TextBlock Grid.Row="6" Grid.Column="1" Text="{x:Static resources:Resources.SURFACE_FINISH_LABEL}" TextAlignment="Right"/>
         <ComboBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.SurfaceFinishes}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedSurfaceFinish, Mode=TwoWay}" />
+                  DisplayMemberPath="Value" SelectedItem="{Binding Order.SelectedSurfaceFinish, Mode=TwoWay}" />
 
         <TextBlock Grid.Row="7" Grid.Column="1" Text="{x:Static resources:Resources.SOLDER_MASK_COLOR_LABEL}" TextAlignment="Right"/>
         <ComboBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2"  ItemsSource="{Binding PreferencesOptions.SolderMaskColors}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedMaskColor, Mode=TwoWay}" 
+                  DisplayMemberPath="Value" SelectedItem="{Binding Order.SelectedMaskColor, Mode=TwoWay}" 
                   Style="{StaticResource ColorCombobox}" ItemContainerStyle="{StaticResource ColorComboboxItem}"/>
 
         <Separator Grid.Row="8" Grid.ColumnSpan="6"/>
@@ -111,16 +111,16 @@
 
         <TextBlock Grid.Row="13" Grid.Column="1" Text="{x:Static resources:Resources.SILKSCREEN_COLOR_LABEL}" TextAlignment="Right"/>
         <ComboBox Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.SilkscreenColors}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedSilkscreenColor, Mode=TwoWay}" 
+                  DisplayMemberPath="Value" SelectedItem="{Binding Order.SelectedSilkscreenColor, Mode=TwoWay}" 
                   Style="{StaticResource ColorCombobox}" ItemContainerStyle="{StaticResource ColorComboboxItem}" />
 
         <TextBlock Grid.Row="14" Grid.Column="1" Text="{x:Static resources:Resources.Copper_WEIGHT_ON_INNER_LAYERS_LABEL}" TextAlignment="Right"/>
         <ComboBox Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.InnerLayersCopperWeights}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedInnerLayersCopperWeight, Mode=TwoWay}" />
+                  DisplayMemberPath="Value" SelectedItem="{Binding Order.SelectedInnerLayersCopperWeight, Mode=TwoWay}" />
 
         <TextBlock Grid.Row="15" Grid.Column="1" Text="{x:Static resources:Resources.Copper_WEIGHT_ON_OUTER_LAYERS_LABEL}" TextAlignment="Right"/>
         <ComboBox Grid.Row="15" Grid.Column="2" Grid.ColumnSpan="2" ItemsSource="{Binding PreferencesOptions.OuterLayersCopperWeights}" 
-                  DisplayMemberPath="Name" SelectedItem="{Binding Order.SelectedOuterLayersCopperWeight, Mode=TwoWay}" />
+                  DisplayMemberPath="Value" SelectedItem="{Binding Order.SelectedOuterLayersCopperWeight, Mode=TwoWay}" />
 
         <TextBlock Grid.Row="16" Grid.Column="1" Text="{x:Static resources:Resources.CONTROLLED_IMPEDANCE_LABEL}" TextAlignment="Right"/>
         <controls:MultiButton Grid.Row="16" Grid.Column="2" ItemsSource="{Binding PreferencesOptions.ControlledImpedanceOptions}"

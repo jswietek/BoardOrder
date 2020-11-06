@@ -18,6 +18,7 @@ namespace BoardOrder.ViewModel {
 
 		private void OnLoadingFinished(LoadingFinishedMessage _) {
 			this.Order = this.boardOrdersManager.GetEmptyOrder();
+			var temp = new BoardOrderQuote(this.Order);
 		}
 
 		public IPreferencesOptions PreferencesOptions { get; }

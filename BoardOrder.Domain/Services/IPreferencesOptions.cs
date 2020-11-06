@@ -11,8 +11,8 @@ namespace BoardOrder.Domain.Services {
 		IEnumerable<BoardOrderItem> LeadFreeOptions { get; set; }
 		IEnumerable<BoardOrderItem> Materials { get; set; }
 		IEnumerable<BoardOrderItem> OuterLayersCopperWeights { get; set; }
-		IEnumerable<ColorBoardOrderItem> SilkscreenColors { get; set; }
-		IEnumerable<ColorBoardOrderItem> SolderMaskColors { get; set; }
+		IEnumerable<BoardOrderItem> SilkscreenColors { get; set; }
+		IEnumerable<BoardOrderItem> SolderMaskColors { get; set; }
 		IEnumerable<BoardOrderItem> StackupOptions { get; set; }
 		IEnumerable<BoardOrderItem> SurfaceFinishes { get; set; }
 		IEnumerable<BoardOrderItem> TentingForViasOptions { get; set; }

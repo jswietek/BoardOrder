@@ -13,8 +13,8 @@ namespace BoardOrder.Domain.DataAccess {
 		Task<IEnumerable<BoardOrderItem>> GetLeadFreeOptionsAsync();
 		Task<IEnumerable<BoardOrderItem>> GetMaterialsAsync();
 		Task<IEnumerable<BoardOrderItem>> GetOuterLayerCopperWeightsAsync();
-		Task<IEnumerable<ColorBoardOrderItem>> GetSilkscreenColorsAsync();
-		Task<IEnumerable<ColorBoardOrderItem>> GetSolderMaskColorsAsync();
+		Task<IEnumerable<BoardOrderItem>> GetSilkscreenColorsAsync();
+		Task<IEnumerable<BoardOrderItem>> GetSolderMaskColorsAsync();
 		Task<IEnumerable<BoardOrderItem>> GetStackupOptionsAsync();
 		Task<IEnumerable<BoardOrderItem>> GetSurfaceFinishesAsync();
 		Task<IEnumerable<BoardOrderItem>> GetTentingForViasOptionsAsync();

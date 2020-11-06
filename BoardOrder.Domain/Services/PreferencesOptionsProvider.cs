@@ -17,9 +17,9 @@ namespace BoardOrder.Domain.Services {
 
 		private IEnumerable<BoardOrderItem> surfaceFinishes;
 
-		private IEnumerable<ColorBoardOrderItem> solderMaskColors;
+		private IEnumerable<BoardOrderItem> solderMaskColors;
 
-		private IEnumerable<ColorBoardOrderItem> silkscreenColors;
+		private IEnumerable<BoardOrderItem> silkscreenColors;
 
 		private IEnumerable<BoardOrderItem> innerLayersCopperWeights;
 
@@ -73,12 +73,12 @@ namespace BoardOrder.Domain.Services {
 			set => this.Set(ref this.surfaceFinishes, value);
 		}
 
-		public IEnumerable<ColorBoardOrderItem> SolderMaskColors {
+		public IEnumerable<BoardOrderItem> SolderMaskColors {
 			get => this.solderMaskColors;
 			set => this.Set(ref this.solderMaskColors, value);
 		}
 
-		public IEnumerable<ColorBoardOrderItem> SilkscreenColors {
+		public IEnumerable<BoardOrderItem> SilkscreenColors {
 			get => this.silkscreenColors;
 			set => this.Set(ref this.silkscreenColors, value);
 		}

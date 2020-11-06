@@ -76,6 +76,7 @@
     <Compile Include="Converters\BooleanNegationToVisibilityCollapsedConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthMultiConverter.cs" />
+    <Compile Include="Converters\StringToColorConverter.cs" />
     <Compile Include="Messages\LoadingFinishedMessage.cs" />
     <Compile Include="Messages\LoadingInitializedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

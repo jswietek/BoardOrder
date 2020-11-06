@@ -1,7 +1,6 @@
 ﻿using BoardOrder.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Media;
 
 namespace BoardOrder.Domain.DataAccess {
 	public class PredefinedPreferencesSettingsRepository : IPreferencesSettingsRepository {
@@ -9,9 +8,9 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("Arlon", 8, 0, CostType.Fabrication),
-				new BoardOrderItem("Nelco", 9.5, 0, CostType.Fabrication),
-				new BoardOrderItem("Shengyi", 7.2, 0, CostType.Fabrication)
+				new Material("Arlon", 8, 0),
+				new Material("Nelco", 9.5, 0),
+				new Material("Shengyi", 7.2, 0)
 			};
 		}
 
@@ -19,31 +18,31 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("ENEPIG", 3.5, 0, CostType.Fabrication),
-				new BoardOrderItem("ENIG", 2, 0, CostType.Fabrication),
-				new BoardOrderItem("HASL", 1.0, 0, CostType.Fabrication),
-				new BoardOrderItem("OSP", 1.2, 0, CostType.Fabrication)
+				new SurfaceFinish("ENEPIG", 3.5, 0),
+				new SurfaceFinish("ENIG", 2, 0),
+				new SurfaceFinish("HASL", 1.0, 0),
+				new SurfaceFinish("OSP", 1.2, 0)
 			};
 		}
 
-		public async Task<IEnumerable<ColorBoardOrderItem>> GetSolderMaskColorsAsync() {
+		public async Task<IEnumerable<BoardOrderItem>> GetSolderMaskColorsAsync() {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
-			return new List<ColorBoardOrderItem>() {
-				new ColorBoardOrderItem(Colors.Green,"Green", 0, 0, CostType.Fabrication),
-				new ColorBoardOrderItem(Colors.Red, "Red", 0.2, 0, CostType.Fabrication),
-				new ColorBoardOrderItem(Colors.Blue, "Blue", 0.2, 0, CostType.Fabrication)
+			return new List<BoardOrderItem>() {
+				new SolderMaskColor("Green", 0, 0),
+				new SolderMaskColor("Red", 0.2, 0),
+				new SolderMaskColor("Blue", 0.2, 0)
 			};
 		}
 
-		public async Task<IEnumerable<ColorBoardOrderItem>> GetSilkscreenColorsAsync() {
+		public async Task<IEnumerable<BoardOrderItem>> GetSilkscreenColorsAsync() {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
-			return new List<ColorBoardOrderItem>() {
-				new ColorBoardOrderItem(Colors.White, "White", 0, 0, CostType.Fabrication),
-				new ColorBoardOrderItem(Colors.Yellow, "Yellow", 0.2, 0, CostType.Fabrication),
-				new ColorBoardOrderItem(Colors.Brown, "Brown", 0.2, 0, CostType.Fabrication),
-				new ColorBoardOrderItem(Colors.Brown, "Black", 0, 0, CostType.Fabrication)
+			return new List<BoardOrderItem>() {
+				new SilkscreenColor("White", 0, 0),
+				new SilkscreenColor("Yellow", 0.2, 0),
+				new SilkscreenColor("Brown", 0.2, 0),
+				new SilkscreenColor("Black", 0, 0)
 			};
 		}
 
@@ -51,10 +50,10 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("0.5oz", 0, 0, CostType.Fabrication),
-				new BoardOrderItem("1.0oz", 1, 0, CostType.Fabrication),
-				new BoardOrderItem("2.0oz", 2, 0, CostType.Fabrication),
-				new BoardOrderItem("3.0oz", 4, 0, CostType.Fabrication)
+				new InnerLayerCopperWeight("0.5oz", 0, 0),
+				new InnerLayerCopperWeight("1.0oz", 1, 0),
+				new InnerLayerCopperWeight("2.0oz", 2, 0),
+				new InnerLayerCopperWeight("3.0oz", 4, 0)
 			};
 		}
 
@@ -62,10 +61,10 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("0.5oz", 0, 0, CostType.Fabrication),
-				new BoardOrderItem("1.0oz", 0.5, 0, CostType.Fabrication),
-				new BoardOrderItem("1.5oz", 1, 0, CostType.Fabrication),
-				new BoardOrderItem("2.0oz", 1.5, 0, CostType.Fabrication)
+				new OuterLayerCopperWeight("0.5oz", 0, 0),
+				new OuterLayerCopperWeight("1.0oz", 0.5, 0),
+				new OuterLayerCopperWeight("1.5oz", 1, 0),
+				new OuterLayerCopperWeight("2.0oz", 1.5, 0)
 			};
 		}
 
@@ -73,8 +72,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("No", 0, 0, CostType.Parts),
-				new BoardOrderItem("Yes", 1.3, 0, CostType.Parts)
+				new LeadFreeOption("No", 0, 0),
+				new LeadFreeOption("Yes", 1.3, 0)
 			};
 		}
 
@@ -82,8 +81,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("Class 2", 0, 0, CostType.Parts),
-				new BoardOrderItem("Class 3", 2.5, 0, CostType.Parts)
+				new IpcClass("Class 2", 0, 0),
+				new IpcClass("Class 3", 2.5, 0)
 			};
 		}
 
@@ -91,8 +90,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("No", 0, 0, CostType.Assembly),
-				new BoardOrderItem("Yes", 1, 0, CostType.Assembly)
+				new ItarComplianceOption("No", 0, 0),
+				new ItarComplianceOption("Yes", 1, 0)
 			};
 		}
 
@@ -100,8 +99,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("Clean", 1.5, 0, CostType.Assembly),
-				new BoardOrderItem("No Clean", 0, 0, CostType.Assembly)
+				new FluxType("Clean", 1.5, 0),
+				new FluxType("No Clean", 0, 0)
 			};
 		}
 
@@ -109,8 +108,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("None", 0, 0, CostType.Assembly),
-				new BoardOrderItem("See Notes", 0, 0, CostType.Assembly)
+				new ControlledImpedance("None", 0, 0),
+				new ControlledImpedance("See Notes", 0, 0)
 			};
 		}
 
@@ -118,10 +117,10 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("None", 0, 0, CostType.Assembly),
-				new BoardOrderItem("Top Side", 1.4, 0, CostType.Assembly),
-				new BoardOrderItem("Bottom Side", 1.4, 0, CostType.Assembly),
-				new BoardOrderItem("Both Sides", 2.6, 0, CostType.Assembly)
+				new TentingForViasOption("None", 0, 0),
+				new TentingForViasOption("Top Side", 1.4, 0),
+				new TentingForViasOption("Bottom Side", 1.4, 0),
+				new TentingForViasOption("Both Sides", 2.6, 0)
 			};
 		}
 
@@ -129,8 +128,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<BoardOrderItem>() {
-				new BoardOrderItem("None", 0, 0, CostType.Assembly),
-				new BoardOrderItem("See Notes", 0, 0, CostType.Assembly)
+				new StackupOption("None", 0, 0),
+				new StackupOption("See Notes", 0, 0)
 			};
 		}
 	}
