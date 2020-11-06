@@ -11,10 +11,10 @@ namespace BoardOrder.Domain.Services {
 
 		public IEnumerable<BoardOrderItem> ExtractQuote(BoardOrderDetails orderDetails) {
 			var props = orderDetails.GetType().GetProperties();
-			var values = props.Where(prop => prop.PropertyType.IsAssignableFrom(typeof(BoardOrderItem)))
-				.Select(p => p.GetValue(orderDetails)).Cast<BoardOrderItem>();
+			var values = props.Where(prop => typeof(BoardOrderItem).IsAssignableFrom(prop.PropertyType));
+				var temp = values.Select(p => p.GetValue(orderDetails)).Cast<BoardOrderItem>();
 
-			return new ObservableCollection<BoardOrderItem>(values);
+			return new ObservableCollection<BoardOrderItem>(temp);
 		}
 	}
 }

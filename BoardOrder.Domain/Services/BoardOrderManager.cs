@@ -1,15 +1,19 @@
 ﻿using BoardOrder.Domain.Models;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
 namespace BoardOrder.Domain.Services {
 	public class BoardOrderManager : IBoardOrderManager {
 		private readonly IPreferencesOptions preferenceOptions;
+		private readonly IQuoteService quoteService;
 		private BoardOrderDetails currentOrder;
 
-		public BoardOrderManager(IPreferencesOptions options) {
+		public BoardOrderManager(IPreferencesOptions options, IQuoteService quoteService) {
 			this.preferenceOptions = options;
+			this.quoteService = quoteService;
 		}
 
 		public event PropertyChangedEventHandler OrderModified;
@@ -41,9 +45,12 @@ namespace BoardOrder.Domain.Services {
 		}
 
 
+		public IEnumerable<BoardOrderItem> SaveOrder() {
+			if (!IsOrderValid) {
+				return null;
+			}
 
-		public void SaveOrder(BoardOrderDetails orderDetails) {
-
+			return this.quoteService.ExtractQuote(this.currentOrder);
 		}
 
 		private void SetCurrentOrder(BoardOrderDetails orderDetails) {

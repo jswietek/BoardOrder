@@ -1,4 +1,5 @@
 ﻿using BoardOrder.Domain.Models;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace BoardOrder.Domain.Services {
@@ -7,5 +8,6 @@ namespace BoardOrder.Domain.Services {
 		event PropertyChangedEventHandler OrderModified;
 
 		BoardOrderDetails ResetOrder();
+		IEnumerable<BoardOrderItem> SaveOrder();
 	}
 }

@@ -1,11 +1,13 @@
 ﻿using BoardOrder.Domain.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BoardOrder.Common.Messages {
 	public class OrderDetailsSaved {
-		public OrderDetailsSaved(BoardOrderDetails orderDetails) {
-			this.OrderDetails = orderDetails;
+		public OrderDetailsSaved(IEnumerable<BoardOrderItem> orderQuote) {
+			this.OrderQuote = orderQuote;
 		}
 
-		public BoardOrderDetails OrderDetails { get; }
+		public IEnumerable<BoardOrderItem> OrderQuote { get; }
 	}
 }

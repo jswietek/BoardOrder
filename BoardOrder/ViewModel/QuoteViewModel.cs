@@ -8,16 +8,14 @@ namespace BoardOrder.ViewModel {
 	public class QuoteViewModel : ViewModelBase {
 		private ObservableCollection<BoardOrderItem> quote;
 		private BoardOrderDetails details;
-		IQuoteService quoteService;
 
-		public QuoteViewModel(IQuoteService quoteService) {
-			this.quoteService = quoteService;
+		public QuoteViewModel() {
 			this.MessengerInstance.Register<OrderDetailsSaved>(this, this.HandleOrderDetailsSaved);
 		}
 
 		public ObservableCollection<BoardOrderItem> Quote {
 			get => this.quote;
-			set => this.Set(nameof(Quote), ref this.quote);
+			set => this.Set(ref this.quote, value);
 		}
 
 		public override void Cleanup() {
@@ -26,10 +24,8 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private void HandleOrderDetailsSaved(OrderDetailsSaved message) {
-			this.details = message.OrderDetails;
-			if (this.details != null) {
-				this.Quote = new ObservableCollection<BoardOrderItem>(this.quoteService.ExtractQuote(this.details));
-			}
+			this.Quote = message.OrderQuote != null ? new ObservableCollection<BoardOrderItem>(message.OrderQuote) : null;
+
 		}
 	}
 }

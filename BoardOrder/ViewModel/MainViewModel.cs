@@ -1,3 +1,4 @@
+using BoardOrder.Common.Messages;
 using BoardOrder.Domain.Services;
 using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
@@ -41,7 +42,7 @@ namespace BoardOrder.ViewModel {
 
 		public bool IsQuoteAvailable {
 			get => this.isQuoteAvailable;
-			set => this.Set(nameof(IsQuoteAvailable), ref this.isQuoteAvailable);
+			set => this.Set(ref this.isQuoteAvailable, value);
 		}
 
 		public override void Cleanup() {
@@ -67,7 +68,11 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private void SaveOrder() {
-			this.MessengerInstance.Send(new OrderDetailsSaveRequested());
+			var quote = this.boardOrderManager.SaveOrder();
+			if(quote != null) {
+				this.IsQuoteAvailable = true;
+				this.MessengerInstance.Send(new OrderDetailsSaved(quote));
+			}
 		}
 
 		private void RequestOrderReset() {

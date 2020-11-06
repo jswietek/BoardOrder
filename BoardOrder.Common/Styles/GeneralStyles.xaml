@@ -207,45 +207,17 @@
         <Setter Property="Margin" Value="0,4"/>
         <Setter Property="ButtonBorderThickness" Value="1"/>
     </Style>
-    
-    <Style x:Key="SuffixedTextBox" TargetType="{x:Type TextBox}">
-        <Setter Property="Background" Value="{StaticResource InputBackgroundColorBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="3"/>
-        <Setter Property="Margin" Value="0,4"/>
-        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationTemplate}"/>
+
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="{StaticResource GeneralBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
-                    <controls:ClippingBorder x:Name="border" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
-                        BorderThickness="{TemplateBinding BorderThickness}" 
-                        Background="{TemplateBinding Background}" 
-                        CornerRadius="4"
-                        SnapsToDevicePixels="True">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                            <TextBlock Grid.Column="1" Text="mm" />
-                        </Grid>
-                        
+                <ControlTemplate TargetType="ToolTip">
+                    <controls:ClippingBorder CornerRadius="4" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </controls:ClippingBorder>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource HoverColorBrush}"/>
-                        </Trigger>
-                        <Trigger Property="IsFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ActiveColorBrush}"/>
-                        </Trigger>
-                        <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding (Validation.Errors)/ErrorContent, RelativeSource={x:Static RelativeSource.Self}}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

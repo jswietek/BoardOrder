@@ -71,7 +71,7 @@
                 </Expander>
                 <Expander Grid.Row="1" Header="Quote" x:Name="QuoteExpander" IsEnabled="{Binding IsQuoteAvailable}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
-                        <views:PreferencesView/>
+                        <views:QuoteView/>
                     </ScrollViewer>
                 </Expander>
                 <Expander Grid.Row="2" Header="Orders" x:Name="OrdersExpander" IsEnabled="{Binding IsQuoteAvailable}">
