@@ -10,10 +10,10 @@ namespace BoardOrder.Common.Converters {
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
 			double days = 0;
 			if (value is CollectionViewGroup collectionViewGroup && collectionViewGroup.ItemCount > 0) {
-				days = (collectionViewGroup.Items.Where(item => item is BoardOrderItem).Sum(item => (item as BoardOrderItem).WorkdaysModifier));
+				days = Math.Ceiling(collectionViewGroup.Items.Where(item => item is BoardOrderItem).Sum(item => (item as BoardOrderItem).WorkdaysModifier));
 			}
 			else if (value is ObservableCollection<BoardOrderItem> collection && collection.Count > 0) {
-				days = (collection.Sum(item => item.WorkdaysModifier));
+				days = Math.Ceiling(collection.Sum(item => item.WorkdaysModifier));
 			}
 
 			var suffix = days > 1 ? " days" : " day";

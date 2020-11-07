@@ -31,87 +31,87 @@ namespace BoardOrder.Domain.Models {
 
 		public string ProjectName {
 			get => this.projectName;
-			set => this.Set(ref projectName, value);
+			set => this.Set(nameof(this.ProjectName), ref projectName, value);
 		}
 
 		public string Zipcode {
 			get => this.zipcode;
-			set => this.Set(ref zipcode, value);
+			set => this.Set(nameof(this.Zipcode), ref zipcode, value);
 		}
 
 		public int BoardsQuantity {
 			get => this.boardQuantity;
-			set => this.Set(ref boardQuantity, value);
+			set => this.Set(nameof(this.BoardsQuantity), ref boardQuantity, value);
 		}
 
 		public double BoardThickness {
 			get => this.boardThickness;
-			set => this.Set(ref boardThickness, value);
+			set => this.Set(nameof(this.BoardThickness), ref boardThickness, value);
 		}
 
 		public Material SelectedMaterial {
 			get => this.selectedMaterial;
-			set => this.Set(ref selectedMaterial, value);
+			set => this.Set(nameof(this.SelectedMaterial), ref selectedMaterial, value);
 		}
 
 		public SurfaceFinish SelectedSurfaceFinish {
 			get => this.selectedSurfaceFinish;
-			set => this.Set(ref selectedSurfaceFinish, value);
+			set => this.Set(nameof(this.SelectedSurfaceFinish), ref selectedSurfaceFinish, value);
 		}
 
 		public SolderMaskColor SelectedMaskColor {
 			get => this.selectedMaskColor;
-			set => this.Set(ref selectedMaskColor, value);
+			set => this.Set(nameof(this.SelectedMaskColor), ref selectedMaskColor, value);
 		}
 
 		public SilkscreenColor SelectedSilkscreenColor {
 			get => this.selectedSilkscreenColor;
-			set => this.Set(ref selectedSilkscreenColor, value);
+			set => this.Set(nameof(this.SelectedSilkscreenColor), ref selectedSilkscreenColor, value);
 		}
 
 		public InnerLayerCopperWeight SelectedInnerLayersCopperWeight {
 			get => this.selectedInnerLayersCopperWeight;
-			set => this.Set(ref selectedInnerLayersCopperWeight, value);
+			set => this.Set(nameof(this.SelectedInnerLayersCopperWeight), ref selectedInnerLayersCopperWeight, value);
 		}
 
 		public OuterLayerCopperWeight SelectedOuterLayersCopperWeight {
 			get => this.selectedOuterLayersCopperWeight;
-			set => this.Set(ref selectedOuterLayersCopperWeight, value);
+			set => this.Set(nameof(this.SelectedOuterLayersCopperWeight), ref selectedOuterLayersCopperWeight, value);
 		}
 
 		public LeadFreeOption SelectedLeadFreeOption {
 			get => this.selectedLeadFreeOption;
-			set => this.Set(ref selectedLeadFreeOption, value);
+			set => this.Set(nameof(this.SelectedLeadFreeOption), ref selectedLeadFreeOption, value);
 		}
 
 		public IpcClass SelectedIPCClass {
 			get => this.selectedIPCClass;
-			set => this.Set(ref selectedIPCClass, value);
+			set => this.Set(nameof(this.SelectedIPCClass), ref selectedIPCClass, value);
 		}
 
 		public ItarComplianceOption SelectedITARComplianceOption {
 			get => this.selectedITARComplianceOption;
-			set => this.Set(ref selectedITARComplianceOption, value);
+			set => this.Set(nameof(this.SelectedITARComplianceOption), ref selectedITARComplianceOption, value);
 		}
 
 		public FluxType SelectedFluxType {
 			get => this.selectedFluxType;
-			set => this.Set(ref selectedFluxType, value);
+			set => this.Set(nameof(this.SelectedFluxType), ref selectedFluxType, value);
 		}
 
 		public ControlledImpedance SelectedControlledImpedanceOption {
 			get => this.selectedControlledImpedanceOption;
-			set => this.Set(ref selectedControlledImpedanceOption, value);
+			set => this.Set(nameof(this.SelectedControlledImpedanceOption), ref selectedControlledImpedanceOption, value);
 		}
 
 		public TentingForViasOption SelectedTentingForViasOption {
 			get => this.selectedTentingForViasOption;
-			set => this.Set(ref selectedTentingForViasOption, value);
+			set => this.Set(nameof(this.SelectedTentingForViasOption), ref selectedTentingForViasOption, value);
 		}
 
 		public StackupOption SelectedStackup {
 			get => this.selectedStackup;
-			set => this.Set(ref selectedStackup, value);
+			set => this.Set(nameof(this.SelectedStackup), ref selectedStackup, value);
 		}
 
 		public string Error => string.Join(Environment.NewLine, typeof(BoardOrderDetails).GetProperties().Select(prop => this[prop.Name]).Where(err => !string.IsNullOrEmpty(err)));

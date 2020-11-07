@@ -70,10 +70,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ClippingBorder.cs" />
+    <Compile Include="Controls\CostsSummary.xaml.cs">
+      <DependentUpon>CostsSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MultiButton.xaml.cs">
       <DependentUpon>MultiButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoardOrderItemsCollectionToCostSummaryConverter.cs" />
+    <Compile Include="Converters\BoardOrderItemToCostSummaryMultiConverter.cs" />
+    <Compile Include="Converters\BoardOrderItemToTimeSummaryMultiConverter.cs" />
     <Compile Include="Converters\BooleanNegationToVisibilityCollapsedConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthMultiConverter.cs" />
@@ -107,6 +112,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CostsSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MultiButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

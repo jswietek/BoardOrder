@@ -2,6 +2,8 @@
 using BoardOrder.Domain.Services;
 using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
+using System;
+using System.ComponentModel;
 
 namespace BoardOrder.ViewModel {
 	public class PreferencesViewModel : ViewModelBase {
@@ -29,7 +31,19 @@ namespace BoardOrder.ViewModel {
 
 		public BoardOrderDetails Order {
 			get => this.boardOrderDetails;
-			set => this.Set(ref this.boardOrderDetails, value);
+			set {
+				if(this.Order != null) {
+					this.Order.PropertyChanged -= this.HanldePropertyChanged;
+				}
+				this.Set(ref this.boardOrderDetails, value);
+				if (this.Order != null) {
+					this.Order.PropertyChanged += this.HanldePropertyChanged;
+				}
+			}
+		}
+
+		private void HanldePropertyChanged(object sender, PropertyChangedEventArgs e) {
+			object a = null;
 		}
 	}
 }
