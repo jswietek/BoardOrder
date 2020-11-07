@@ -87,11 +87,5 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BoardOrder.Common\BoardOrder.Common.csproj">
-      <Project>{F0446C59-6347-4B7B-9BE3-3171E6A0B636}</Project>
-      <Name>BoardOrder.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

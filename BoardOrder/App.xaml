@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/Styles/GeneralStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/Styles/ExpanderStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/Styles/ComboboxStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BoardOrder.Common;component/Styles/DataGridStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

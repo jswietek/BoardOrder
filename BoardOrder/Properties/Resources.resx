@@ -177,6 +177,9 @@
   <data name="RESET_BUTTON_TOOLTIP" xml:space="preserve">
     <value>Reset your order</value>
   </data>
+  <data name="RUNNING_TOTAL_LABEL" xml:space="preserve">
+    <value>Running Total</value>
+  </data>
   <data name="SILKSCREEN_COLOR_LABEL" xml:space="preserve">
     <value>Silkscreen Color</value>
   </data>

@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:props="clr-namespace:BoardOrder.Properties"
+             xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
              xmlns:local="clr-namespace:BoardOrder.Views"
              DataContext="{Binding QuoteViewModel, Source={StaticResource Locator}}"
              mc:Ignorable="d" 
@@ -13,53 +15,89 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.Resources>
-            <CollectionViewSource x:Key="groups" Source="{Binding Quote}">
+            <CollectionViewSource x:Key="Groups" Source="{Binding Quote}">
                 <CollectionViewSource.GroupDescriptions>
                     <PropertyGroupDescription PropertyName="CostType" />
                 </CollectionViewSource.GroupDescriptions>
             </CollectionViewSource>
         </Grid.Resources>
-        <DataGrid AutoGenerateColumns="False" DataContext="{StaticResource groups}" ItemsSource="{Binding}">
-            <DataGrid.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.Panel>
-                        <ItemsPanelTemplate>
-                            <DataGridRowsPresenter />
-                        </ItemsPanelTemplate>
-                    </GroupStyle.Panel>
-                </GroupStyle>
-            </DataGrid.GroupStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Parameter" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Left"/>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Left"/>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Time Impact" Binding="{Binding WorkdaysModifier}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Right"/>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Cost Impact" Binding="{Binding CostModifier}" HeaderStyle="{StaticResource RightmostColumnHeaderStyle}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Right"/>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <controls:ClippingBorder CornerRadius="4" BorderThickness="1" BorderBrush="{StaticResource GeneralBorderColorBrush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <DataGrid AutoGenerateColumns="False" DataContext="{StaticResource Groups}" ItemsSource="{Binding}" BorderThickness="0">
+                    <DataGrid.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <DataGridRowsPresenter />
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="GroupItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="GroupItem">
+                                                <Expander Header="{Binding Name}" IsExpanded="True" Style="{StaticResource DataGridGroupExpanderStyle}">
+                                                    <ItemsPresenter />
+                                                </Expander>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+                    </DataGrid.GroupStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Parameter" Binding="{Binding Name}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" x:Name="NameColumn" >
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                    <Setter Property="Margin" Value="16,0,0,0"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" x:Name="ValueColumn">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Time Impact" Binding="{Binding WorkdaysModifier}" HeaderStyle="{StaticResource DataGridColumnHeaderStyle}" x:Name="TimeColumn">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Cost Impact" Binding="{Binding CostModifier}" HeaderStyle="{StaticResource RightmostColumnHeaderStyle}" x:Name="CostColumn">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Border Grid.Row="1" Style="{StaticResource DataGridFooterStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{Binding ActualWidth, ElementName=NameColumn}"/>
+                            <ColumnDefinition Width="{Binding ActualWidth, ElementName=ValueColumn}"/>
+                            <ColumnDefinition Width="{Binding ActualWidth, ElementName=TimeColumn}"/>
+                            <ColumnDefinition Width="{Binding ActualWidth, ElementName=CostColumn}"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource DataGridSummaryTextBlockStyle}" Text="{x:Static props:Resources.RUNNING_TOTAL_LABEL}" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                        <TextBlock Style="{StaticResource DataGridSummaryTextBlockStyle}" Text="{Binding Quote, Converter={StaticResource BoardOrderItemsCollectionToTimeSummaryConverter}}" 
+                                   Grid.Column="2" HorizontalAlignment="Right" Foreground="{StaticResource TimeColorBrush}"/>
+                        <TextBlock Style="{StaticResource DataGridSummaryTextBlockStyle}" Text="{Binding Quote, Converter={StaticResource BoardOrderItemsCollectionToCostSummaryConverter}}" 
+                                   Grid.Column="3" HorizontalAlignment="Right" Foreground="{StaticResource MoneyColorBrush}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </controls:ClippingBorder>
     </Grid>
-
 </UserControl>

@@ -52,7 +52,7 @@
             <Grid Background="{StaticResource GeneralBackgroundBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="{Binding IsExpanded, ElementName=PreferencesExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
-                    <RowDefinition Height="{Binding IsExpanded, ElementName=QuoteExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
+                    <RowDefinition x:Name="QuoteRow" Height="{Binding IsExpanded, ElementName=QuoteExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
                     <RowDefinition Height="{Binding IsExpanded, ElementName=OrdersExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
                     <RowDefinition>
                         <RowDefinition.Height>
@@ -70,16 +70,13 @@
                     </ScrollViewer>
                 </Expander>
                 <Expander Grid.Row="1" Header="Quote" x:Name="QuoteExpander" IsEnabled="{Binding IsQuoteAvailable}" Style="{StaticResource SectionExpanderStyle}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
-                        <views:QuoteView/>
-                    </ScrollViewer>
+                    <views:QuoteView/>
                 </Expander>
                 <Expander Grid.Row="2" Header="Orders" x:Name="OrdersExpander" IsEnabled="{Binding IsQuoteAvailable}" Style="{StaticResource SectionExpanderStyle}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
                         <views:PreferencesView/>
                     </ScrollViewer>
                 </Expander>
-
             </Grid>
         </Border>
         <Button Grid.Row="2" Content="Discard to default" HorizontalAlignment="Left" Margin="10,0,10,10" Command="{Binding ResetOrderCommand}"/>

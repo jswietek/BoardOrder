@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 namespace BoardOrder.ViewModel {
 	public class QuoteViewModel : ViewModelBase {
 		private ObservableCollection<BoardOrderItem> quote;
-		private BoardOrderDetails details;
 
 		public QuoteViewModel() {
 			this.MessengerInstance.Register<OrderDetailsSaved>(this, this.HandleOrderDetailsSaved);

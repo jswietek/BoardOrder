@@ -241,6 +241,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Running Total.
+        /// </summary>
+        public static string RUNNING_TOTAL_LABEL {
+            get {
+                return ResourceManager.GetString("RUNNING_TOTAL_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Silkscreen Color.
         /// </summary>
         public static string SILKSCREEN_COLOR_LABEL {

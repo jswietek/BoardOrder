@@ -73,11 +73,13 @@
     <Compile Include="Controls\MultiButton.xaml.cs">
       <DependentUpon>MultiButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoardOrderItemsCollectionToCostSummaryConverter.cs" />
     <Compile Include="Converters\BooleanNegationToVisibilityCollapsedConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthMultiConverter.cs" />
     <Compile Include="Converters\DoubleToSuffixedStringConverter.cs" />
     <Compile Include="Converters\StringToColorConverter.cs" />
+    <Compile Include="Extensions\ExpanderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\DataGridStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ExpanderStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +128,14 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Converters\BoardOrderItemsCollectionToTimeSummaryConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BoardOrder.Domain\BoardOrder.Domain.csproj">
+      <Project>{B5123F1D-2ED5-4537-8F16-CB1AB0250F8C}</Project>
+      <Name>BoardOrder.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
