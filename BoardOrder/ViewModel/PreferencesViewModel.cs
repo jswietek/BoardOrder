@@ -2,7 +2,6 @@
 using BoardOrder.Domain.Services;
 using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
-using System;
 
 namespace BoardOrder.ViewModel {
 	public class PreferencesViewModel : ViewModelBase {
@@ -19,7 +18,7 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private void HandleOrderDetailsSaveRequested(OrderDetailsSaveRequested _) {
-			
+
 		}
 
 		private void HandleLoadingFinished(LoadingFinishedMessage _) {

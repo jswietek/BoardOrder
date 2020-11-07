@@ -252,7 +252,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type Expander}">
+    <Style x:Key="SectionExpanderStyle" TargetType="{x:Type Expander}">
         <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
