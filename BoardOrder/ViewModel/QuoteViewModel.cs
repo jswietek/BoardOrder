@@ -7,8 +7,11 @@ using System.Collections.ObjectModel;
 namespace BoardOrder.ViewModel {
 	public class QuoteViewModel : ViewModelBase {
 		private ObservableCollection<BoardOrderItem> quote;
+		private readonly IQuoteManager quoteOrderManager;
 
-		public QuoteViewModel() {
+		public QuoteViewModel(IQuoteManager quoteOrderManager) {
+			this.quoteOrderManager = quoteOrderManager;
+
 			this.MessengerInstance.Register<OrderDetailsSaved>(this, this.HandleOrderDetailsSaved);
 		}
 
@@ -23,8 +26,7 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private void HandleOrderDetailsSaved(OrderDetailsSaved message) {
-			this.Quote = message.OrderQuote != null ? new ObservableCollection<BoardOrderItem>(message.OrderQuote) : null;
-
+			this.Quote = this.quoteOrderManager.Quote;
 		}
 	}
 }

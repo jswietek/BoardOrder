@@ -1,8 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Permissions;
 using System.Text.RegularExpressions;
 
 
@@ -28,90 +31,92 @@ namespace BoardOrder.Domain.Models {
 		private ControlledImpedance selectedControlledImpedanceOption;
 		private TentingForViasOption selectedTentingForViasOption;
 		private StackupOption selectedStackup;
+		private ObservableCollection<BoardOrderItem> quote;
+
 
 		public string ProjectName {
 			get => this.projectName;
-			set => this.Set(nameof(this.ProjectName), ref projectName, value);
+			set => this.ModifyOrder(nameof(this.ProjectName), ref projectName, value);
 		}
 
 		public string Zipcode {
 			get => this.zipcode;
-			set => this.Set(nameof(this.Zipcode), ref zipcode, value);
+			set => this.ModifyOrder(nameof(this.Zipcode), ref zipcode, value);
 		}
 
 		public int BoardsQuantity {
 			get => this.boardQuantity;
-			set => this.Set(nameof(this.BoardsQuantity), ref boardQuantity, value);
+			set => this.ModifyOrder(nameof(this.BoardsQuantity), ref boardQuantity, value);
 		}
 
 		public double BoardThickness {
 			get => this.boardThickness;
-			set => this.Set(nameof(this.BoardThickness), ref boardThickness, value);
+			set => this.ModifyOrder(nameof(this.BoardThickness), ref boardThickness, value);
 		}
 
 		public Material SelectedMaterial {
 			get => this.selectedMaterial;
-			set => this.Set(nameof(this.SelectedMaterial), ref selectedMaterial, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedMaterial), ref selectedMaterial, value);
 		}
 
 		public SurfaceFinish SelectedSurfaceFinish {
 			get => this.selectedSurfaceFinish;
-			set => this.Set(nameof(this.SelectedSurfaceFinish), ref selectedSurfaceFinish, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedSurfaceFinish), ref selectedSurfaceFinish, value);
 		}
 
 		public SolderMaskColor SelectedMaskColor {
 			get => this.selectedMaskColor;
-			set => this.Set(nameof(this.SelectedMaskColor), ref selectedMaskColor, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedMaskColor), ref selectedMaskColor, value);
 		}
 
 		public SilkscreenColor SelectedSilkscreenColor {
 			get => this.selectedSilkscreenColor;
-			set => this.Set(nameof(this.SelectedSilkscreenColor), ref selectedSilkscreenColor, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedSilkscreenColor), ref selectedSilkscreenColor, value);
 		}
 
 		public InnerLayerCopperWeight SelectedInnerLayersCopperWeight {
 			get => this.selectedInnerLayersCopperWeight;
-			set => this.Set(nameof(this.SelectedInnerLayersCopperWeight), ref selectedInnerLayersCopperWeight, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedInnerLayersCopperWeight), ref selectedInnerLayersCopperWeight, value);
 		}
 
 		public OuterLayerCopperWeight SelectedOuterLayersCopperWeight {
 			get => this.selectedOuterLayersCopperWeight;
-			set => this.Set(nameof(this.SelectedOuterLayersCopperWeight), ref selectedOuterLayersCopperWeight, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedOuterLayersCopperWeight), ref selectedOuterLayersCopperWeight, value);
 		}
 
 		public LeadFreeOption SelectedLeadFreeOption {
 			get => this.selectedLeadFreeOption;
-			set => this.Set(nameof(this.SelectedLeadFreeOption), ref selectedLeadFreeOption, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedLeadFreeOption), ref selectedLeadFreeOption, value);
 		}
 
 		public IpcClass SelectedIPCClass {
 			get => this.selectedIPCClass;
-			set => this.Set(nameof(this.SelectedIPCClass), ref selectedIPCClass, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedIPCClass), ref selectedIPCClass, value);
 		}
 
 		public ItarComplianceOption SelectedITARComplianceOption {
 			get => this.selectedITARComplianceOption;
-			set => this.Set(nameof(this.SelectedITARComplianceOption), ref selectedITARComplianceOption, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedITARComplianceOption), ref selectedITARComplianceOption, value);
 		}
 
 		public FluxType SelectedFluxType {
 			get => this.selectedFluxType;
-			set => this.Set(nameof(this.SelectedFluxType), ref selectedFluxType, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedFluxType), ref selectedFluxType, value);
 		}
 
 		public ControlledImpedance SelectedControlledImpedanceOption {
 			get => this.selectedControlledImpedanceOption;
-			set => this.Set(nameof(this.SelectedControlledImpedanceOption), ref selectedControlledImpedanceOption, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedControlledImpedanceOption), ref selectedControlledImpedanceOption, value);
 		}
 
 		public TentingForViasOption SelectedTentingForViasOption {
 			get => this.selectedTentingForViasOption;
-			set => this.Set(nameof(this.SelectedTentingForViasOption), ref selectedTentingForViasOption, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedTentingForViasOption), ref selectedTentingForViasOption, value);
 		}
 
 		public StackupOption SelectedStackup {
 			get => this.selectedStackup;
-			set => this.Set(nameof(this.SelectedStackup), ref selectedStackup, value);
+			set => this.ModifyOrderPreferences(nameof(this.SelectedStackup), ref selectedStackup, value);
 		}
 
 		public string Error => string.Join(Environment.NewLine, typeof(BoardOrderDetails).GetProperties().Select(prop => this[prop.Name]).Where(err => !string.IsNullOrEmpty(err)));
@@ -133,9 +138,22 @@ namespace BoardOrder.Domain.Models {
 			}
 		}
 
-		private void Set<T>(ref T field, T newValue) {
-			base.Set(ref field, newValue);
+		public ObservableCollection<BoardOrderItem> Quote {
+			get => this.quote;
+			set => this.quote = value;
+		}
+
+		private void ModifyOrder<T>(string propertyName, ref T field, T newValue) {
+			base.Set(propertyName, ref field, newValue);
 			RaisePropertyChanged(nameof(Error));
+		}
+
+		private void ModifyOrderPreferences<T>(string propertyName, ref T field, T newValue) where T : BoardOrderItem {
+			if (Quote != null) {
+				var index = this.Quote.IndexOf(field);
+				this.Quote[index] = newValue;
+			}
+			this.ModifyOrder(propertyName, ref field, newValue);
 		}
 	}
 }

@@ -6,8 +6,7 @@ namespace BoardOrder.Domain.Services {
 	public interface IBoardOrderManager {
 		bool IsOrderValid { get; }
 		event PropertyChangedEventHandler OrderModified;
-
 		BoardOrderDetails ResetOrder();
-		IEnumerable<BoardOrderItem> SaveOrder();
+		bool SaveOrder();
 	}
 }

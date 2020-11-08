@@ -1,12 +1,10 @@
 ﻿using BoardOrder.Domain.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
 namespace BoardOrder.Domain.Services {
-	public class BoardOrderManager : IBoardOrderManager {
+	public class BoardOrderManager : IBoardOrderManager, IQuoteManager {
 		private readonly IPreferencesOptions preferenceOptions;
 		private readonly IQuoteService quoteService;
 		private BoardOrderDetails currentOrder;
@@ -19,6 +17,9 @@ namespace BoardOrder.Domain.Services {
 		public event PropertyChangedEventHandler OrderModified;
 
 		public bool IsOrderValid => string.IsNullOrEmpty(this.currentOrder?.Error);
+
+		public BoardOrderDetails CurrentOrder => this.currentOrder;
+		public ObservableCollection<BoardOrderItem> Quote => this.currentOrder.Quote;
 
 		public BoardOrderDetails ResetOrder() {
 			var order = new BoardOrderDetails() {
@@ -45,12 +46,13 @@ namespace BoardOrder.Domain.Services {
 		}
 
 
-		public IEnumerable<BoardOrderItem> SaveOrder() {
+		public bool SaveOrder() {
 			if (!IsOrderValid) {
-				return null;
+				return false;
 			}
 
-			return this.quoteService.ExtractQuote(this.currentOrder);
+			this.currentOrder.Quote = new ObservableCollection<BoardOrderItem>(this.quoteService.ExtractQuote(this.currentOrder));
+			return true;
 		}
 
 		private void SetCurrentOrder(BoardOrderDetails orderDetails) {

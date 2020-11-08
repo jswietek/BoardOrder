@@ -80,6 +80,7 @@
     <Compile Include="Services\IBoardOrderManager.cs" />
     <Compile Include="Services\IOptionsProvider.cs" />
     <Compile Include="Services\IPreferencesOptions.cs" />
+    <Compile Include="Services\IQuoteOrderManager.cs" />
     <Compile Include="Services\IQuoteService.cs" />
     <Compile Include="Services\PreferencesOptionsProvider.cs" />
     <Compile Include="Services\QuoteService.cs" />

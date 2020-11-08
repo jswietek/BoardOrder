@@ -68,10 +68,9 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private void SaveOrder() {
-			var quote = this.boardOrderManager.SaveOrder();
-			if(quote != null) {
+			if (this.boardOrderManager.SaveOrder()) {
 				this.IsQuoteAvailable = true;
-				this.MessengerInstance.Send(new OrderDetailsSaved(quote));
+				this.MessengerInstance.Send(new OrderDetailsSaved());
 			}
 		}
 
