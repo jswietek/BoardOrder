@@ -18,5 +18,6 @@ namespace BoardOrder.Domain.DataAccess {
 		Task<IEnumerable<StackupOption>> GetStackupOptionsAsync();
 		Task<IEnumerable<SurfaceFinish>> GetSurfaceFinishesAsync();
 		Task<IEnumerable<TentingForViasOption>> GetTentingForViasOptionsAsync();
+		Task<IEnumerable<BoardOrderItem>> GetBaseCostsAsync();
 	}
 }

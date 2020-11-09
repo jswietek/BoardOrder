@@ -83,6 +83,31 @@
         </Setter>
     </Style>
 
+    <Style TargetType="DataGridColumnHeader" x:Key="SummaryDataGridColumnHeaderStyle">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="SeparatorVisibility" Value="Collapsed"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="Center"/>
+                        </Border>
+                        <Thumb x:Name="PART_RightHeaderGripper" Grid.Column="1"
+                        HorizontalAlignment="Right" Padding="0,5"
+                        Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="DataGridColumnHeader" x:Key="RightmostColumnHeaderStyle" BasedOn="{StaticResource DataGridColumnHeaderStyle}">
         <Setter Property="SeparatorVisibility" Value="Collapsed"/>
         <Setter Property="Padding" Value="0,0,12,0"/>
@@ -156,10 +181,24 @@
                                     </ContentPresenter.Resources>
                                 </ContentPresenter>
                             </Grid>
-                            <TextBlock Style="{StaticResource DataGridSummaryTextBlockStyle}" Text="{Binding Converter={StaticResource BoardOrderItemsCollectionToTimeSummaryConverter}}" 
-                                       Foreground="{StaticResource TimeColorBrush}" Grid.Column="2" HorizontalAlignment="Right"/>
-                            <TextBlock Style="{StaticResource DataGridSummaryTextBlockStyle}" Text="{Binding Converter={StaticResource BoardOrderItemsCollectionToCostSummaryConverter}}" 
-                                       Foreground="{StaticResource MoneyColorBrush}" Grid.Column="3" HorizontalAlignment="Right"/>
+                            <TextBlock Style="{StaticResource DataGridSummaryTextBlockStyle}"
+                                       Foreground="{StaticResource TimeColorBrush}" Grid.Column="2" HorizontalAlignment="Right">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource BoardOrderItemsCollectionToTimeSummaryConverter}">
+                                        <Binding Path="."/>
+                                        <Binding Path="DataContext.BoardsQuantity" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Style="{StaticResource DataGridSummaryTextBlockStyle}" 
+                                       Foreground="{StaticResource MoneyColorBrush}" Grid.Column="3" HorizontalAlignment="Right">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource BoardOrderItemsCollectionToCostSummaryConverter}">
+                                        <Binding Path="."/>
+                                        <Binding Path="DataContext.BoardsQuantity" RelativeSource="{RelativeSource AncestorType=UserControl}"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </Grid>
 
                     </Border>

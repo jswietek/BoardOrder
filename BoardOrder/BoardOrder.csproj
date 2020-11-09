@@ -74,6 +74,7 @@
     <Compile Include="Messages\LoadingInitializedMessage.cs" />
     <Compile Include="Messages\OrderDetailsSavedMessage.cs" />
     <Compile Include="Messages\OrderDetailsSaveRequested.cs" />
+    <Compile Include="ViewModel\CostsSummaryItemViewModel.cs" />
     <Compile Include="ViewModel\LoaderViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PreferencesViewModel.cs" />
@@ -155,6 +156,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\icons8-shopping-cart-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons8-time-50.png" />
+    <Resource Include="Images\icons8-us-dollar-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

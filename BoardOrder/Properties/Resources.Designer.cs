@@ -61,6 +61,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assembly.
+        /// </summary>
+        public static string ASSEMBLY_LABEL {
+            get {
+                return ResourceManager.GetString("ASSEMBLY_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Board Thickness.
         /// </summary>
         public static string BOARD_THICKNESS_LABEL {
@@ -88,6 +97,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Components.
+        /// </summary>
+        public static string COMPONENTS_LABEL {
+            get {
+                return ResourceManager.GetString("COMPONENTS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Controlled Impedance.
         /// </summary>
         public static string CONTROLLED_IMPEDANCE_LABEL {
@@ -111,6 +129,15 @@ namespace BoardOrder.Properties {
         public static string Copper_WEIGHT_ON_OUTER_LAYERS_LABEL {
             get {
                 return ResourceManager.GetString("Copper_WEIGHT_ON_OUTER_LAYERS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fabrication.
+        /// </summary>
+        public static string FABRICATION_LABEL {
+            get {
+                return ResourceManager.GetString("FABRICATION_LABEL", resourceCulture);
             }
         }
         

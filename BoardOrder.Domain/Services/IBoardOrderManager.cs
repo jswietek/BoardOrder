@@ -1,12 +1,12 @@
 ﻿using BoardOrder.Domain.Models;
-using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace BoardOrder.Domain.Services {
 	public interface IBoardOrderManager {
 		bool IsOrderValid { get; }
 		event PropertyChangedEventHandler OrderModified;
 		BoardOrderDetails ResetOrder();
-		bool SaveOrder();
+		Task<bool> SaveOrder();
 	}
 }

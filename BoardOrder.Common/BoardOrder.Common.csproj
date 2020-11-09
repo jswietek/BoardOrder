@@ -73,6 +73,12 @@
     <Compile Include="Controls\CostsSummary.xaml.cs">
       <DependentUpon>CostsSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CostTypeSummaryView.xaml.cs">
+      <DependentUpon>CostTypeSummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ManufacturingCostsSummary.xaml.cs">
+      <DependentUpon>ManufacturingCostsSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MultiButton.xaml.cs">
       <DependentUpon>MultiButton.xaml</DependentUpon>
     </Compile>
@@ -82,9 +88,14 @@
     <Compile Include="Converters\BooleanNegationToVisibilityCollapsedConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthConverter.cs" />
     <Compile Include="Converters\BooleanToGridLengthMultiConverter.cs" />
+    <Compile Include="Converters\CumulatedCostMultiConverter.cs" />
     <Compile Include="Converters\DoubleToSuffixedStringConverter.cs" />
+    <Compile Include="Converters\PercantageToGridLengthConverter.cs" />
+    <Compile Include="Converters\PercentageToVisibilityConverter.cs" />
+    <Compile Include="Converters\QuoteToPercentageGridLengthMultiConverter.cs" />
     <Compile Include="Converters\StringToColorConverter.cs" />
     <Compile Include="Extensions\ExpanderExtensions.cs" />
+    <Compile Include="Interfaces\ICostSummaryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -99,7 +110,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -113,6 +124,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\CostsSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CostTypeSummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ManufacturingCostsSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,13 +9,21 @@
 			this.WorkdaysModifier = workdaysModifier;
 		}
 
+		public BoardOrderItem(string name, string value, double costModifier, double workdaysModifier, CostType costType) {
+			this.Name = name;
+			this.Value = value;
+			this.CostModifier = costModifier;
+			this.WorkdaysModifier = workdaysModifier;
+			this.CostType = costType;
+		}
+
 		public virtual string Name { get; }
 
 		public string Value { get; }
 
-		public double CostModifier { get; }
+		public double CostModifier { get; set; }
 
-		public double WorkdaysModifier { get; }
+		public double WorkdaysModifier { get; set; }
 
 		public virtual CostType CostType { get; }
 

@@ -8,7 +8,7 @@ namespace BoardOrder.Common.Converters {
 	public class BoardOrderItemToTimeSummaryMultiConverter : IMultiValueConverter {
 		public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
 			if (values.Count() == 2 && values[0] is BoardOrderItem orderItem && values[1] is int quantity) {
-				var time = Math.Ceiling(orderItem.WorkdaysModifier * quantity);
+				var time = Math.Round(orderItem.WorkdaysModifier * quantity);
 				return time > 0 ? time > 1  ? time + " days" :  time + " day" : string.Empty;
 			}
 

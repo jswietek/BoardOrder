@@ -2,12 +2,12 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BoardOrder.Domain.Services {
 	public class BoardOrderManager : IBoardOrderManager, IQuoteManager {
 		private readonly IPreferencesOptions preferenceOptions;
 		private readonly IQuoteService quoteService;
-		private BoardOrderDetails currentOrder;
 
 		public BoardOrderManager(IPreferencesOptions options, IQuoteService quoteService) {
 			this.preferenceOptions = options;
@@ -16,10 +16,13 @@ namespace BoardOrder.Domain.Services {
 
 		public event PropertyChangedEventHandler OrderModified;
 
-		public bool IsOrderValid => string.IsNullOrEmpty(this.currentOrder?.Error);
+		public bool IsOrderValid => string.IsNullOrEmpty(this.CurrentOrder?.Error);
 
-		public BoardOrderDetails CurrentOrder => this.currentOrder;
-		public ObservableCollection<BoardOrderItem> Quote => this.currentOrder.Quote;
+		public BoardOrderDetails CurrentOrder { get; private set; }
+
+		public ObservableCollection<BoardOrderItem> Quote => this.CurrentOrder?.Quote;
+
+		public int BoardsQuantity => this.CurrentOrder?.BoardsQuantity ?? 1;
 
 		public BoardOrderDetails ResetOrder() {
 			var order = new BoardOrderDetails() {
@@ -46,21 +49,25 @@ namespace BoardOrder.Domain.Services {
 		}
 
 
-		public bool SaveOrder() {
+		public async Task<bool> SaveOrder() {
 			if (!IsOrderValid) {
 				return false;
 			}
 
-			this.currentOrder.Quote = new ObservableCollection<BoardOrderItem>(this.quoteService.ExtractQuote(this.currentOrder));
+			var baseCosts = await this.quoteService.LoadBaseCosts();
+			var preferencesQuote = await this.quoteService.ExtractQuote(this.CurrentOrder).ConfigureAwait(false);
+
+			var quote = baseCosts.Concat(preferencesQuote);
+			this.CurrentOrder.Quote = new ObservableCollection<BoardOrderItem>(quote);
 			return true;
 		}
 
 		private void SetCurrentOrder(BoardOrderDetails orderDetails) {
-			if (this.currentOrder != null) {
-				this.currentOrder.PropertyChanged -= HandleCurrentOrderPropertyChanged;
+			if (this.CurrentOrder != null) {
+				this.CurrentOrder.PropertyChanged -= HandleCurrentOrderPropertyChanged;
 			}
-			this.currentOrder = orderDetails;
-			this.currentOrder.PropertyChanged += HandleCurrentOrderPropertyChanged;
+			this.CurrentOrder = orderDetails;
+			this.CurrentOrder.PropertyChanged += HandleCurrentOrderPropertyChanged;
 			this.OrderModified?.Invoke(this, new PropertyChangedEventArgs(nameof(BoardOrderDetails.Error)));
 		}
 

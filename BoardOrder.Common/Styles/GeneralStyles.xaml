@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:BoardOrder.Common.Controls">
 
     <Color x:Key="GeneralBackground">#3b3b3b</Color>
-    <Color x:Key="GeneralForeground">LightGray</Color>
+    <Color x:Key="GeneralForeground">#dfdfdf</Color>
     <Color x:Key="GeneralDisabledForeground">#818181</Color>
     <Color x:Key="ActiveColor">#2f4f5f</Color>
     <Color x:Key="ActiveLightColor">#3f5faf</Color>
@@ -62,6 +62,11 @@
         <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
         <Setter Property="Margin" Value="0,0,6,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="HeaderStyle">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
 
     <Style TargetType="TextBox">

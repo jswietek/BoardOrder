@@ -132,5 +132,24 @@ namespace BoardOrder.Domain.DataAccess {
 				new StackupOption("See Notes", 0, 0.1)
 			};
 		}
+
+		public async Task<IEnumerable<BoardOrderItem>> GetBaseCostsAsync() {
+			await Task.Delay(500).ConfigureAwait(false);
+			return new List<BoardOrderItem> {
+				new BoardOrderItem("BoardDimensions", "62.7x152.54mm", 26.6, 0.5, CostType.Fabrication),
+				new BoardOrderItem("Layers", "10", 10.6, 0.3, CostType.Fabrication),
+				new BoardOrderItem("Assembly process", "Split Assembly", 5.3, 0.5, CostType.Assembly),
+				new BoardOrderItem("Minimum Pitch", "0.3mm pitch BGA", 6.1, 0.2, CostType.Assembly),
+				new BoardOrderItem("Minimum Pitch", "0.3mm pitch BGA", 6.1, 0.2, CostType.Assembly),
+
+				new BoardOrderItem("Microchip 123-456BGA", "3", 1.5, 0.02, CostType.Parts),
+				new BoardOrderItem("Microchip AS32-456DF", "2", 2.3, 0.02, CostType.Parts),
+				new BoardOrderItem("Microchip ABC-6DF", "1", 5.1, 0.01, CostType.Parts),
+				new BoardOrderItem("Tactile switch 1-1826537-12", "9", 0.6, 0.01, CostType.Parts),
+				new BoardOrderItem("Potenitometer X9C103S", "3", 1.1, 0.01, CostType.Parts),
+				new BoardOrderItem("Shift register KA123-2980SDF", "2", 3.1, 0.01, CostType.Parts)
+			};
+		}
 	}
 }
+

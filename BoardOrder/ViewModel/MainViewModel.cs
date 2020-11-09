@@ -52,7 +52,7 @@ namespace BoardOrder.ViewModel {
 
 		private async void FetchData() {
 			await this.optionsProvider?.FetchOptions();
-			this.MessengerInstance.Send(new LoadingFinishedMessage());
+			this.MessengerInstance.Send(new LoadingFinishedMessage(true));
 		}
 
 		private void HandleOptionsProviderFetching(string message) {
@@ -67,11 +67,13 @@ namespace BoardOrder.ViewModel {
 			return this.boardOrderManager.IsOrderValid;
 		}
 
-		private void SaveOrder() {
-			if (this.boardOrderManager.SaveOrder()) {
+		private async void SaveOrder() {
+			this.MessengerInstance.Send(new LoadingInitializedMessage("Calculating quote"));
+			if (await this.boardOrderManager.SaveOrder()) {
 				this.IsQuoteAvailable = true;
 				this.MessengerInstance.Send(new OrderDetailsSaved());
 			}
+			this.MessengerInstance.Send(new LoadingFinishedMessage());
 		}
 
 		private void RequestOrderReset() {
