@@ -22,7 +22,8 @@ namespace BoardOrder.ViewModel {
 			this.optionsProvider.Fetching += HandleOptionsProviderFetching;
 
 			this.boardOrderManager = boardOrderManager;
-			this.boardOrderManager.OrderModified += HandleOrderModified;
+			this.boardOrderManager.OrderModified += this.HandleOrderModified;
+			this.boardOrderManager.OrderReset += this.HandleOrderReset;
 
 			this.ResetOrderCommand = new RelayCommand(this.RequestOrderReset);
 			this.SaveOrderCommand = new RelayCommand(this.SaveOrder, this.CanSaveOrder);
@@ -98,6 +99,9 @@ namespace BoardOrder.ViewModel {
 			}
 
 			this.boardOrderManager.ResetOrder();
+		}
+
+		private void HandleOrderReset() {
 			(PlaceOrderCommand as RelayCommand)?.RaiseCanExecuteChanged();
 			RaisePropertyChanged(nameof(this.IsQuoteAvailable));
 		}
