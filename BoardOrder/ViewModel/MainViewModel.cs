@@ -81,8 +81,11 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private async void PlaceOrder() {
+			this.MessengerInstance.Send(new LoadingInitializedMessage("Placing order..."));
 			var placedOrderItem = await this.boardOrderManager.PlaceOrder();
+			this.boardOrderManager.ResetOrder();
 			this.MessengerInstance.Send(new OrderPlacedMessage(placedOrderItem));
+			this.MessengerInstance.Send(new LoadingFinishedMessage(true));
 		}
 
 		private void RequestOrderReset() {

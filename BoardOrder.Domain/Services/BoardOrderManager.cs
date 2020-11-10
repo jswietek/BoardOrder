@@ -91,9 +91,7 @@ namespace BoardOrder.Domain.Services {
 			};
 
 			// Simulate contacting server
-			await Task.Delay(300).ConfigureAwait(false);
-
-			ResetOrder();
+			await Task.Delay(1500).ConfigureAwait(false);
 
 			return placedOrder;
 		}

@@ -47,8 +47,11 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private async void PlaceOrder() {
+			this.MessengerInstance.Send(new LoadingInitializedMessage("Placing order..."));
 			var placedOrderItem = await this.orderManager.PlaceOrder();
+			this.orderManager.ResetOrder();
 			this.PlacedOrders.Add(placedOrderItem);
+			this.MessengerInstance.Send(new LoadingFinishedMessage(true));
 		}
 
 		private void HandlePlacedOrdersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
