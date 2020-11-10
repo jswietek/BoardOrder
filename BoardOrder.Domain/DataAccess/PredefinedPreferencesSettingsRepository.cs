@@ -140,7 +140,6 @@ namespace BoardOrder.Domain.DataAccess {
 				new BoardOrderItem("Layers", "10", 2.6, 0.3, CostType.Fabrication),
 				new BoardOrderItem("Assembly process", "Split Assembly", 2.3, 0.5, CostType.Assembly),
 				new BoardOrderItem("Minimum Pitch", "0.3mm pitch BGA", 1.6, 0.2, CostType.Assembly),
-
 				new BoardOrderItem("Microchip 123-456BGA", "3", 1.5, 0.02, CostType.Parts),
 				new BoardOrderItem("Microchip AS32-456DF", "2", 2.3, 0.02, CostType.Parts),
 				new BoardOrderItem("Microchip ABC-6DF", "1", 5.1, 0.01, CostType.Parts),

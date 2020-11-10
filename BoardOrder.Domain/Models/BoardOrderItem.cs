@@ -21,9 +21,9 @@
 
 		public string Value { get; }
 
-		public double CostModifier { get; set; }
+		public virtual double CostModifier { get; set; }
 
-		public double WorkdaysModifier { get; set; }
+		public virtual double WorkdaysModifier { get; set; }
 
 		public virtual CostType CostType { get; }
 

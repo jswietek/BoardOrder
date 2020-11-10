@@ -49,8 +49,18 @@
                 <Image Source="/Images/icons8-circuit-100.png" Width="56" Height="56"/>
                 <StackPanel Orientation="Vertical" MaxWidth="500" Grid.Column="1" Margin="0,4">
                     <TextBlock Text="{x:Static props:Resources.PRODUCT_NAME}" FontWeight="Bold"/>
-                    <TextBlock Text="{x:Static props:Resources.PRODUCT_DESCRIPTION}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{x:Static props:Resources.PRODUCT_DESCRIPTION}" TextWrapping="Wrap" Visibility="{Binding IsQuoteAvailable, Converter={StaticResource BooleanNegationToVisibilityCollapsedConverter}}"/>
+                    <Border Visibility="{Binding IsQuoteAvailable, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <StackPanel DataContext="{Binding QuoteViewModel, Source={StaticResource Locator}}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding BoardsQuantity, StringFormat={x:Static props:Resources.BOARDS_QUANTITY_SUMMARY_FORMAT}}"/>
+                                <TextBlock Text="{Binding TotalTime, StringFormat='{}{0} days'}" FontWeight="Bold"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding TotalCost, StringFormat={x:Static props:Resources.COST_SUMMARY_FORMAT}}"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
+                
                 <StackPanel Orientation="Horizontal" Grid.Column="3" Margin="0,4">
                     <Button Height="30" Margin="3,9" Command="{Binding PlaceOrderCommand}">
                         <Button.Content>

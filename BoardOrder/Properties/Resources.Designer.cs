@@ -97,6 +97,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your {0} boards will be delivered in .
+        /// </summary>
+        public static string BOARDS_QUANTITY_SUMMARY_FORMAT {
+            get {
+                return ResourceManager.GetString("BOARDS_QUANTITY_SUMMARY_FORMAT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Swietek Automation.
         /// </summary>
         public static string COMPANY_NAME {
@@ -138,6 +147,15 @@ namespace BoardOrder.Properties {
         public static string Copper_WEIGHT_ON_OUTER_LAYERS_LABEL {
             get {
                 return ResourceManager.GetString("Copper_WEIGHT_ON_OUTER_LAYERS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running total: {0}$.
+        /// </summary>
+        public static string COST_SUMMARY_FORMAT {
+            get {
+                return ResourceManager.GetString("COST_SUMMARY_FORMAT", resourceCulture);
             }
         }
         

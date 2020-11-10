@@ -126,6 +126,9 @@
   <data name="BOARDS_QUANTITY_LABEL" xml:space="preserve">
     <value>Boards Quantity</value>
   </data>
+  <data name="BOARDS_QUANTITY_SUMMARY_FORMAT" xml:space="preserve">
+    <value>Your {0} boards will be delivered in </value>
+  </data>
   <data name="BOARD_THICKNESS_LABEL" xml:space="preserve">
     <value>Board Thickness</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Copper_WEIGHT_ON_OUTER_LAYERS_LABEL" xml:space="preserve">
     <value>Coper Weight on Outer Layers</value>
+  </data>
+  <data name="COST_SUMMARY_FORMAT" xml:space="preserve">
+    <value>Running total: {0}$</value>
   </data>
   <data name="DISCARD_LABEL" xml:space="preserve">
     <value>Discard to defaults</value>
