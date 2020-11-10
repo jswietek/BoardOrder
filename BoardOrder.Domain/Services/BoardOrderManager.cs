@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace BoardOrder.Domain.Services {
-	public class BoardOrderManager : IBoardOrderManager, IQuoteManager {
+	public class BoardOrderManager : IBoardOrderManager {
 		private readonly IPreferencesOptions preferenceOptions;
 		private readonly IQuoteService quoteService;
 

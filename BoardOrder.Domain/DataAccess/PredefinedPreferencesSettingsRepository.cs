@@ -18,9 +18,9 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<SurfaceFinish>() {
-				new SurfaceFinish("ENEPIG", 3.5, 0.1),
-				new SurfaceFinish("ENIG", 2, 0.1),
-				new SurfaceFinish("HASL", 1.0, 0),
+				new SurfaceFinish("ENEPIG", 4, 0.3),
+				new SurfaceFinish("ENIG", 3, 0.2),
+				new SurfaceFinish("HASL", 2, 0),
 				new SurfaceFinish("OSP", 1.2, 0)
 			};
 		}
@@ -30,8 +30,8 @@ namespace BoardOrder.Domain.DataAccess {
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<SolderMaskColor>() {
 				new SolderMaskColor("Green", 0, 0),
-				new SolderMaskColor("Red", 0.2, 0),
-				new SolderMaskColor("Blue", 0.2, 0)
+				new SolderMaskColor("Red", 0.5, 0),
+				new SolderMaskColor("Blue", 0.5, 0)
 			};
 		}
 
@@ -51,8 +51,8 @@ namespace BoardOrder.Domain.DataAccess {
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<InnerLayerCopperWeight>() {
 				new InnerLayerCopperWeight("0.5oz", 0, 0),
-				new InnerLayerCopperWeight("1.0oz", 1, 0),
-				new InnerLayerCopperWeight("2.0oz", 2, 0.1),
+				new InnerLayerCopperWeight("1.0oz", 2, 0),
+				new InnerLayerCopperWeight("2.0oz", 3, 0.1),
 				new InnerLayerCopperWeight("3.0oz", 4, 0.2)
 			};
 		}
@@ -62,9 +62,9 @@ namespace BoardOrder.Domain.DataAccess {
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<OuterLayerCopperWeight>() {
 				new OuterLayerCopperWeight("0.5oz", 0, 0),
-				new OuterLayerCopperWeight("1.0oz", 0.5, 0),
-				new OuterLayerCopperWeight("1.5oz", 1, 0.1),
-				new OuterLayerCopperWeight("2.0oz", 1.5, 0.2)
+				new OuterLayerCopperWeight("1.0oz", 1, 0),
+				new OuterLayerCopperWeight("1.5oz", 1.5, 0.1),
+				new OuterLayerCopperWeight("2.0oz", 2.5, 0.3)
 			};
 		}
 
@@ -73,7 +73,7 @@ namespace BoardOrder.Domain.DataAccess {
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<LeadFreeOption>() {
 				new LeadFreeOption("No", 0, 0),
-				new LeadFreeOption("Yes", 1.3, 0.1)
+				new LeadFreeOption("Yes", 1.3, 0.3)
 			};
 		}
 
@@ -81,8 +81,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<IpcClass>() {
-				new IpcClass("Class 2", 0, 0),
-				new IpcClass("Class 3", 2.5, 0)
+				new IpcClass("Class 2", 0.5, 0),
+				new IpcClass("Class 3", 2.5, 0.2)
 			};
 		}
 
@@ -99,8 +99,8 @@ namespace BoardOrder.Domain.DataAccess {
 			// simulate fetching (e.g. from database or web service)
 			await Task.Delay(300).ConfigureAwait(false);
 			return new List<FluxType>() {
-				new FluxType("Clean", 1.5, 0),
-				new FluxType("No Clean", 0, 0.1)
+				new FluxType("Clean", 1.5, 0.3),
+				new FluxType("No Clean", 0, 0)
 			};
 		}
 
@@ -136,11 +136,10 @@ namespace BoardOrder.Domain.DataAccess {
 		public async Task<IEnumerable<BoardOrderItem>> GetBaseCostsAsync() {
 			await Task.Delay(500).ConfigureAwait(false);
 			return new List<BoardOrderItem> {
-				new BoardOrderItem("BoardDimensions", "62.7x152.54mm", 26.6, 0.5, CostType.Fabrication),
-				new BoardOrderItem("Layers", "10", 10.6, 0.3, CostType.Fabrication),
-				new BoardOrderItem("Assembly process", "Split Assembly", 5.3, 0.5, CostType.Assembly),
-				new BoardOrderItem("Minimum Pitch", "0.3mm pitch BGA", 6.1, 0.2, CostType.Assembly),
-				new BoardOrderItem("Minimum Pitch", "0.3mm pitch BGA", 6.1, 0.2, CostType.Assembly),
+				new BoardOrderItem("BoardDimensions", "62.7x152.54mm", 5.6, 0.5, CostType.Fabrication),
+				new BoardOrderItem("Layers", "10", 2.6, 0.3, CostType.Fabrication),
+				new BoardOrderItem("Assembly process", "Split Assembly", 2.3, 0.5, CostType.Assembly),
+				new BoardOrderItem("Minimum Pitch", "0.3mm pitch BGA", 1.6, 0.2, CostType.Assembly),
 
 				new BoardOrderItem("Microchip 123-456BGA", "3", 1.5, 0.02, CostType.Parts),
 				new BoardOrderItem("Microchip AS32-456DF", "2", 2.3, 0.02, CostType.Parts),

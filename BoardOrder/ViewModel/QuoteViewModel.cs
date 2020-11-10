@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace BoardOrder.ViewModel {
@@ -18,8 +19,14 @@ namespace BoardOrder.ViewModel {
 
 		public QuoteViewModel(IQuoteManager quoteOrderManager) {
 			this.quoteOrderManager = quoteOrderManager;
+			this.quoteOrderManager.OrderModified += HandleOrderModified;
 
 			this.MessengerInstance.Register<OrderDetailsSaved>(this, this.HandleOrderDetailsSaved);
+		}
+
+		private void HandleOrderModified(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
+			RaisePropertyChanged(nameof(this.BoardsQuantity));
+			RaiseCostsChanged();
 		}
 
 		public ObservableCollection<CostsSummaryItemViewModel> CostsSummaryItems {
@@ -31,7 +38,7 @@ namespace BoardOrder.ViewModel {
 			get => this.quote;
 			set => this.Set(nameof(this.Quote), ref this.quote, value);
 		}
-		
+
 		public bool IsTimeSummaryVisible {
 			get => this.isTimeSummaryVisible;
 			set {
@@ -92,13 +99,13 @@ namespace BoardOrder.ViewModel {
 		public void SetOrder(ObservableCollection<BoardOrderItem> value) {
 			this.Quote = value;
 			this.CostsSummaryItems = new ObservableCollection<CostsSummaryItemViewModel>(value.Select(item => CreateSummaryItem(item)));
-			this.quote.CollectionChanged += this.HandleQuoteChanged;
+			this.Quote.CollectionChanged += this.HandleQuoteChanged;
 			this.IsCostSummaryVisible = true;
 			this.RaiseCostsChanged();
 		}
 
 		private CostsSummaryItemViewModel CreateSummaryItem(BoardOrderItem item) {
-			return new CostsSummaryItemViewModel() {
+			return item == null ? null : new CostsSummaryItemViewModel() {
 				Item = item,
 				TotalCost = CalculateSumCost(this.Quote.Where(i => i.CostType == item.CostType)),
 				TotalTime = CalculateSumTime(this.Quote.Where(i => i.CostType == item.CostType)),
@@ -106,7 +113,24 @@ namespace BoardOrder.ViewModel {
 			};
 		}
 
-		private void HandleQuoteChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+		private void HandleQuoteChanged(object sender, NotifyCollectionChangedEventArgs e) {
+			switch (e.Action) {
+				case NotifyCollectionChangedAction.Add:
+					this.CostsSummaryItems.Add(CreateSummaryItem(e.NewItems[0] as BoardOrderItem));
+					break;
+				case NotifyCollectionChangedAction.Remove:
+					var itemToRemove = this.CostsSummaryItems.FirstOrDefault(i => i.Item == e.OldItems[0]);
+					this.CostsSummaryItems.Remove(itemToRemove);
+					break;
+				case NotifyCollectionChangedAction.Replace:
+					var itemToReplace = this.CostsSummaryItems.FirstOrDefault(i => i.Item == e.OldItems[0]);
+					var index = this.CostsSummaryItems.IndexOf(itemToReplace);
+					this.CostsSummaryItems[index] = CreateSummaryItem(e.NewItems[0] as BoardOrderItem);
+					break;
+				case NotifyCollectionChangedAction.Reset:
+					this.CostsSummaryItems = new ObservableCollection<CostsSummaryItemViewModel>(this.Quote.Select(item => CreateSummaryItem(item)));
+					break;
+			}
 
 			this.RaiseCostsChanged();
 		}

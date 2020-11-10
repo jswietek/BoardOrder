@@ -19,7 +19,7 @@
         <Grid.Resources>
             <CollectionViewSource x:Key="SortedItems" Source="{Binding FilteredItemsSource, RelativeSource={RelativeSource AncestorType=local:CostTypeSummaryView}}">
                 <CollectionViewSource.SortDescriptions>
-                    <scm:SortDescription PropertyName="{Binding SortPropertyName}" Direction="Descending" />
+                    <scm:SortDescription PropertyName="PercentageCost" Direction="Descending" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
         </Grid.Resources>

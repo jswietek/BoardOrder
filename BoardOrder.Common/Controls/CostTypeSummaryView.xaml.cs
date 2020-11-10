@@ -14,7 +14,7 @@ namespace BoardOrder.Common.Controls {
 	/// Interaction logic for CostTypeSummaryView.xaml
 	/// </summary>
 	public partial class CostTypeSummaryView : UserControl, INotifyPropertyChanged {
-		private IEnumerable<ICostSummaryItem> filteredItemsSource;
+		private ObservableCollection<ICostSummaryItem> filteredItemsSource;
 
 		public CostTypeSummaryView() {
 			InitializeComponent();
@@ -60,28 +60,50 @@ namespace BoardOrder.Common.Controls {
 
 		private static void CostTypeFilterChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
 			if (d is CostTypeSummaryView summaryView) {
-				summaryView.FilteredItemsSource = summaryView.ItemsSource?.Where(item => item.Item.CostType == summaryView.CostTypeFilter);
+				summaryView.FilteredItemsSource = summaryView.ItemsSource != null ? new ObservableCollection<ICostSummaryItem>(summaryView.ItemsSource.Where(item => item.Item.CostType == summaryView.CostTypeFilter)) : null;
 			}
 		}
 
 		private static void ItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
 
 			if (d is CostTypeSummaryView summaryView) {
-				if (e.OldValue is ObservableCollection<ICostSummaryItem> oldSource) {
+				if (e.OldValue is INotifyCollectionChanged oldSource) {
 					oldSource.CollectionChanged -= summaryView.SourceChanged;
 				}
-				if (e.NewValue is ObservableCollection<ICostSummaryItem> newSource) {
+				if (e.NewValue is INotifyCollectionChanged newSource) {
 					newSource.CollectionChanged += summaryView.SourceChanged;
 				}
-				summaryView.FilteredItemsSource = e.NewValue is IEnumerable<ICostSummaryItem> source ? source.Where(item => item.Item.CostType == summaryView.CostTypeFilter) : null;
+				summaryView.FilteredItemsSource = e.NewValue is IEnumerable<ICostSummaryItem> source ? new ObservableCollection<ICostSummaryItem>(source.Where(item => item.Item.CostType == summaryView.CostTypeFilter)) : null;
 			}
 		}
 
 		private void SourceChanged(object sender, NotifyCollectionChangedEventArgs e) {
-			this.FilteredItemsSource = this.ItemsSource?.Where(item => item.Item.CostType == this.CostTypeFilter);
+			var oldItem = e.OldItems[0] as ICostSummaryItem;
+			var newItem = e.NewItems[0] as ICostSummaryItem;
+			switch (e.Action) {
+				case NotifyCollectionChangedAction.Add:
+					if (newItem?.Item.CostType == this.CostTypeFilter) {
+						this.FilteredItemsSource.Add(newItem);
+					}
+					break;
+				case NotifyCollectionChangedAction.Remove:
+					if (oldItem?.Item.CostType == this.CostTypeFilter) {
+						this.FilteredItemsSource.Remove(oldItem);
+					}
+					break;
+				case NotifyCollectionChangedAction.Replace:
+					if (oldItem.Item.CostType == this.CostTypeFilter) {
+						var index = this.FilteredItemsSource.IndexOf(oldItem);
+						this.FilteredItemsSource[index] = newItem;
+					}
+					break;
+				case NotifyCollectionChangedAction.Reset:
+					this.FilteredItemsSource = new ObservableCollection<ICostSummaryItem>(this.ItemsSource.Where(item => item.Item.CostType == this.CostTypeFilter));
+					break;
+			}
 		}
 
-		public IEnumerable<ICostSummaryItem> FilteredItemsSource {
+		public ObservableCollection<ICostSummaryItem> FilteredItemsSource {
 			get => this.filteredItemsSource;
 			private set {
 				this.filteredItemsSource = value;
