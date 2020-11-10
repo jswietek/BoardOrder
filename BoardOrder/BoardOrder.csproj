@@ -70,20 +70,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messages\InputErrorMessage.cs" />
     <Compile Include="Messages\LoadingFinishedMessage.cs" />
     <Compile Include="Messages\LoadingInitializedMessage.cs" />
     <Compile Include="Messages\OrderDetailsSavedMessage.cs" />
     <Compile Include="Messages\OrderDetailsSaveRequested.cs" />
+    <Compile Include="Messages\OrderPlacedMessage.cs" />
     <Compile Include="Messages\RequestResetOrderMessage.cs" />
     <Compile Include="Messages\RestOrderConfirmationMessage.cs" />
     <Compile Include="ViewModel\CostsSummaryItemViewModel.cs" />
     <Compile Include="ViewModel\LoaderViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PlacedOrdersViewModel.cs" />
     <Compile Include="ViewModel\PreferencesViewModel.cs" />
     <Compile Include="ViewModel\QuoteViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\LoadingOverlay.xaml.cs">
       <DependentUpon>LoadingOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlacedOrdersView.xaml.cs">
+      <DependentUpon>PlacedOrdersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PreferencesView.xaml.cs">
       <DependentUpon>PreferencesView.xaml</DependentUpon>
@@ -104,6 +110,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\LoadingOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlacedOrdersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,6 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\icons8-circuit-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons8-box-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons8-minimize-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

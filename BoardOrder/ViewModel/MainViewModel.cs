@@ -1,13 +1,9 @@
-using BoardOrder.Common.Controls;
-using BoardOrder.Common.Messages;
 using BoardOrder.Domain.Services;
 using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using System.Windows;
 using System.Windows.Input;
 
 namespace BoardOrder.ViewModel {
@@ -17,8 +13,6 @@ namespace BoardOrder.ViewModel {
 	public class MainViewModel : ViewModelBase {
 		private readonly IOptionsProvider optionsProvider;
 		private readonly IBoardOrderManager boardOrderManager;
-
-		private bool isQuoteAvailable;
 
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
@@ -33,6 +27,7 @@ namespace BoardOrder.ViewModel {
 			this.ResetOrderCommand = new RelayCommand(this.RequestOrderReset);
 			this.SaveOrderCommand = new RelayCommand(this.SaveOrder, this.CanSaveOrder);
 			this.LoadedCommand = new RelayCommand(this.FetchData);
+			this.PlaceOrderCommand = new RelayCommand(this.PlaceOrder, this.CanPlaceOrder);
 
 			this.MessengerInstance.Register<RestOrderConfirmationMessage>(this, this.ResetOrder);
 		}
@@ -43,10 +38,9 @@ namespace BoardOrder.ViewModel {
 
 		public ICommand SaveOrderCommand { get; set; }
 
-		public bool IsQuoteAvailable {
-			get => this.isQuoteAvailable;
-			set => this.Set(ref this.isQuoteAvailable, value);
-		}
+		public ICommand PlaceOrderCommand { get; set; }
+
+		public bool IsQuoteAvailable => this.boardOrderManager.IsQuoteAvailable;
 
 		public override void Cleanup() {
 			this.optionsProvider.Fetching -= HandleOptionsProviderFetching;
@@ -64,6 +58,7 @@ namespace BoardOrder.ViewModel {
 
 		private void HandleOrderModified(object sender, PropertyChangedEventArgs e) {
 			(SaveOrderCommand as RelayCommand)?.RaiseCanExecuteChanged();
+			(PlaceOrderCommand as RelayCommand)?.RaiseCanExecuteChanged();
 		}
 
 		private bool CanSaveOrder() {
@@ -73,11 +68,21 @@ namespace BoardOrder.ViewModel {
 		private async void SaveOrder() {
 			this.MessengerInstance.Send(new LoadingInitializedMessage("Calculating quote"));
 			if (await this.boardOrderManager.SaveOrder()) {
-				this.IsQuoteAvailable = true;
+				RaisePropertyChanged(nameof(this.IsQuoteAvailable));
+				(PlaceOrderCommand as RelayCommand)?.RaiseCanExecuteChanged();
 				this.MessengerInstance.Send(new OrderDetailsSaved());
 			}
 
 			this.MessengerInstance.Send(new LoadingFinishedMessage());
+		}
+
+		private bool CanPlaceOrder() {
+			return this.boardOrderManager.IsOrderValid && this.boardOrderManager.IsQuoteAvailable;
+		}
+
+		private async void PlaceOrder() {
+			var placedOrderItem = await this.boardOrderManager.PlaceOrder();
+			this.MessengerInstance.Send(new OrderPlacedMessage(placedOrderItem));
 		}
 
 		private void RequestOrderReset() {
@@ -90,7 +95,8 @@ namespace BoardOrder.ViewModel {
 			}
 
 			this.boardOrderManager.ResetOrder();
-			this.IsQuoteAvailable = false;
+			(PlaceOrderCommand as RelayCommand)?.RaiseCanExecuteChanged();
+			RaisePropertyChanged(nameof(this.IsQuoteAvailable));
 		}
 	}
 }

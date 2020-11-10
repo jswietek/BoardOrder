@@ -27,7 +27,9 @@ namespace BoardOrder.Domain.Services {
 
 		public int BoardsQuantity => this.CurrentOrder?.BoardsQuantity ?? 1;
 
-		public BoardOrderDetails ResetOrder() {
+		public bool IsQuoteAvailable => this.CurrentOrder?.Quote != null;
+
+		public void ResetOrder() {
 			var order = new BoardOrderDetails() {
 				ProjectName = string.Empty,
 				Zipcode = string.Empty,
@@ -48,8 +50,8 @@ namespace BoardOrder.Domain.Services {
 				SelectedStackup = this.preferenceOptions.StackupOptions.FirstOrDefault(),
 			};
 			this.SetCurrentOrder(order);
+			this.CurrentOrder.Quote = null;
 			this.OrderReset?.Invoke();
-			return order;
 		}
 
 
@@ -68,8 +70,9 @@ namespace BoardOrder.Domain.Services {
 
 		private void SetCurrentOrder(BoardOrderDetails orderDetails) {
 			if (this.CurrentOrder != null) {
-				this.CurrentOrder.PropertyChanged -= HandleCurrentOrderPropertyChanged;
+				this.CurrentOrder.PropertyChanged -= HandleCurrentOrderPropertyChanged;	
 			}
+
 			this.CurrentOrder = orderDetails;
 			this.CurrentOrder.PropertyChanged += HandleCurrentOrderPropertyChanged;
 			this.OrderModified?.Invoke(this, new PropertyChangedEventArgs(nameof(BoardOrderDetails.Error)));
@@ -77,6 +80,22 @@ namespace BoardOrder.Domain.Services {
 
 		private void HandleCurrentOrderPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
 			this.OrderModified?.Invoke(this, e);
+		}
+
+		public async Task<PlacedOrderItem> PlaceOrder() {
+			var placedOrder = new PlacedOrderItem() {
+				ProjectName = this.CurrentOrder.ProjectName,
+				TotalCost = this.quoteService.CalculateSumCost(this.Quote, this.BoardsQuantity),
+				TotalTime = this.quoteService.CalculateSumTime(this.Quote, this.BoardsQuantity),
+				CurrentStatus = "Pending..."
+			};
+
+			// Simulate contacting server
+			await Task.Delay(300).ConfigureAwait(false);
+
+			ResetOrder();
+
+			return placedOrder;
 		}
 	}
 }

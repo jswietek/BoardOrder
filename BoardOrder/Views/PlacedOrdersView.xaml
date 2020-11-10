@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="BoardOrder.Views.PlacedOrdersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:props="clr-namespace:BoardOrder.Properties"
+             xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
+             xmlns:conv="clr-namespace:BoardOrder.Common.Converters;assembly=BoardOrder.Common"
+             DataContext="{Binding PlacedOrdersViewModel, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <conv:BooleanNegationToVisibilityCollapsedConverter x:Key="BooleanNegationToVisibilityCollapsedConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <ItemsControl Margin="4" Background="{StaticResource GeneralBackgroundBrush}" ItemsSource="{Binding PlacedOrders}" 
+                 Visibility="{Binding ArePlacedOrdersAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:ClippingBorder CornerRadius="4" BorderBrush="{StaticResource GeneralBorderColorBrush}" Background="{StaticResource ControlBackgroundBrush}" BorderThickness="1" Margin="8,6">
+                        <StackPanel Margin="5" Width="130" Height="100">
+                            <TextBlock Text="{Binding ProjectName}" FontWeight="Bold" Margin="0,4,0,0"/>
+                            <TextBlock Text="{Binding TotalCost, StringFormat='Total cost: {0}$'}" Foreground="{StaticResource MoneyColorBrush}" Margin="0,4"/>
+                            <TextBlock Text="{Binding TotalTime, StringFormat='Time to deliver: {0} days'}" Foreground="{StaticResource TimeColorBrush}" Margin="0,4"/>
+                            <TextBlock Text="{Binding CurrentStatus, StringFormat='Status: {0}'}" Margin="0,0,0,4"/>
+                        </StackPanel>
+                    </controls:ClippingBorder>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding ArePlacedOrdersAvailable, Converter={StaticResource BooleanNegationToVisibilityCollapsedConverter}}">
+            <Image Source="/Images/icons8-box-100.png" Width="72" Height="72"/>
+            <TextBlock Text="{x:Static props:Resources.NO_ORDERS_LABEL}" HorizontalAlignment="Center"/>
+            <TextBlock Text="{x:Static props:Resources.APPEAR_HEAR_LABEL}" HorizontalAlignment="Center"/>
+            <Button Content="{x:Static props:Resources.PLACE_CURRENT_ORDER_BUTTON}" Command="{Binding PlaceCurrentOrderCommand}" Margin="0,8"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

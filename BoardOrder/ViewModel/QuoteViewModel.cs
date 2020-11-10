@@ -1,20 +1,17 @@
-﻿using BoardOrder.Common.Messages;
-using BoardOrder.Domain.Models;
+﻿using BoardOrder.Domain.Models;
 using BoardOrder.Domain.Services;
+using BoardOrder.Messages;
 using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Management.Instrumentation;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace BoardOrder.ViewModel {
 	public class QuoteViewModel : ViewModelBase {
 		private readonly IQuoteManager quoteOrderManager;
+		private readonly IQuoteService quoteService;
 
 		private ObservableCollection<CostsSummaryItemViewModel> costsSummaryItems;
 		private ICollectionView quoteFabricationView;
@@ -24,10 +21,11 @@ namespace BoardOrder.ViewModel {
 		private bool isTimeSummaryVisible;
 		private bool isCostSummaryVisible;
 
-		public QuoteViewModel(IQuoteManager quoteOrderManager) {
+		public QuoteViewModel(IQuoteManager quoteOrderManager, IQuoteService quoteService) {
 			this.quoteOrderManager = quoteOrderManager;
 			this.quoteOrderManager.OrderModified += HandleOrderModified;
-
+			
+			this.quoteService = quoteService;
 			this.MessengerInstance.Register<OrderDetailsSaved>(this, this.HandleOrderDetailsSaved);
 		}
 
@@ -89,33 +87,33 @@ namespace BoardOrder.ViewModel {
 
 		public int BoardsQuantity => this.quoteOrderManager.BoardsQuantity;
 
-		public double TotalCost => this.CalculateSumCost(this.quote);
+		public double TotalCost => this.quoteService.CalculateSumCost(this.quote, this.quoteOrderManager.BoardsQuantity);
 
-		public double TotalTime => this.CalculateSumTime(this.quote);
+		public double TotalTime => this.quoteService.CalculateSumTime(this.quote, this.quoteOrderManager.BoardsQuantity);
 
-		public double PercentageFabricationCost => this.CalculatePercentage(this.FabricationCost, this.TotalCost);
+		public double PercentageFabricationCost => this.quoteService.CalculatePercentage(this.FabricationCost, this.TotalCost);
 
-		public double PercentageAssemblyCost => this.CalculatePercentage(this.AssemblyCost, this.TotalCost);
+		public double PercentageAssemblyCost => this.quoteService.CalculatePercentage(this.AssemblyCost, this.TotalCost);
 
-		public double PercentageComponentsCost => this.CalculatePercentage(this.ComponentsCost, this.TotalCost);
+		public double PercentageComponentsCost => this.quoteService.CalculatePercentage(this.ComponentsCost, this.TotalCost);
 
-		public double PercentageFabricationTime => this.CalculatePercentage(this.FabricationTime, this.TotalTime);
+		public double PercentageFabricationTime => this.quoteService.CalculatePercentage(this.FabricationTime, this.TotalTime);
 
-		public double PercentageAssemblyTime => this.CalculatePercentage(this.AssemblyTime, this.TotalTime);
+		public double PercentageAssemblyTime => this.quoteService.CalculatePercentage(this.AssemblyTime, this.TotalTime);
 
-		public double PercentageComponentsTime => this.CalculatePercentage(this.ComponentsTime, this.TotalTime);
+		public double PercentageComponentsTime => this.quoteService.CalculatePercentage(this.ComponentsTime, this.TotalTime);
 
-		public double FabricationCost => this.CalculateSumCost(this.quote?.Where(item => item.CostType == CostType.Fabrication));
+		public double FabricationCost => this.quoteService.CalculateSumCost(this.quote?.Where(item => item.CostType == CostType.Fabrication), this.quoteOrderManager.BoardsQuantity);
 
-		public double AssemblyCost => this.CalculateSumCost(this.quote?.Where(item => item.CostType == CostType.Assembly));
+		public double AssemblyCost => this.quoteService.CalculateSumCost(this.quote?.Where(item => item.CostType == CostType.Assembly), this.quoteOrderManager.BoardsQuantity);
 
-		public double ComponentsCost => this.CalculateSumCost(this.quote?.Where(item => item.CostType == CostType.Parts));
+		public double ComponentsCost => this.quoteService.CalculateSumCost(this.quote?.Where(item => item.CostType == CostType.Parts), this.quoteOrderManager.BoardsQuantity);
 
-		public double FabricationTime => this.CalculateSumTime(this.quote?.Where(item => item.CostType == CostType.Fabrication));
+		public double FabricationTime => this.quoteService.CalculateSumTime(this.quote?.Where(item => item.CostType == CostType.Fabrication), this.quoteOrderManager.BoardsQuantity);
 
-		public double AssemblyTime => this.CalculateSumTime(this.quote?.Where(item => item.CostType == CostType.Assembly));
+		public double AssemblyTime => this.quoteService.CalculateSumTime(this.quote?.Where(item => item.CostType == CostType.Assembly), this.quoteOrderManager.BoardsQuantity);
 
-		public double ComponentsTime => this.CalculateSumTime(this.quote?.Where(item => item.CostType == CostType.Parts));
+		public double ComponentsTime => this.quoteService.CalculateSumTime(this.quote?.Where(item => item.CostType == CostType.Parts), this.quoteOrderManager.BoardsQuantity);
 
 		public override void Cleanup() {
 			this.MessengerInstance.Unregister<OrderDetailsSaved>(this, this.HandleOrderDetailsSaved);
@@ -142,8 +140,8 @@ namespace BoardOrder.ViewModel {
 		private CostsSummaryItemViewModel CreateSummaryItem(BoardOrderItem item) {
 			return item == null ? null : new CostsSummaryItemViewModel() {
 				Item = item,
-				TotalCost = CalculateSumCost(this.Quote.Where(i => i.CostType == item.CostType)),
-				TotalTime = CalculateSumTime(this.Quote.Where(i => i.CostType == item.CostType)),
+				TotalCost = this.quoteService.CalculateSumCost(this.Quote.Where(i => i.CostType == item.CostType), this.quoteOrderManager.BoardsQuantity),
+				TotalTime = this.quoteService.CalculateSumTime(this.Quote.Where(i => i.CostType == item.CostType), this.quoteOrderManager.BoardsQuantity),
 				BoardsQuantity = this.BoardsQuantity
 			};
 		}
@@ -168,18 +166,6 @@ namespace BoardOrder.ViewModel {
 			}
 
 			this.RaiseCostsChanged();
-		}
-
-		private int CalculatePercentage(double sum, double total) {
-			return (int)(sum / total * 100);
-		}
-
-		private double CalculateSumCost(IEnumerable<BoardOrderItem> items) {
-			return items?.Sum(item => item.CostModifier * this.quoteOrderManager.BoardsQuantity) ?? 0;
-		}
-
-		private double CalculateSumTime(IEnumerable<BoardOrderItem> items) {
-			return Math.Round(items?.Sum(item => item.WorkdaysModifier * this.quoteOrderManager.BoardsQuantity) ?? 0);
 		}
 
 		private void SetSorting() {
@@ -212,10 +198,6 @@ namespace BoardOrder.ViewModel {
 			else {
 				this.QuoteComponentsView.SortDescriptions[0] = comSortDesc;
 			}
-
-			//this.QuoteFabricationView.Refresh();
-			//this.QuoteAssemblyView.Refresh();
-			//this.QuoteComponentsView.Refresh();
 		}
 
 		private void SetFilters() {

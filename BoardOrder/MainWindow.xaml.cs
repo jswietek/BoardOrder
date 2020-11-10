@@ -3,9 +3,11 @@ using BoardOrder.Messages;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace BoardOrder {
 	/// <summary>
@@ -43,6 +45,11 @@ namespace BoardOrder {
 
 		private void Minimize(object sender, RoutedEventArgs e) {
 			this.WindowState = WindowState.Minimized;
+		}
+
+		private void RequestNavigate(object sender, RequestNavigateEventArgs e) {
+			Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+			e.Handled = true;
 		}
 	}
 }

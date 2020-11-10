@@ -13,6 +13,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <conv:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter" />
         <conv:BooleanToGridLengthMultiConverter x:Key="BooleanToGridLengthMultiConverter"/>
+        <conv:BooleanNegationToVisibilityCollapsedConverter x:Key="BooleanNegationToVisibilityCollapsedConverter" />
     </Window.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -51,11 +52,11 @@
                     <TextBlock Text="{x:Static props:Resources.PRODUCT_DESCRIPTION}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Column="3" Margin="0,4">
-                    <Button Height="30" Margin="3,9" >
+                    <Button Height="30" Margin="3,9" Command="{Binding PlaceOrderCommand}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Images/icons8-shopping-cart-50.png" />
-                                <TextBlock Text="{x:Static props:Resources.PLACE_ORDER_LABEL}" />
+                                <TextBlock Text="{x:Static props:Resources.PLACE_ORDER_LABEL}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -109,15 +110,26 @@
                         </Expander.Style>
                         <views:QuoteView/>
                     </Expander>
-                    <Expander Grid.Row="2" Header="Orders" x:Name="OrdersExpander" IsEnabled="{Binding IsQuoteAvailable}" Style="{StaticResource SectionExpanderStyle}">
+                    <Expander Grid.Row="2" Header="Orders" x:Name="OrdersExpander" Style="{StaticResource SectionExpanderStyle}">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
-                            <views:PreferencesView/>
+                            <views:PlacedOrdersView/>
                         </ScrollViewer>
                     </Expander>
                 </Grid>
             </Border>
-            <Button Grid.Row="3" Content="Discard to default" HorizontalAlignment="Left" Margin="10,0,10,10" Command="{Binding ResetOrderCommand}"/>
-            <Button Grid.Row="3" Content="Save and continue" HorizontalAlignment="Right" Margin="10,0,10,10" Command="{Binding SaveOrderCommand}"/>
+            <Button Grid.Row="3" Content="{x:Static props:Resources.DISCARD_LABEL}" HorizontalAlignment="Left" Margin="10,0,10,10" Command="{Binding ResetOrderCommand}"/>
+            <Button Grid.Row="3" Content="{x:Static props:Resources.GET_QUOTE_LABEL}" HorizontalAlignment="Right" Margin="10,0,10,10" Command="{Binding SaveOrderCommand}" 
+                    Visibility="{Binding IsQuoteAvailable, Converter={StaticResource BooleanNegationToVisibilityCollapsedConverter}}"/>
+            <Label Grid.Row="3" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Icons by "/>
+                    <TextBlock>
+                        <Hyperlink NavigateUri="https://icons8.com/" RequestNavigate="RequestNavigate">
+                            Icons8
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Label>
             <views:LoadingOverlay Grid.Row="1" Grid.RowSpan="3" Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </Grid>
     </controls:ClippingBorder>

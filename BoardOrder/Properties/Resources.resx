@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="APPEAR_HEAR_LABEL" xml:space="preserve">
+    <value>Your orders will appear here.</value>
+  </data>
   <data name="ASSEMBLY_LABEL" xml:space="preserve">
     <value>Assembly</value>
   </data>
@@ -141,11 +144,17 @@
   <data name="Copper_WEIGHT_ON_OUTER_LAYERS_LABEL" xml:space="preserve">
     <value>Coper Weight on Outer Layers</value>
   </data>
+  <data name="DISCARD_LABEL" xml:space="preserve">
+    <value>Discard to defaults</value>
+  </data>
   <data name="FABRICATION_LABEL" xml:space="preserve">
     <value>Fabrication</value>
   </data>
   <data name="FLUX_TYPE_LABEL" xml:space="preserve">
     <value>Flux Type</value>
+  </data>
+  <data name="GET_QUOTE_LABEL" xml:space="preserve">
+    <value>Get Quote</value>
   </data>
   <data name="IMPORTANT_BOARDS_PREFERENCES_HEADER" xml:space="preserve">
     <value>Important Board Preferences</value>
@@ -165,11 +174,17 @@
   <data name="NOTES_LABEL" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="NO_ORDERS_LABEL" xml:space="preserve">
+    <value>There are no orders yet.</value>
+  </data>
   <data name="ORDER_RESET_CONFIRMATION" xml:space="preserve">
     <value>Are you sure you want to reset your order to defaults?</value>
   </data>
   <data name="ORDER_RESET_TITLE" xml:space="preserve">
     <value>Order Reset Confirmation.</value>
+  </data>
+  <data name="PLACE_CURRENT_ORDER_BUTTON" xml:space="preserve">
+    <value>Place Current Order</value>
   </data>
   <data name="PLACE_ORDER_LABEL" xml:space="preserve">
     <value>Place and order</value>

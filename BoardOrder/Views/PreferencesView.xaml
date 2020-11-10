@@ -56,7 +56,7 @@
 
 
         <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Static resources:Resources.BOARDS_QUANTITY_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, NotifyOnValidationError=False, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
+        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, NotifyOnValidationError=True, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
 
         <Separator Grid.Row="3" Grid.ColumnSpan="6"/>
 

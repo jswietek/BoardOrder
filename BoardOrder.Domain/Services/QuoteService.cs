@@ -1,5 +1,6 @@
 ﻿using BoardOrder.Domain.DataAccess;
 using BoardOrder.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +22,18 @@ namespace BoardOrder.Domain.Services {
 
 		public async Task<IEnumerable<BoardOrderItem>> LoadBaseCosts() {
 			return await this.settingsRepo.GetBaseCostsAsync().ConfigureAwait(false);
+		}
+
+		public int CalculatePercentage(double sum, double total) {
+			return (int)(sum / total * 100);
+		}
+
+		public double CalculateSumCost(IEnumerable<BoardOrderItem> items, int boardsQuantity) {
+			return items?.Sum(item => item.CostModifier * boardsQuantity) ?? 0;
+		}
+
+		public double CalculateSumTime(IEnumerable<BoardOrderItem> items, int boardsQuantity) {
+			return Math.Round(items?.Sum(item => item.WorkdaysModifier * boardsQuantity) ?? 0);
 		}
 	}
 }

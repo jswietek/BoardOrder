@@ -61,6 +61,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your orders will appear here..
+        /// </summary>
+        public static string APPEAR_HEAR_LABEL {
+            get {
+                return ResourceManager.GetString("APPEAR_HEAR_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assembly.
         /// </summary>
         public static string ASSEMBLY_LABEL {
@@ -133,6 +142,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discard to defaults.
+        /// </summary>
+        public static string DISCARD_LABEL {
+            get {
+                return ResourceManager.GetString("DISCARD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fabrication.
         /// </summary>
         public static string FABRICATION_LABEL {
@@ -147,6 +165,15 @@ namespace BoardOrder.Properties {
         public static string FLUX_TYPE_LABEL {
             get {
                 return ResourceManager.GetString("FLUX_TYPE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Quote.
+        /// </summary>
+        public static string GET_QUOTE_LABEL {
+            get {
+                return ResourceManager.GetString("GET_QUOTE_LABEL", resourceCulture);
             }
         }
         
@@ -196,6 +223,15 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no orders yet..
+        /// </summary>
+        public static string NO_ORDERS_LABEL {
+            get {
+                return ResourceManager.GetString("NO_ORDERS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         public static string NOTES_LABEL {
@@ -219,6 +255,15 @@ namespace BoardOrder.Properties {
         public static string ORDER_RESET_TITLE {
             get {
                 return ResourceManager.GetString("ORDER_RESET_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place Current Order.
+        /// </summary>
+        public static string PLACE_CURRENT_ORDER_BUTTON {
+            get {
+                return ResourceManager.GetString("PLACE_CURRENT_ORDER_BUTTON", resourceCulture);
             }
         }
         

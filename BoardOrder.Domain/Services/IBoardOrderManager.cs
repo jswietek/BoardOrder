@@ -7,7 +7,8 @@ namespace BoardOrder.Domain.Services {
 		event Action OrderReset;
 		bool IsOrderValid { get; }
 		BoardOrderDetails CurrentOrder { get; }
-		BoardOrderDetails ResetOrder();
+		void ResetOrder();
 		Task<bool> SaveOrder();
+		Task<PlacedOrderItem> PlaceOrder();
 	}
 }

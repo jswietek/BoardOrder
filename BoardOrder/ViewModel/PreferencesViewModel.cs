@@ -28,7 +28,8 @@ namespace BoardOrder.ViewModel {
 
 		private void HandleLoadingFinished(LoadingFinishedMessage message) {
 			if (message.ShouldResetOrder) {
-				this.Order = this.boardOrdersManager.ResetOrder();
+				this.boardOrdersManager.ResetOrder();
+				this.Order = this.boardOrdersManager.CurrentOrder;
 			}
 		}
 
