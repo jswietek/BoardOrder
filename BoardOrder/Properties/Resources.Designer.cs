@@ -205,6 +205,24 @@ namespace BoardOrder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to reset your order to defaults?.
+        /// </summary>
+        public static string ORDER_RESET_CONFIRMATION {
+            get {
+                return ResourceManager.GetString("ORDER_RESET_CONFIRMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Reset Confirmation..
+        /// </summary>
+        public static string ORDER_RESET_TITLE {
+            get {
+                return ResourceManager.GetString("ORDER_RESET_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Place and order.
         /// </summary>
         public static string PLACE_ORDER_LABEL {

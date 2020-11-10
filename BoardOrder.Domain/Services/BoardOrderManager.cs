@@ -1,4 +1,5 @@
 ﻿using BoardOrder.Domain.Models;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace BoardOrder.Domain.Services {
 		}
 
 		public event PropertyChangedEventHandler OrderModified;
+
+		public event Action OrderReset;
 
 		public bool IsOrderValid => string.IsNullOrEmpty(this.CurrentOrder?.Error);
 
@@ -45,6 +48,7 @@ namespace BoardOrder.Domain.Services {
 				SelectedStackup = this.preferenceOptions.StackupOptions.FirstOrDefault(),
 			};
 			this.SetCurrentOrder(order);
+			this.OrderReset?.Invoke();
 			return order;
 		}
 

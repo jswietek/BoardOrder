@@ -12,9 +12,14 @@ namespace BoardOrder.ViewModel {
 		public PreferencesViewModel(IPreferencesOptions preferencesOptions, IBoardOrderManager boardOrdersManager) {
 			this.PreferencesOptions = preferencesOptions;
 			this.boardOrdersManager = boardOrdersManager;
+			this.boardOrdersManager.OrderReset += HandleOrderReset;
 
 			this.MessengerInstance.Register<LoadingFinishedMessage>(this, HandleLoadingFinished);
 			this.MessengerInstance.Register<OrderDetailsSaveRequested>(this, HandleOrderDetailsSaveRequested);
+		}
+
+		private void HandleOrderReset() {
+			this.Order = this.boardOrdersManager.CurrentOrder;
 		}
 
 		private void HandleOrderDetailsSaveRequested(OrderDetailsSaveRequested _) {
@@ -31,7 +36,10 @@ namespace BoardOrder.ViewModel {
 
 		public BoardOrderDetails Order {
 			get => this.boardOrderDetails;
-			set => this.Set(ref this.boardOrderDetails, value);
+			set {
+				this.Set(nameof(Order), ref this.boardOrderDetails, value);
+
+			}
 		}
 	}
 }

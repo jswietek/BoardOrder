@@ -165,6 +165,12 @@
   <data name="NOTES_LABEL" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="ORDER_RESET_CONFIRMATION" xml:space="preserve">
+    <value>Are you sure you want to reset your order to defaults?</value>
+  </data>
+  <data name="ORDER_RESET_TITLE" xml:space="preserve">
+    <value>Order Reset Confirmation.</value>
+  </data>
   <data name="PLACE_ORDER_LABEL" xml:space="preserve">
     <value>Place and order</value>
   </data>

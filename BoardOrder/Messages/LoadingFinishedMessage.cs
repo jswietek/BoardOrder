@@ -1,5 +1,7 @@
-﻿namespace BoardOrder.Messages {
-	public class LoadingFinishedMessage {
+﻿using GalaSoft.MvvmLight.Messaging;
+
+namespace BoardOrder.Messages {
+	public class LoadingFinishedMessage : MessageBase {
 		public LoadingFinishedMessage() {
 			this.ShouldResetOrder = false;
 		}

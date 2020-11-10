@@ -13,6 +13,10 @@
     <Color x:Key="GeneralBorderColor">#1b1b1b</Color>
     <Color x:Key="ValidationErrorColor">Red</Color>
 
+    <Color x:Key="CloseButtonColor">#9d1a1a</Color>
+    <Color x:Key="CloseButtonHoverColor">#bd1a1a</Color>
+    <Color x:Key="CloseButtonPressedColor">#7d1a1a</Color>
+
     <Color x:Key="MoneyColor">#dd8811</Color>
     <Color x:Key="TimeColor">#338833</Color>
 
@@ -29,6 +33,10 @@
     <SolidColorBrush Color="{StaticResource PressedColor}" x:Key="PressedColorBrush"/>
     <SolidColorBrush Color="{StaticResource GeneralBorderColor}" x:Key="GeneralBorderColorBrush"/>
     <SolidColorBrush Color="{StaticResource ValidationErrorColor}" x:Key="ValidationErrorColorBrush"/>
+
+    <SolidColorBrush Color="{StaticResource CloseButtonColor}" x:Key="CloseButtonColorBrush"/>
+    <SolidColorBrush Color="{StaticResource CloseButtonHoverColor}" x:Key="CloseButtonHoverColorBrush"/>
+    <SolidColorBrush Color="{StaticResource CloseButtonPressedColor}" x:Key="CloseButtonPressedColorBrush"/>
 
     <SolidColorBrush Color="{StaticResource MoneyColor}" x:Key="MoneyColorBrush"/>
     <SolidColorBrush Color="{StaticResource TimeColor}" x:Key="TimeColorBrush"/>
@@ -66,6 +74,11 @@
 
     <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="HeaderStyle">
         <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+    </Style>
+
+    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}" x:Key="WindowHeaderStyle">
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="DemiBold"/>
     </Style>
 
@@ -115,7 +128,7 @@
                     <controls:ClippingBorder CornerRadius="4" 
                                              Background="{TemplateBinding Background}" 
                                              BorderBrush="{TemplateBinding BorderBrush}" 
-                                             BorderThickness="{TemplateBinding BorderThickness}">
+                                             BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
                         <ContentPresenter Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <ContentPresenter.Resources>
                                 <Style TargetType="{x:Type TextBlock}" BasedOn="{x:Null}" />
@@ -139,6 +152,60 @@
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
                                 <Setter Property="Background" Value="{StaticResource HoverColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource GeneralDisabledForegroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}" x:Key="MinimizeButton">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="0,4,4,4"/>
+        <Setter Property="Content" Value="-"/>
+        <Setter Property="Focusable" Value="False"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="CloseButton">
+        <Setter Property="Background" Value="{StaticResource CloseButtonColorBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource GeneralForegroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GeneralBorderColorBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="0,4,4,4"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <controls:ClippingBorder CornerRadius="4"
+                                             Background="{TemplateBinding Background}" 
+                                             BorderBrush="{TemplateBinding BorderBrush}" 
+                                             BorderThickness="{TemplateBinding BorderThickness}">
+                        <Image Source="pack://application:,,/BoardOrder;Component/Images/icons8-delete-50.png" />
+                    </controls:ClippingBorder>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource CloseButtonPressedColorBrush}"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="{StaticResource CloseButtonHoverColorBrush}"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">

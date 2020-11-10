@@ -49,14 +49,14 @@
         </StackPanel>
 
         <TextBlock Grid.Column="1" Text="{x:Static resources:Resources.PROJECT_NAME_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Order.ProjectName, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Order.ProjectName, NotifyOnValidationError=True, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Static resources:Resources.ZIPCODE_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Order.Zipcode, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Order.Zipcode, NotifyOnValidationError=True, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
 
 
         <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Static resources:Resources.BOARDS_QUANTITY_LABEL}" TextAlignment="Right"/>
-        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, NotifyOnValidationError=False, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="2" Grid.Column="2"  Text="{Binding Order.BoardsQuantity, NotifyOnValidationError=False, ValidatesOnDataErrors=True, Mode=TwoWay}"/>
 
         <Separator Grid.Row="3" Grid.ColumnSpan="6"/>
 

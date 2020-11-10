@@ -1,3 +1,4 @@
+using BoardOrder.Common.Controls;
 using BoardOrder.Common.Messages;
 using BoardOrder.Domain.Services;
 using BoardOrder.Messages;
@@ -32,6 +33,8 @@ namespace BoardOrder.ViewModel {
 			this.ResetOrderCommand = new RelayCommand(this.RequestOrderReset);
 			this.SaveOrderCommand = new RelayCommand(this.SaveOrder, this.CanSaveOrder);
 			this.LoadedCommand = new RelayCommand(this.FetchData);
+
+			this.MessengerInstance.Register<RestOrderConfirmationMessage>(this, this.ResetOrder);
 		}
 
 		public ICommand LoadedCommand { get; set; }
@@ -77,6 +80,14 @@ namespace BoardOrder.ViewModel {
 		}
 
 		private void RequestOrderReset() {
+			this.MessengerInstance.Send(new RequestResetOrderMessage());
+		}
+
+		private void ResetOrder(RestOrderConfirmationMessage confirmationMessage) {
+			if (!confirmationMessage.IsResetConfirmed) {
+				return;
+			}
+
 			this.boardOrderManager.ResetOrder();
 			this.IsQuoteAvailable = false;
 		}

@@ -79,6 +79,9 @@
     <Compile Include="Controls\ManufacturingCostsSummary.xaml.cs">
       <DependentUpon>ManufacturingCostsSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ModalMessageBox.xaml.cs">
+      <DependentUpon>ModalMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MultiButton.xaml.cs">
       <DependentUpon>MultiButton.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ManufacturingCostsSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ModalMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,8 +5,10 @@
         xmlns:conv="clr-namespace:BoardOrder.Common.Converters;assembly=BoardOrder.Common"
         xmlns:views="clr-namespace:BoardOrder.Views"
         xmlns:props="clr-namespace:BoardOrder.Properties"
-        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
-        Title="MainWindow" Height="768" Width="1024" Background="{StaticResource ControlBackgroundBrush}">
+        xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
+        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}" WindowStyle="None" ResizeMode="CanMinimize"
+        Title="Board Order - Swietek Automation" Height="768" Width="1024" 
+        Background="Transparent" AllowsTransparency="True">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <conv:BooleanToGridLengthConverter x:Key="BooleanToGridLengthConverter" />
@@ -17,70 +19,85 @@
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <controls:ClippingBorder CornerRadius="4" BorderThickness="2" Background="{StaticResource ControlBackgroundBrush}" BorderBrush="{StaticResource GeneralBorderColorBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border MouseDown="ToolBarMouseDown" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Window}}" Background="{StaticResource ControlBackgroundBrush}" 
+                    BorderThickness="0,0,0,1" BorderBrush="{StaticResource GeneralBorderColorBrush}">
+                <Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource MinimizeButton}" HorizontalAlignment="Right" Click="Minimize" Margin="2,8"/>
+                        <Button Style="{StaticResource CloseButton}"  Click="Close" Margin="2,8,8,8"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource WindowHeaderStyle}" HorizontalAlignment="Left" Margin="10,4"/>
+                </Grid>
+            </Border>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" MaxWidth="500">
-                <TextBlock Text="{x:Static props:Resources.PRODUCT_NAME}" FontWeight="Bold"/>
-                <TextBlock Text="{x:Static props:Resources.PRODUCT_DESCRIPTION}" TextWrapping="Wrap"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <Button Height="30" Margin="0,9">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Images/icons8-shopping-cart-50.png" />
-                            <TextBlock Text="{x:Static props:Resources.PLACE_ORDER_LABEL}" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Height="30" ToolTip="{x:Static props:Resources.RESET_BUTTON_TOOLTIP}">
-                    <Image Source="/Images/icons8-reset-50.png" />
-                </Button>
-            </StackPanel>
-        </Grid>
-        <Border Grid.Row="1" Margin="10" BorderBrush="{StaticResource ActiveLightColorBrush}" BorderThickness="2">
-            <Grid Background="{StaticResource GeneralBackgroundBrush}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="{Binding IsExpanded, ElementName=PreferencesExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
-                    <RowDefinition x:Name="QuoteRow" Height="{Binding IsExpanded, ElementName=QuoteExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
-                    <RowDefinition Height="{Binding IsExpanded, ElementName=OrdersExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
-                    <RowDefinition>
-                        <RowDefinition.Height>
-                            <MultiBinding Converter="{StaticResource BooleanToGridLengthMultiConverter}">
-                                <Binding Path="IsExpanded" ElementName="PreferencesExpander" />
-                                <Binding Path="IsExpanded" ElementName="QuoteExpander" />
-                                <Binding Path="IsExpanded" ElementName="OrdersExpander" />
-                            </MultiBinding>
-                        </RowDefinition.Height>
-                    </RowDefinition>
-                </Grid.RowDefinitions>
-                <Expander Header="Preferences" x:Name="PreferencesExpander" IsExpanded="true" Style="{StaticResource SectionExpanderStyle}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
-                        <views:PreferencesView/>
-                    </ScrollViewer>
-                </Expander>
-                <Expander Grid.Row="1" Header="Quote" x:Name="QuoteExpander" IsEnabled="{Binding IsQuoteAvailable}" Style="{StaticResource SectionExpanderStyle}">
-                    <views:QuoteView/>
-                </Expander>
-                <Expander Grid.Row="2" Header="Orders" x:Name="OrdersExpander" IsEnabled="{Binding IsQuoteAvailable}" Style="{StaticResource SectionExpanderStyle}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
-                        <views:PreferencesView/>
-                    </ScrollViewer>
-                </Expander>
+            <Grid Margin="10" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Images/icons8-circuit-100.png" Width="56" Height="56"/>
+                <StackPanel Orientation="Vertical" MaxWidth="500" Grid.Column="1" Margin="0,4">
+                    <TextBlock Text="{x:Static props:Resources.PRODUCT_NAME}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static props:Resources.PRODUCT_DESCRIPTION}" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" Margin="0,4">
+                    <Button Height="30" Margin="3,9" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/icons8-shopping-cart-50.png" />
+                                <TextBlock Text="{x:Static props:Resources.PLACE_ORDER_LABEL}" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Height="30" ToolTip="{x:Static props:Resources.RESET_BUTTON_TOOLTIP}" Margin="3,9" Command="{Binding ResetOrderCommand}">
+                        <Image Source="/Images/icons8-reset-50.png" />
+                    </Button>
+                </StackPanel>
             </Grid>
-        </Border>
-        <Button Grid.Row="2" Content="Discard to default" HorizontalAlignment="Left" Margin="10,0,10,10" Command="{Binding ResetOrderCommand}"/>
-        <Button Grid.Row="2" Content="Save and continue" HorizontalAlignment="Right" Margin="10,0,10,10" Command="{Binding SaveOrderCommand}"/>
-        <views:LoadingOverlay Grid.RowSpan="3" Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
-    </Grid>
+            <Border Grid.Row="2" Margin="10" BorderBrush="{StaticResource ActiveLightColorBrush}" BorderThickness="2">
+                <Grid Background="{StaticResource GeneralBackgroundBrush}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding IsExpanded, ElementName=PreferencesExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
+                        <RowDefinition x:Name="QuoteRow" Height="{Binding IsExpanded, ElementName=QuoteExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
+                        <RowDefinition Height="{Binding IsExpanded, ElementName=OrdersExpander, Converter={StaticResource BooleanToGridLengthConverter}}"/>
+                        <RowDefinition>
+                            <RowDefinition.Height>
+                                <MultiBinding Converter="{StaticResource BooleanToGridLengthMultiConverter}">
+                                    <Binding Path="IsExpanded" ElementName="PreferencesExpander" />
+                                    <Binding Path="IsExpanded" ElementName="QuoteExpander" />
+                                    <Binding Path="IsExpanded" ElementName="OrdersExpander" />
+                                </MultiBinding>
+                            </RowDefinition.Height>
+                        </RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Expander Header="Preferences" x:Name="PreferencesExpander" IsExpanded="true" Style="{StaticResource SectionExpanderStyle}">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
+                            <views:PreferencesView/>
+                        </ScrollViewer>
+                    </Expander>
+                    <Expander Grid.Row="1" Header="Quote" x:Name="QuoteExpander" IsEnabled="{Binding IsQuoteAvailable}" Style="{StaticResource SectionExpanderStyle}">
+                        <views:QuoteView/>
+                    </Expander>
+                    <Expander Grid.Row="2" Header="Orders" x:Name="OrdersExpander" IsEnabled="{Binding IsQuoteAvailable}" Style="{StaticResource SectionExpanderStyle}">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10" Background="{StaticResource GeneralBackgroundBrush}">
+                            <views:PreferencesView/>
+                        </ScrollViewer>
+                    </Expander>
+                </Grid>
+            </Border>
+            <Button Grid.Row="3" Content="Discard to default" HorizontalAlignment="Left" Margin="10,0,10,10" Command="{Binding ResetOrderCommand}"/>
+            <Button Grid.Row="3" Content="Save and continue" HorizontalAlignment="Right" Margin="10,0,10,10" Command="{Binding SaveOrderCommand}"/>
+            <views:LoadingOverlay Grid.Row="1" Grid.RowSpan="3" Visibility="{Binding IsFetchingData, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </Grid>
+    </controls:ClippingBorder>
 </Window>
