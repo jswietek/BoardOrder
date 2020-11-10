@@ -98,6 +98,7 @@
     <Compile Include="Converters\QuoteToPercentageGridLengthMultiConverter.cs" />
     <Compile Include="Converters\StringToColorConverter.cs" />
     <Compile Include="Extensions\ExpanderExtensions.cs" />
+    <Compile Include="Extensions\TopMostScrollPriorityBehavior.cs" />
     <Compile Include="Interfaces\ICostSummaryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

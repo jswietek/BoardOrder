@@ -76,6 +76,7 @@ namespace BoardOrder.ViewModel {
 				this.IsQuoteAvailable = true;
 				this.MessengerInstance.Send(new OrderDetailsSaved());
 			}
+
 			this.MessengerInstance.Send(new LoadingFinishedMessage());
 		}
 

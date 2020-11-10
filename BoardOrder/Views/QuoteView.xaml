@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:props="clr-namespace:BoardOrder.Properties"
              xmlns:controls="clr-namespace:BoardOrder.Common.Controls;assembly=BoardOrder.Common"
-             xmlns:local="clr-namespace:BoardOrder.Views"
+             xmlns:ext="clr-namespace:BoardOrder.Common.Extensions;assembly=BoardOrder.Common"
              xmlns:conv="clr-namespace:BoardOrder.Common.Converters;assembly=BoardOrder.Common"
              DataContext="{Binding QuoteViewModel, Source={StaticResource Locator}}"
              mc:Ignorable="d" 
@@ -31,7 +31,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <DataGrid AutoGenerateColumns="False" DataContext="{StaticResource Groups}" ItemsSource="{Binding}" BorderThickness="0" x:Name="QuoteGrid">
+                <DataGrid AutoGenerateColumns="False" DataContext="{StaticResource Groups}" ItemsSource="{Binding}" BorderThickness="0" x:Name="QuoteGrid"
+                          VerticalScrollBarVisibility="Hidden">
                     <DataGrid.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.Panel>
@@ -121,7 +122,7 @@
         <controls:ClippingBorder Grid.Column="1" BorderBrush="{StaticResource GeneralBorderColorBrush}" Background="{StaticResource GeneralBackgroundBrush}" 
                                  BorderThickness="1" CornerRadius="4" Padding="10,0"  Margin="8,8,4,8">
             <Grid>
-                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Padding="8">
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Padding="8" ext:TopMouseScrollPriorityBehavior.TopMouseScrollPriority="True">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
