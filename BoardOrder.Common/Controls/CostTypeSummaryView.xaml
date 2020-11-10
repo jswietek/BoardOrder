@@ -16,16 +16,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.Resources>
-            <CollectionViewSource x:Key="SortedItems" Source="{Binding FilteredItemsSource, RelativeSource={RelativeSource AncestorType=local:CostTypeSummaryView}}">
-                <CollectionViewSource.SortDescriptions>
-                    <scm:SortDescription PropertyName="PercentageCost" Direction="Descending" />
-                </CollectionViewSource.SortDescriptions>
-            </CollectionViewSource>
-        </Grid.Resources>
         <TextBlock Text="{Binding Header, RelativeSource={RelativeSource AncestorType=local:CostTypeSummaryView}}" Style="{StaticResource HeaderStyle}"/>
         <Grid  Grid.Row="1">
-            <DataGrid DataContext="{StaticResource SortedItems}" ItemsSource="{Binding}"
+            <DataGrid ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=local:CostTypeSummaryView}}"
                   BorderThickness="0" AutoGenerateColumns="False" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=local:CostTypeSummaryView}}">
                 <DataGrid.Columns>
                     <DataGridTextColumn HeaderStyle="{StaticResource SummaryDataGridColumnHeaderStyle}" Binding="{Binding Item.Name}" Width="*">

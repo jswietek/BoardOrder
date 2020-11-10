@@ -31,8 +31,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <DataGrid AutoGenerateColumns="False" DataContext="{StaticResource Groups}" ItemsSource="{Binding}" BorderThickness="0" x:Name="QuoteGrid"
-                          VerticalScrollBarVisibility="Hidden">
+                <DataGrid AutoGenerateColumns="False" DataContext="{StaticResource Groups}" ItemsSource="{Binding}" BorderThickness="0" x:Name="QuoteGrid">
                     <DataGrid.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.Panel>
@@ -135,11 +134,11 @@
                         </Grid.RowDefinitions>
                         <controls:ManufacturingCostsSummary />
                         <Separator Grid.Row="1" Margin="0,8"/>
-                        <controls:CostTypeSummaryView  Grid.Row="2" Header="{x:Static props:Resources.FABRICATION_LABEL}" ItemsSource="{Binding CostsSummaryItems}" CostTypeFilter="Fabrication"/>
+                        <controls:CostTypeSummaryView  Grid.Row="2" Header="{x:Static props:Resources.FABRICATION_LABEL}" ItemsSource="{Binding QuoteFabricationView}"/>
                         <Separator Grid.Row="3" Margin="0,8"/>
-                        <controls:CostTypeSummaryView Grid.Row="4" Header="{x:Static props:Resources.ASSEMBLY_LABEL}" ItemsSource="{Binding CostsSummaryItems}" CostTypeFilter="Assembly"/>
+                        <controls:CostTypeSummaryView Grid.Row="4" Header="{x:Static props:Resources.ASSEMBLY_LABEL}" ItemsSource="{Binding QuoteAssemblyView}" />
                         <Separator Grid.Row="5" Margin="0,8"/>
-                        <controls:CostTypeSummaryView Grid.Row="6" Header="{x:Static props:Resources.COMPONENTS_LABEL}" ItemsSource="{Binding CostsSummaryItems}" CostTypeFilter="Parts"/>
+                        <controls:CostTypeSummaryView Grid.Row="6" Header="{x:Static props:Resources.COMPONENTS_LABEL}" ItemsSource="{Binding QuoteComponentsView}" />
                     </Grid>
                 </ScrollViewer>
             </Grid>
